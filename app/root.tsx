@@ -2,6 +2,7 @@ import type {LinksFunction, MetaFunction} from '@remix-run/node';
 import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration} from '@remix-run/react';
 import {useEffect, useState} from 'react';
 import styles from './styles/app.css';
+import {RiSunFill, RiSunLine} from 'react-icons/ri';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -22,13 +23,14 @@ export default function App() {
     setIsDarkMode(window && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
   }, []);
   return (
-    <html lang="en">
+    <html lang="en" className={isDarkMode ? 'dark' : ''}>
       <head>
         <Meta />
         <Links />
         <link rel="icon" href={isDarkMode ? 'dog_light.svg' : 'dog.svg'} />
       </head>
-      <body>
+      <body className="bg-white dark:bg-black text-black dark:text-white">
+        <button onClick={() => setIsDarkMode(!isDarkMode)}>{isDarkMode ? <RiSunLine /> : <RiSunFill />}</button>
         <LiveReload />
         <Outlet />
         <ScrollRestoration />
