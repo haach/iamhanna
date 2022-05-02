@@ -1,6 +1,7 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
 import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration} from '@remix-run/react';
 import {useEffect, useState} from 'react';
+import styles from './styles/app.css';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -8,25 +9,9 @@ export const meta: MetaFunction = () => ({
   viewport: 'width=device-width,initial-scale=1',
 });
 
-export const __links: LinksFunction = () => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
-  /* useEffect(() => {
-    const dark = window && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    console.log('dark', dark);
-  }, []); */
+export const links: LinksFunction = () => {
   return [
-    // add a favicon
-    isDarkMode
-      ? {
-          rel: 'icon',
-          href: '/dog_light.svg',
-          type: 'image/svg',
-        }
-      : {
-          rel: 'icon',
-          href: '/dog.svg',
-          type: 'image/svg',
-        },
+    {rel: 'stylesheet', href: styles},
     // from https://remix.run/docs/en/v1/api/conventions#links
   ];
 };
