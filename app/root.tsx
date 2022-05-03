@@ -18,19 +18,26 @@ export const links: LinksFunction = () => {
 };
 
 export default function App() {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [{system, userSelection}, setDarkMode] = useState<{system: boolean; userSelection: boolean}>({
+    system: true,
+    userSelection: true,
+  });
   useEffect(() => {
-    setIsDarkMode(window && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const isDarkMode = window && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setDarkMode({system: isDarkMode, userSelection: isDarkMode});
   }, []);
+
   return (
-    <html lang="en" className={isDarkMode ? 'dark' : ''}>
+    <html lang="en" className={userSelection ? 'dark' : ''}>
       <head>
         <Meta />
         <Links />
-        <link rel="icon" href={isDarkMode ? 'dog_light.svg' : 'dog.svg'} />
+        <link rel="icon" href={system ? 'dog_light.svg' : 'dog.svg'} />
       </head>
       <body className="bg-white dark:bg-black text-black dark:text-white">
-        <button onClick={() => setIsDarkMode(!isDarkMode)}>{isDarkMode ? <RiSunLine /> : <RiSunFill />}</button>
+        <button onClick={() => setDarkMode({system, userSelection: !userSelection})}>
+          {userSelection ? <RiSunLine /> : <RiSunFill />}
+        </button>
         <LiveReload />
         <Outlet />
         <ScrollRestoration />
