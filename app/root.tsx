@@ -11,10 +11,7 @@ export const meta: MetaFunction = () => ({
 });
 
 export const links: LinksFunction = () => {
-  return [
-    {rel: 'stylesheet', href: styles},
-    // from https://remix.run/docs/en/v1/api/conventions#links
-  ];
+  return [{rel: 'stylesheet', href: styles}];
 };
 
 const Layout: FC = ({children}) => {
@@ -46,6 +43,23 @@ const Document: FC = ({children}) => {
         <Scripts />
       </body>
     </html>
+  );
+};
+
+export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
+  console.log('There was an error\n', error);
+  return (
+    <ThemeContextProvider>
+      <Document>
+        <Layout>
+          <div>
+            <h1 className="text-3xl font-bold underline">...oh dang 😖</h1>
+            <p className="text-m">something went south.</p>
+            <p className="text-m">{error.message}</p>
+          </div>
+        </Layout>
+      </Document>
+    </ThemeContextProvider>
   );
 };
 

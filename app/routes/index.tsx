@@ -1,4 +1,5 @@
 import {MetaFunction} from '@remix-run/node';
+import {FC} from 'react';
 
 export const meta: MetaFunction = () => ({
   title: 'i am hanna ///',
