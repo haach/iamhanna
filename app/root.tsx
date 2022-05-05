@@ -1,9 +1,11 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
-import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration} from '@remix-run/react';
+import {Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration} from '@remix-run/react';
 import {FC, useContext} from 'react';
 import styles from './styles/app.css';
 import {RiSunFill, RiSunLine} from 'react-icons/ri';
 import {ThemeContext, ThemeContextProvider} from '~/ThemeContext';
+import {H1, P, SPAN} from '~/components/primitives/typography';
+import classNames from 'classnames';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -16,27 +18,47 @@ export const links: LinksFunction = () => {
 
 const Layout: FC = ({children}) => {
   const {darkMode, switchDarkMode} = useContext(ThemeContext);
+  const links = [
+    ['home', '/'],
+    ['cv', '/cv'],
+    ['contact', '/contact'],
+  ];
   return (
-    <div>
-      <header>
-        <nav>NAVIGATION</nav>
-        <button onClick={switchDarkMode}>{darkMode.userSelection ? <RiSunLine /> : <RiSunFill />}</button>
+    <div className="flex flex-col min-h-full px-10 py-6 gap-4">
+      <header className="flex flex-row justify-between">
+        <nav>
+          <ul className="flex flex-row justify-start gap-4">
+            {links.map(([routeName, to]) => (
+              <li key={routeName}>
+                <Link to={to}>
+                  <SPAN uppercase>{routeName}</SPAN>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <button onClick={switchDarkMode}>
+          <SPAN>{darkMode.userSelection ? <RiSunFill /> : <RiSunLine />}</SPAN>
+        </button>
       </header>
-      {children}
+      <div>{children}</div>
     </div>
   );
 };
 
 const Document: FC = ({children}) => {
   const {darkMode} = useContext(ThemeContext);
+  const className = classNames('min-h-full', {
+    dark: darkMode.userSelection,
+  });
   return (
-    <html lang="en" className={darkMode.userSelection ? 'dark' : ''}>
+    <html lang="en" className={className}>
       <head>
         <Meta />
         <link rel="icon" href={darkMode.system ? 'dog_light.svg' : 'dog.svg'} />
         <Links />
       </head>
-      <body className="bg-white dark:bg-black text-black dark:text-white">
+      <body className="bg-white dark:bg-black min-h-full">
         {process.env.NODE_ENV === 'development' && <LiveReload />}
         {children}
         <ScrollRestoration />
@@ -52,10 +74,12 @@ export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
     <ThemeContextProvider>
       <Document>
         <Layout>
-          <div>
-            <h1 className="text-3xl font-bold underline">...oh dang 😖</h1>
-            <p className="text-m">something went south.</p>
-            <p className="text-m">{error.message}</p>
+          <div className="flex flex-col items-center content-center">
+            <div className="max-w-md">
+              <H1>...oh dang 😖</H1>
+              <P>something went south.</P>
+              <P>{error.message}</P>
+            </div>
           </div>
         </Layout>
       </Document>
