@@ -1,7 +1,7 @@
 import {MetaFunction} from '@remix-run/node';
 import {FC} from 'react';
 import {H1} from '~/components/primitives/typography';
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 
 export const meta: MetaFunction = () => ({
   title: 'i am hanna - contact',

@@ -6,6 +6,7 @@ import {RiSunFill, RiSunLine} from 'react-icons/ri';
 import {ThemeContext, ThemeContextProvider} from '~/ThemeContext';
 import {H1, P, SPAN} from '~/components/primitives/typography';
 import classNames from 'classnames';
+import {WindowContext, WindowContextProvider} from '~/WindowContext';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -18,12 +19,10 @@ export const links: LinksFunction = () => {
 
 const Layout: FC = ({children}) => {
   const {darkMode, switchDarkMode} = useContext(ThemeContext);
-  const [location, setLocation] = useState<Location>();
+  const globalWindow = useContext(WindowContext);
 
-  useEffect(() => {
-    //TODO: Make context?
-    window && window.location && setLocation(window.location);
-  }, []);
+  // prevent loading in wrong color schema before context is up
+  if (darkMode.system === null) return null;
 
   const links = [
     ['home', '/'],
@@ -35,26 +34,22 @@ const Layout: FC = ({children}) => {
       <header className="flex flex-row justify-between">
         <nav>
           <ul className="flex flex-row justify-start gap-4">
-            {links.map(([routeName, to]) => {
-              const isActive = location?.pathname === to;
-              console.log('isActive', isActive);
-              return (
-                <li key={routeName}>
-                  <Link to={to}>
-                    <SPAN
-                      uppercase
-                      className={
-                        isActive
-                          ? 'text-yellow dark:text-yellow cursor-default'
-                          : 'hover:text-gray dark:hover:text-gray transition-colors'
-                      }
-                    >
-                      {routeName}
-                    </SPAN>
-                  </Link>
-                </li>
-              );
-            })}
+            {links.map(([routeName, to]) => (
+              <li key={routeName}>
+                <Link to={to}>
+                  <SPAN
+                    uppercase
+                    className={
+                      globalWindow?.location?.pathname === to
+                        ? 'text-yellow dark:text-yellow cursor-default'
+                        : 'hover:text-gray dark:hover:text-gray transition-colors'
+                    }
+                  >
+                    {routeName}
+                  </SPAN>
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
         <button onClick={switchDarkMode}>
@@ -69,7 +64,7 @@ const Layout: FC = ({children}) => {
 const Document: FC = ({children}) => {
   const {darkMode} = useContext(ThemeContext);
   const className = classNames('min-h-full', {
-    dark: darkMode.userSelection,
+    dark: darkMode.userSelection || darkMode.system,
   });
   return (
     <html lang="en" className={className}>
@@ -91,24 +86,27 @@ const Document: FC = ({children}) => {
 export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
   console.log('There was an error\n', error);
   return (
-    <ThemeContextProvider>
-      <Document>
-        <Layout>
-          <div className="flex flex-col items-center content-center">
-            <div className="max-w-md">
-              <H1>...oh dang 😖</H1>
-              <P>something went south.</P>
-              <P>{error.message}</P>
+    <WindowContextProvider>
+      <ThemeContextProvider>
+        <Document>
+          <Layout>
+            <div className="flex flex-col items-center content-center">
+              <div className="max-w-md">
+                <H1>...oh dang 😖</H1>
+                <P>something went south.</P>
+                <P>{error.message}</P>
+              </div>
             </div>
-          </div>
-        </Layout>
-      </Document>
-    </ThemeContextProvider>
+          </Layout>
+        </Document>
+      </ThemeContextProvider>
+    </WindowContextProvider>
   );
 };
 
 const App: FC = () => {
   return (
+<<<<<<< HEAD
     <ThemeContextProvider>
       <Document>
         <div>
@@ -123,6 +121,17 @@ const App: FC = () => {
         </div>
       </Document>
     </ThemeContextProvider>
+=======
+    <WindowContextProvider>
+      <ThemeContextProvider>
+        <Document>
+          <Layout>
+            <Outlet />
+          </Layout>
+        </Document>
+      </ThemeContextProvider>
+    </WindowContextProvider>
+>>>>>>> 91cffe9 (create a context for global Window obj check)
   );
 };
 

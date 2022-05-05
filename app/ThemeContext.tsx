@@ -11,9 +11,9 @@ export const ThemeContext = createContext<ThemeContext>({
 });
 
 export const ThemeContextProvider: FC = ({children}) => {
-  const [{system, userSelection}, setDarkMode] = useState<{system: boolean; userSelection: boolean}>({
-    system: true,
-    userSelection: true,
+  const [{system, userSelection}, setDarkMode] = useState<ThemeContext['darkMode']>({
+    system: null,
+    userSelection: null,
   });
   useEffect(() => {
     const isDarkMode = window && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
