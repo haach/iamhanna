@@ -1,6 +1,6 @@
 import {MetaFunction} from '@remix-run/node';
 import {FC} from 'react';
-import {H1} from '~/components/primitives/typography';
+import {Typo} from '~/components/primitives/typography';
 import dotenv from 'dotenv';
 
 export const meta: MetaFunction = () => ({
@@ -15,7 +15,7 @@ export async function loader() {
 }
 
 const Contact: FC = () => {
-  return <H1>Contact me</H1>;
+  return <Typo.h1>Contact me</Typo.h1>;
 };
 
 export default Contact;

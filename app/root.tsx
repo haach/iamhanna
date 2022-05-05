@@ -1,10 +1,10 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
 import {Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration} from '@remix-run/react';
-import {FC, useContext, useEffect, useState} from 'react';
+import {FC, useContext} from 'react';
 import styles from './styles/app.css';
 import {RiSunFill, RiSunLine} from 'react-icons/ri';
 import {ThemeContext, ThemeContextProvider} from '~/ThemeContext';
-import {H1, P, SPAN} from '~/components/primitives/typography';
+import {Typo} from '~/components/primitives/typography';
 import classNames from 'classnames';
 import {WindowContext, WindowContextProvider} from '~/WindowContext';
 
@@ -37,7 +37,7 @@ const Layout: FC = ({children}) => {
             {links.map(([routeName, to]) => (
               <li key={routeName}>
                 <Link to={to}>
-                  <SPAN
+                  <Typo.span
                     uppercase
                     className={
                       globalWindow?.location?.pathname === to
@@ -46,14 +46,15 @@ const Layout: FC = ({children}) => {
                     }
                   >
                     {routeName}
-                  </SPAN>
+                  </Typo.span>
                 </Link>
               </li>
             ))}
           </ul>
         </nav>
-        <button onClick={switchDarkMode}>
-          <SPAN>{darkMode.userSelection ? <RiSunFill /> : <RiSunLine />}</SPAN>
+        <button onClick={switchDarkMode} className="flex flex-row content-center items-center">
+          <Typo.span>TURN ON/OFF</Typo.span>
+          <Typo.span className="-mt-1 ml-2"> {darkMode.userSelection ? <RiSunFill /> : <RiSunLine />}</Typo.span>
         </button>
       </header>
       <div>{children}</div>
@@ -92,9 +93,9 @@ export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
           <Layout>
             <div className="flex flex-col items-center content-center">
               <div className="max-w-md">
-                <H1>...oh dang 😖</H1>
-                <P>something went south.</P>
-                <P>{error.message}</P>
+                <Typo.h1>...oh dang 😖</Typo.h1>
+                <Typo.p>something went south.</Typo.p>
+                <Typo.p>{error.message}</Typo.p>
               </div>
             </div>
           </Layout>

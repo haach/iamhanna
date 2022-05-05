@@ -28,7 +28,7 @@ const commonClasssNames = (typoProps: TypoProps) => ({
 
 const themeColorSwitch = 'text-black dark:text-white';
 
-export const H1: FC<BaseTypoProps> = ({children, ...typoProps}) => {
+const H1: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
     'font-title uppercase text-5xl mb-14 font-thin tracking-tight text-yellow',
     commonClasssNames(typoProps),
@@ -36,7 +36,7 @@ export const H1: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   );
   return <h1 className={className}>{children}</h1>;
 };
-export const H2: FC<BaseTypoProps> = ({children, ...typoProps}) => {
+const H2: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
     'font-title uppercase text-2xl mb-10 leading-none font-light text-black-light dark:text-gray',
     commonClasssNames(typoProps),
@@ -44,7 +44,7 @@ export const H2: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   );
   return <h2 className={className}>{children}</h2>;
 };
-export const H3: FC<BaseTypoProps> = ({children, ...typoProps}) => {
+const H3: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
     'font-serif text-3xl mb-8 text-orange italic font-black',
     commonClasssNames(typoProps),
@@ -52,7 +52,7 @@ export const H3: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   );
   return <h3 className={className}>{children}</h3>;
 };
-export const H4: FC<BaseTypoProps> = ({children, ...typoProps}) => {
+const H4: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
     'font-serif text-2xl mb-6 italic font-black text-gray-dark dark:text-gray-dark',
     commonClasssNames(typoProps),
@@ -60,7 +60,7 @@ export const H4: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   );
   return <h4 className={className}>{children}</h4>;
 };
-export const P: FC<TypoProps> = ({children, ...typoProps}) => {
+const P: FC<TypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
     'font-thin leading-7 mb-6',
     themeColorSwitch,
@@ -69,12 +69,21 @@ export const P: FC<TypoProps> = ({children, ...typoProps}) => {
   );
   return <p className={className}>{children}</p>;
 };
-export const SPAN: FC<TypoProps> = ({children, ...typoProps}) => {
-  const className = classNames(
-    'font-thin leading-7 mb-6',
-    themeColorSwitch,
-    commonClasssNames(typoProps),
-    typoProps.className
-  );
+const SPAN: FC<TypoProps> = ({children, ...typoProps}) => {
+  const className = classNames('font-thin', themeColorSwitch, commonClasssNames(typoProps), typoProps.className);
   return <span className={className}>{children}</span>;
 };
+const CAPTION: FC<TypoProps> = ({children, ...typoProps}) => {
+  const className = classNames('font-thin', themeColorSwitch, commonClasssNames(typoProps), typoProps.className);
+  return <span className={className}>{children}</span>;
+};
+
+export const Typo = {
+  h1: H1,
+  h2: H2,
+  h3: H3,
+  h4: H4,
+  p: P,
+  span: SPAN,
+  caption: CAPTION,
+} as const;
