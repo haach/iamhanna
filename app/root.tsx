@@ -1,6 +1,6 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
 import {Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration} from '@remix-run/react';
-import {FC, useContext} from 'react';
+import {FC, useContext, useEffect, useState} from 'react';
 import styles from './styles/app.css';
 import {RiSunFill, RiSunLine} from 'react-icons/ri';
 import {ThemeContext, ThemeContextProvider} from '~/ThemeContext';
@@ -18,6 +18,13 @@ export const links: LinksFunction = () => {
 
 const Layout: FC = ({children}) => {
   const {darkMode, switchDarkMode} = useContext(ThemeContext);
+  const [location, setLocation] = useState<Location>();
+
+  useEffect(() => {
+    //TODO: Make context?
+    window && window.location && setLocation(window.location);
+  }, []);
+
   const links = [
     ['home', '/'],
     ['cv', '/cv'],
@@ -28,13 +35,26 @@ const Layout: FC = ({children}) => {
       <header className="flex flex-row justify-between">
         <nav>
           <ul className="flex flex-row justify-start gap-4">
-            {links.map(([routeName, to]) => (
-              <li key={routeName}>
-                <Link to={to}>
-                  <SPAN uppercase>{routeName}</SPAN>
-                </Link>
-              </li>
-            ))}
+            {links.map(([routeName, to]) => {
+              const isActive = location?.pathname === to;
+              console.log('isActive', isActive);
+              return (
+                <li key={routeName}>
+                  <Link to={to}>
+                    <SPAN
+                      uppercase
+                      className={
+                        isActive
+                          ? 'text-yellow dark:text-yellow cursor-default'
+                          : 'hover:text-gray dark:hover:text-gray transition-colors'
+                      }
+                    >
+                      {routeName}
+                    </SPAN>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
         <button onClick={switchDarkMode}>
