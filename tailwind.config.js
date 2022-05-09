@@ -1,13 +1,17 @@
+const colors = require('tailwindcss/colors');
+console.log('colors.yellow[300]', colors.yellow[300]);
+
 module.exports = {
   content: ['./app/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        orange: '#f2b11b',
-        yellow: '#f2c608',
-        gray: '#dcdcdc',
-        'gray-dark': '#aaaaaa',
-        'black-light': '#30383b',
+        y: colors.yellow[400], // yellow
+        o: colors.amber[400], // orange
+        gl: colors.neutral[200], // gray-light
+        g: colors.neutral[300], // gray
+        gd: colors.neutral[400], // gray-dark
+        bl: colors.stone[700], // black-light
       },
       fontFamily: {
         sans: ['Roboto Condensed', 'sans-serif'],

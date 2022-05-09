@@ -39,9 +39,10 @@ const Layout: FC = ({children}) => {
                 <Link to={to}>
                   <Typo.span
                     uppercase
+                    yellow={globalWindow?.location?.pathname === to}
                     className={
                       globalWindow?.location?.pathname === to
-                        ? 'text-yellow dark:text-yellow cursor-default'
+                        ? 'cursor-default'
                         : 'hover:text-gray dark:hover:text-gray transition-colors'
                     }
                   >
@@ -52,9 +53,35 @@ const Layout: FC = ({children}) => {
             ))}
           </ul>
         </nav>
-        <button onClick={switchDarkMode} className="flex flex-row content-center items-center">
-          <Typo.span>TURN ON/OFF</Typo.span>
-          <Typo.span className="-mt-1 ml-2"> {darkMode.userSelection ? <RiSunFill /> : <RiSunLine />}</Typo.span>
+        <button onClick={switchDarkMode} className=" flex flex-row content-center items-center text-xs">
+          {/* <Typo.span>{darkMode.userSelection ? 'on' : 'off'}</Typo.span>
+          <Typo.span className="-mt-0 ml-2 text-base">
+            {darkMode.userSelection ? <RiSunFill /> : <RiSunLine />}
+          </Typo.span> */}
+          <Typo.caption className="mt-0 mr-2">Dark mode</Typo.caption>
+          <div
+            className={classNames('grid grid-cols-2 rounded-full border-1 border-solid box-border transition-colors', {
+              'bg-y border-y': darkMode.userSelection,
+              'bg-white border-g': !darkMode.userSelection,
+            })}
+            style={{width: '36px', height: '18px', borderWidth: '1px'}}
+          >
+            <div
+              className={classNames(
+                'flex flex-row justify-center items-center rounded-full box-border transition-colors',
+                {
+                  'bg-white text-gd': darkMode.userSelection,
+                  'bg-g': !darkMode.userSelection,
+                }
+              )}
+              style={{
+                gridColumn: darkMode.userSelection ? 2 : 1,
+                margin: '2px',
+              }}
+            >
+              {/* {darkMode.userSelection ? <RiSunFill /> : <RiSunLine />} */}
+            </div>
+          </div>
         </button>
       </header>
       <div>{children}</div>
@@ -74,7 +101,7 @@ const Document: FC = ({children}) => {
         <link rel="icon" href={darkMode.system ? 'dog_light.svg' : 'dog.svg'} />
         <Links />
       </head>
-      <body className="bg-white dark:bg-black min-h-full">
+      <body className="bg-white dark:bg-black min-h-full font-thin text-black dark:text-white ">
         {process.env.NODE_ENV === 'development' && <LiveReload />}
         {children}
         <ScrollRestoration />
