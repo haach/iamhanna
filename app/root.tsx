@@ -22,16 +22,17 @@ const Layout: FC = ({children}) => {
   const globalWindow = useContext(WindowContext);
 
   // prevent loading in wrong color schema before context is up
-  if (darkMode.system === null) return null;
+  if (darkMode === null) return null;
 
   const links = [
     ['home', '/'],
     ['cv', '/cv'],
     ['contact', '/contact'],
   ];
-  return (
-    <div className="flex flex-col min-h-full px-10 py-6 gap-4">
-      <header className="flex flex-row justify-between">
+  return <div>{children}</div>;
+  {
+    /* 
+    <div className="flex flex-col min-h-full px-10 py-6 gap-12"><header className="flex flex-row justify-between">
         <nav>
           <ul className="flex flex-row justify-start gap-4">
             {links.map(([routeName, to]) => (
@@ -54,15 +55,11 @@ const Layout: FC = ({children}) => {
           </ul>
         </nav>
         <button onClick={switchDarkMode} className=" flex flex-row content-center items-center text-xs">
-          {/* <Typo.span>{darkMode.userSelection ? 'on' : 'off'}</Typo.span>
-          <Typo.span className="-mt-0 ml-2 text-base">
-            {darkMode.userSelection ? <RiSunFill /> : <RiSunLine />}
-          </Typo.span> */}
           <Typo.caption className="mt-0 mr-2">Dark mode</Typo.caption>
           <div
             className={classNames('grid grid-cols-2 rounded-full border-1 border-solid box-border transition-colors', {
-              'bg-y border-y': darkMode.userSelection,
-              'bg-white border-g': !darkMode.userSelection,
+              'bg-y border-y': darkMode,
+              'bg-white border-g': !darkMode,
             })}
             style={{width: '36px', height: '18px', borderWidth: '1px'}}
           >
@@ -70,35 +67,32 @@ const Layout: FC = ({children}) => {
               className={classNames(
                 'flex flex-row justify-center items-center rounded-full box-border transition-colors',
                 {
-                  'bg-white text-gd': darkMode.userSelection,
-                  'bg-g': !darkMode.userSelection,
+                  'bg-white text-gd': darkMode,
+                  'bg-g': !darkMode,
                 }
               )}
               style={{
-                gridColumn: darkMode.userSelection ? 2 : 1,
+                gridColumn: darkMode ? 2 : 1,
                 margin: '2px',
               }}
             >
-              {/* {darkMode.userSelection ? <RiSunFill /> : <RiSunLine />} */}
             </div>
           </div>
         </button>
-      </header>
-      <div>{children}</div>
-    </div>
-  );
+      </header> </div> */
+  }
 };
 
 const Document: FC = ({children}) => {
   const {darkMode} = useContext(ThemeContext);
   const className = classNames('min-h-full', {
-    dark: darkMode.userSelection || darkMode.system,
+    dark: darkMode,
   });
   return (
     <html lang="en" className={className}>
       <head>
         <Meta />
-        <link rel="icon" href={darkMode.system ? 'dog_light.svg' : 'dog.svg'} />
+        <link rel="icon" href={darkMode ? 'dog_light.svg' : 'dog.svg'} />
         <link
           href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
           rel="stylesheet"

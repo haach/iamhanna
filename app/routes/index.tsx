@@ -1,5 +1,7 @@
 import {MetaFunction} from '@remix-run/node';
 import {FC} from 'react';
+import {PageLayout} from '~/components/molecules/PageLayout';
+import {HR} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 
 export const meta: MetaFunction = () => ({
@@ -8,16 +10,33 @@ export const meta: MetaFunction = () => ({
 
 const Index: FC = () => {
   return (
-    <div>
-      <Typo.h1>Hanna Achenbach</Typo.h1>
+    <PageLayout
+      title="Hanna Achenbach"
+      subTitle="Frontend engineer"
+      sideBar={
+        <>
+          <div className="flex flex-col items-end w-full">
+            <Typo.h2 yellow>LEFT Hanna Achenbach</Typo.h2>
+            <HR />
+            <Typo.p>LEFT Hanna Achenbach</Typo.p>
+          </div>
+          <div className="flex flex-col items-end w-full">
+            <Typo.h2 yellow>LEFT Hanna Achenbach</Typo.h2>
+            <HR />
+            <Typo.p>LEFT Hanna Achenbach</Typo.p>
+          </div>
+        </>
+      }
+    >
       <Typo.p>
-        I am a filler text Bacon ipsum dolor amet bresaola salami drumstick pancetta jowl andouille alcatra chuck turkey
-        shoulder. Tongue tri-tip filet mignon ground round, ham hock tenderloin pork chop rump drumstick biltong cupim
-        porchetta chuck boudin. Ground round venison beef ribs t-bone swine, doner cow fatback cupim strip steak shankle
-        pastrami burgdoggen chislic meatball. Pastrami pork turkey, picanha shank tail chislic meatball shoulder.
-        Landjaeger biltong picanha capicola shank bresaola alcatra brisket fatback turducken filet mignon.
+        I created my first website during my web design classes in high school back in 2006. Since then, I began with an
+        autodidactic approach to web development, and then in 2014, I completed my degree in media design. <br />
+        The wide variety of possibilies offered by web technology fascinates me ever since and therefore, I strive to
+        develop applications that solve tricky issues and have the potential to make their users lives easier and more
+        entertaining. Coming from a design and architecture influen- ced background, I endeavour to make every product
+        unique, aesthetic and usable for its specific target group.
       </Typo.p>
-    </div>
+    </PageLayout>
   );
 };
 

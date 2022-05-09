@@ -1,32 +1,39 @@
-import {FC, useEffect, useState, createContext} from 'react';
+import {FC, useEffect, useState, createContext, useContext} from 'react';
+import {WindowContext} from '~/WindowContext';
 
 interface ThemeContext {
-  darkMode: {system: boolean | null; userSelection: boolean | null};
+  darkMode: boolean | null;
   switchDarkMode(): void;
 }
 
 export const ThemeContext = createContext<ThemeContext>({
-  darkMode: {system: null, userSelection: null},
+  darkMode: null,
   switchDarkMode: () => null,
 });
 
 export const ThemeContextProvider: FC = ({children}) => {
-  const [{system, userSelection}, setDarkMode] = useState<ThemeContext['darkMode']>({
-    system: null,
-    userSelection: null,
-  });
+  const [darkMode, setDarkMode] = useState<ThemeContext['darkMode']>(null);
+  const windowContext = useContext(WindowContext);
+
   useEffect(() => {
-    const isDarkMode = window && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setDarkMode({system: isDarkMode, userSelection: isDarkMode});
-  }, []);
+    if (windowContext) {
+      const isDarkMode =
+        windowContext.localStorage.getItem('darkMode') === 'true' ||
+        (windowContext.matchMedia && windowContext.matchMedia('(prefers-color-scheme: dark)').matches);
+      persistSetting(isDarkMode);
+    }
+  }, [windowContext]);
+
+  const persistSetting = (isDarkMode: boolean) => {
+    setDarkMode(isDarkMode);
+    window.localStorage.setItem('darkMode', String(isDarkMode));
+  };
+
   return (
     <ThemeContext.Provider
       value={{
-        darkMode: {
-          system,
-          userSelection,
-        },
-        switchDarkMode: () => setDarkMode({system, userSelection: !userSelection}),
+        darkMode,
+        switchDarkMode: () => persistSetting(!darkMode),
       }}
     >
       {children}
