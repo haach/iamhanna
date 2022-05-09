@@ -47,25 +47,28 @@ const colorClasses = (typoProps: TypoColorProps) => ({
 
 const H1: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
-    'font-title uppercase text-5xl mb-14 font-thin tracking-tight',
+    'font-title uppercase text-5xl',
+    /* {'mb-14': !typoProps.noMargin}, */
     commonClasssNames(typoProps),
     colorClasses({yellow: true}),
     typoProps.className
   );
   return <h1 className={className}>{children}</h1>;
 };
-const H2: FC<BaseTypoProps> = ({children, ...typoProps}) => {
+const H2: FC<BaseTypoProps & Pick<TypoColorProps, 'yellow'>> = ({children, ...typoProps}) => {
   const className = classNames(
-    'font-title uppercase text-2xl mb-10 leading-none font-light',
+    'font-title uppercase text-2xl leading-none font-light',
+    /*  {'mb-10': !typoProps.noMargin}, */
     commonClasssNames(typoProps),
-    colorClasses({blackLight: true}),
+    colorClasses({blackLight: true, ...typoProps}),
     typoProps.className
   );
   return <h2 className={className}>{children}</h2>;
 };
 const H3: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
-    'font-serif text-3xl mb-8 italic font-black',
+    'font-serif text-3xl italic font-black',
+    /*  {'mb-8': !typoProps.noMargin}, */
     colorClasses({orange: true}),
     commonClasssNames(typoProps),
     typoProps.className
@@ -74,7 +77,8 @@ const H3: FC<BaseTypoProps> = ({children, ...typoProps}) => {
 };
 const H4: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
-    'font-serif text-2xl mb-6 italic font-black',
+    'font-serif text-2xl mb italic font-black',
+    /*   {'mb-6': !typoProps.noMargin}, */
     commonClasssNames(typoProps),
     colorClasses({grayDark: true}),
     typoProps.className
@@ -83,7 +87,8 @@ const H4: FC<BaseTypoProps> = ({children, ...typoProps}) => {
 };
 const P: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
   const className = classNames(
-    'font-thin leading-7 mb-6',
+    'font-thin leading-7',
+    /*   {'mb-6': !typoProps.noMargin}, */
     commonClasssNames(typoProps),
     colorClasses(typoProps),
     typoProps.className

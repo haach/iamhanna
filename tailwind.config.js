@@ -1,5 +1,4 @@
 const colors = require('tailwindcss/colors');
-console.log('colors.yellow[300]', colors.yellow[300]);
 
 module.exports = {
   content: ['./app/**/*.{js,ts,jsx,tsx}'],
@@ -16,7 +15,7 @@ module.exports = {
       fontFamily: {
         sans: ['Roboto Condensed', 'sans-serif'],
         serif: ['Playfair Display', 'serif'],
-        title: ['Bebas Neue', 'sans-serif'],
+        title: ['Bebas Neue', 'cursive'],
       },
     },
   },
