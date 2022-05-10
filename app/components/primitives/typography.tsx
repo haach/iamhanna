@@ -3,8 +3,9 @@ import {FC} from 'react';
 
 interface BaseTypoProps {
   noMargin?: boolean;
-  noSpacing?: boolean;
+  dense?: boolean;
   className?: string; // Don't abuse this overwrite backdoor
+  style?: Record<string, string>; // Don't abuse this overwrite backdoor
 }
 interface TypoProps extends BaseTypoProps {
   lght?: boolean;
@@ -23,7 +24,7 @@ const commonClasssNames = (typoProps: TypoProps) => ({
   uppercase: typoProps?.uppercase,
   capitalize: typoProps?.capitalize,
   'mb-0': typoProps?.noMargin,
-  'leading-0': typoProps?.noSpacing,
+  'leading-tight': typoProps?.dense,
 });
 interface TypoColorProps {
   black?: boolean;
@@ -53,7 +54,11 @@ const H1: FC<BaseTypoProps> = ({children, ...typoProps}) => {
     colorClasses({yellow: true}),
     typoProps.className
   );
-  return <h1 className={className}>{children}</h1>;
+  return (
+    <h1 className={className} style={typoProps.style}>
+      {children}
+    </h1>
+  );
 };
 const H2: FC<BaseTypoProps & Pick<TypoColorProps, 'yellow'>> = ({children, ...typoProps}) => {
   const className = classNames(
@@ -63,7 +68,11 @@ const H2: FC<BaseTypoProps & Pick<TypoColorProps, 'yellow'>> = ({children, ...ty
     colorClasses({blackLight: true, ...typoProps}),
     typoProps.className
   );
-  return <h2 className={className}>{children}</h2>;
+  return (
+    <h2 className={className} style={typoProps.style}>
+      {children}
+    </h2>
+  );
 };
 const H3: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
@@ -73,27 +82,40 @@ const H3: FC<BaseTypoProps> = ({children, ...typoProps}) => {
     commonClasssNames(typoProps),
     typoProps.className
   );
-  return <h3 className={className}>{children}</h3>;
+  return (
+    <h3 className={className} style={typoProps.style}>
+      {children}
+    </h3>
+  );
 };
 const H4: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
-    'font-serif text-2xl mb italic font-black',
+    'font-serif text-1xl mb italic font-black',
     /*   {'mb-6': !typoProps.noMargin}, */
     commonClasssNames(typoProps),
     colorClasses({grayDark: true}),
     typoProps.className
   );
-  return <h4 className={className}>{children}</h4>;
+  return (
+    <h4 className={className} style={typoProps.style}>
+      {children}
+    </h4>
+  );
 };
 const P: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
   const className = classNames(
-    'font-thin leading-7',
+    'font-thin text-justify',
     /*   {'mb-6': !typoProps.noMargin}, */
+    {'leading-7': !typoProps.dense},
     commonClasssNames(typoProps),
     colorClasses(typoProps),
     typoProps.className
   );
-  return <p className={className}>{children}</p>;
+  return (
+    <p className={className} style={typoProps.style}>
+      {children}
+    </p>
+  );
 };
 const SPAN: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
   const className = classNames('font-thin', commonClasssNames(typoProps), colorClasses(typoProps), typoProps.className);
@@ -106,7 +128,11 @@ const CAPTION: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
     colorClasses(typoProps),
     typoProps.className
   );
-  return <span className={className}>{children}</span>;
+  return (
+    <span className={className} style={typoProps.style}>
+      {children}
+    </span>
+  );
 };
 
 export const Typo = {

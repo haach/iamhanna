@@ -18,69 +18,10 @@ export const links: LinksFunction = () => {
 };
 
 const Layout: FC = ({children}) => {
-  const {darkMode, switchDarkMode} = useContext(ThemeContext);
-  const globalWindow = useContext(WindowContext);
-
+  const {darkMode} = useContext(ThemeContext);
   // prevent loading in wrong color schema before context is up
   if (darkMode === null) return null;
-
-  const links = [
-    ['home', '/'],
-    ['cv', '/cv'],
-    ['contact', '/contact'],
-  ];
   return <div>{children}</div>;
-  {
-    /* 
-    <div className="flex flex-col min-h-full px-10 py-6 gap-12"><header className="flex flex-row justify-between">
-        <nav>
-          <ul className="flex flex-row justify-start gap-4">
-            {links.map(([routeName, to]) => (
-              <li key={routeName}>
-                <Link to={to}>
-                  <Typo.span
-                    uppercase
-                    yellow={globalWindow?.location?.pathname === to}
-                    className={
-                      globalWindow?.location?.pathname === to
-                        ? 'cursor-default'
-                        : 'hover:text-gray dark:hover:text-gray transition-colors'
-                    }
-                  >
-                    {routeName}
-                  </Typo.span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <button onClick={switchDarkMode} className=" flex flex-row content-center items-center text-xs">
-          <Typo.caption className="mt-0 mr-2">Dark mode</Typo.caption>
-          <div
-            className={classNames('grid grid-cols-2 rounded-full border-1 border-solid box-border transition-colors', {
-              'bg-y border-y': darkMode,
-              'bg-white border-g': !darkMode,
-            })}
-            style={{width: '36px', height: '18px', borderWidth: '1px'}}
-          >
-            <div
-              className={classNames(
-                'flex flex-row justify-center items-center rounded-full box-border transition-colors',
-                {
-                  'bg-white text-gd': darkMode,
-                  'bg-g': !darkMode,
-                }
-              )}
-              style={{
-                gridColumn: darkMode ? 2 : 1,
-                margin: '2px',
-              }}
-            >
-            </div>
-          </div>
-        </button>
-      </header> </div> */
-  }
 };
 
 const Document: FC = ({children}) => {
@@ -116,11 +57,12 @@ export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
       <ThemeContextProvider>
         <Document>
           <Layout>
-            <div className="flex flex-col items-center content-center">
-              <div className="max-w-md">
+            <div className="flex flex-col items-center content-center px-32 py-24">
+              <div>
                 <Typo.h1>...oh dang 😖</Typo.h1>
                 <Typo.p>something went south.</Typo.p>
-                <Typo.p>{error.message}</Typo.p>
+                <Typo.p className="text-red-600">Error: {error.message}</Typo.p>
+                {process.env.NODE_ENV === 'development' && <pre className="text-red-600">Stack: {error.stack}</pre>}
               </div>
             </div>
           </Layout>

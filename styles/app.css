@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* debug css */
+/* * > * {
+    background-color: rgba(120, 33, 44 ,0.1);
+}
+* + * > *{
+    background-color: rgba(222, 130, 44 ,0.1);
+}
+* + * > * + * {
+    background-color: rgba(222, 130, 240 ,0.1);
+} */
