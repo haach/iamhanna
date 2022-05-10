@@ -1,11 +1,10 @@
 import classNames from 'classnames';
 import {FC} from 'react';
+import {ReactProps} from '~/components';
 
-interface BaseTypoProps {
+interface BaseTypoProps extends ReactProps {
   noMargin?: boolean;
   dense?: boolean;
-  className?: string; // Don't abuse this overwrite backdoor
-  style?: Record<string, string>; // Don't abuse this overwrite backdoor
 }
 interface TypoProps extends BaseTypoProps {
   lght?: boolean;

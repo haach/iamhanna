@@ -16,10 +16,20 @@ export const ThemeContextProvider: FC = ({children}) => {
   const windowContext = useContext(WindowContext);
 
   useEffect(() => {
+    // check if window is initialised
     if (windowContext) {
-      const isDarkMode = !!window.localStorage.getItem('darkMode')
-        ? JSON.parse(window.localStorage.getItem('darkMode') ?? 'false')
-        : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      let isDarkMode = false;
+      if (window.matchMedia && window.matchMedia('print').matches) {
+        // print mode
+        // TODO: this no ork :( try dis https://stackoverflow.com/questions/1234008/detecting-browser-print-event
+        isDarkMode = true;
+      } else if (!!window.localStorage.getItem('darkMode')) {
+        // setting previously saved in localStorage
+        isDarkMode = JSON.parse(window.localStorage.getItem('darkMode') ?? 'false');
+      } else {
+        // check system preference
+        isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
       persistSetting(isDarkMode);
     }
   }, [windowContext]);

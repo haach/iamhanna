@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@media print {
+    .zoomOutForPrint { zoom: 0.75; } 
+  }
+  
 /* debug css */
 /* * > * {
     background-color: rgba(120, 33, 44 ,0.1);
