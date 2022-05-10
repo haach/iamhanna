@@ -17,9 +17,9 @@ export const ThemeContextProvider: FC = ({children}) => {
 
   useEffect(() => {
     if (windowContext) {
-      const isDarkMode = !!windowContext.localStorage.getItem('darkMode')
-        ? JSON.parse(windowContext.localStorage.getItem('darkMode') ?? 'false')
-        : windowContext.matchMedia && windowContext.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDarkMode = !!window.localStorage.getItem('darkMode')
+        ? JSON.parse(window.localStorage.getItem('darkMode') ?? 'false')
+        : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
       persistSetting(isDarkMode);
     }
   }, [windowContext]);

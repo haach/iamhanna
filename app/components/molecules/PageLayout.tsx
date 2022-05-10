@@ -1,6 +1,6 @@
 import {Link} from '@remix-run/react';
 import classNames from 'classnames';
-import {FC, ReactNode, useContext, useState} from 'react';
+import {FC, ReactNode, useContext, useEffect, useState} from 'react';
 import {blackBorder} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 import {ThemeContext} from '~/ThemeContext';
@@ -9,7 +9,6 @@ import {WindowContext} from '~/WindowContext';
 export const defaultSpacing = 240;
 
 const HeaderNav: FC = () => {
-  const globalWindow = useContext(WindowContext);
   const links = [
     ['home', '/'],
     ['cv', '/cv'],
@@ -23,9 +22,9 @@ const HeaderNav: FC = () => {
             <Link to={to}>
               <Typo.span
                 uppercase
-                yellow={globalWindow?.location?.pathname === to}
+                yellow={window.location?.pathname === to}
                 className={
-                  globalWindow?.location?.pathname === to
+                  window?.location?.pathname === to
                     ? 'cursor-default'
                     : 'hover:text-g dark:hover:text-g transition-colors'
                 }
@@ -73,12 +72,25 @@ export const PageLayout: FC<{title: string; subTitle?: string; sideBar?: ReactNo
   sideBar,
   children,
 }) => {
+  const globalWindow = useContext(WindowContext);
+  const [imageSize, setImageSize] = useState<number>(defaultSpacing);
+  useEffect(() => {
+    const calcSize =
+      globalWindow && globalWindow.width > 1024
+        ? defaultSpacing
+        : globalWindow && globalWindow.width < 1024
+        ? globalWindow.width * 0.2
+        : 200;
+    setImageSize(calcSize);
+    console.log('calcSize', calcSize);
+  }, [globalWindow]);
+
   return (
     <div>
       <div className="relative">
         <div
           className={`${blackBorder} border-b-2 -z-10 absolute`}
-          style={{left: 0, right: 0, top: 0, transform: `translate3d(0px, ${defaultSpacing / 2 + 58}px, 0)`}}
+          style={{left: 0, right: 0, top: 0, transform: `translate3d(0px, ${imageSize / 2 + 58}px, 0)`}}
         />
         <div className="container mx-auto max-w-screen-xl border-box px-20 py-10">
           <header className="flex flex-row justify-end">
@@ -87,10 +99,10 @@ export const PageLayout: FC<{title: string; subTitle?: string; sideBar?: ReactNo
 
           <div className="flex flex-row z-10 justify-between gap-20">
             {/* LEFT */}
-            <div className="flex flex-col items-end" style={{width: `${defaultSpacing + 50}px`}}>
+            <div className="flex flex-col items-end" style={{width: `${imageSize + 50}px`}}>
               <div
                 className={`inline-block border-2 rounded-full bg-white dark:bg-black ml-24 p-1 aspect-square ${blackBorder}`}
-                style={{width: `${defaultSpacing}px`}}
+                style={{width: `${imageSize}px`}}
               >
                 <img src="portrait.jpg" className="rounded-full" />
               </div>
@@ -99,7 +111,7 @@ export const PageLayout: FC<{title: string; subTitle?: string; sideBar?: ReactNo
 
             {/* RIGHT */}
             <div className="flex flex-1 flex-col">
-              <div className="flex items-end justify-between pb-4" style={{height: `${defaultSpacing / 2}px`}}>
+              <div className="flex items-end justify-between pb-4" style={{height: `${imageSize / 2}px`}}>
                 <div>
                   <Typo.h1>{title}</Typo.h1>
                   {subTitle && (
