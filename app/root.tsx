@@ -1,12 +1,11 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
-import {Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration} from '@remix-run/react';
-import {FC, useContext} from 'react';
-import styles from './styles/app.css';
-import {RiSunFill, RiSunLine} from 'react-icons/ri';
-import {ThemeContext, ThemeContextProvider} from '~/ThemeContext';
-import {Typo} from '~/components/primitives/typography';
+import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration} from '@remix-run/react';
 import classNames from 'classnames';
-import {WindowContext, WindowContextProvider} from '~/WindowContext';
+import {FC, useContext} from 'react';
+import {Typo} from '~/components/primitives/typography';
+import {ThemeContext, ThemeContextProvider} from '~/ThemeContext';
+import {WindowContextProvider} from '~/WindowContext';
+import styles from './styles/app.css';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',

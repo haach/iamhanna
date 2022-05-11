@@ -22,8 +22,12 @@ export const PageLayout: FC<{title: string; subTitle?: string; sideBar?: ReactNo
     // TODO this does work :/ https://bugs.chromium.org/p/chromium/issues/detail?id=401179
     if (globalWindow && window.matchMedia('print').matches) calcSize = 10;
     else if (globalWindow && globalWindow.width > 1024) calcSize = defaultSpacing;
-    else if (globalWindow && globalWindow.width < 1024) calcSize = globalWindow.width * 0.2;
-    else calcSize = 200;
+    else if (globalWindow && globalWindow.width < 1024) {
+      const scaled = globalWindow.width * 0.2;
+      // min width
+      if (scaled < 150) calcSize = 150;
+      else calcSize = scaled;
+    } else calcSize = 200;
     setImageSize(calcSize);
   }, [globalWindow]);
 
@@ -35,16 +39,16 @@ export const PageLayout: FC<{title: string; subTitle?: string; sideBar?: ReactNo
           /* style={{left: 0, right: 0, top: 0, transform: `translate3d(0px, ${imageSize / 2 + 58}px, 0)`}} */
           style={{transform: `translate3d(0px, ${imageSize / 2 + 58}px, 0)`}}
         />
-        <div className="container mx-auto max-w-screen-xl border-box px-20 print:px-10 py-10 print:py-5 zoomOutForPrint">
+        <div className="container mx-auto max-w-screen-xl border-box px-5 sm:px-10 md:px-20 print:px-10 py-5 sm:py-8 md:py-10 print:py-5 zoomOutForPrint">
           <header className="flex flex-row justify-end print:hidden">
             <DarkModeSwitch />
           </header>
 
           <div className="flex flex-row justify-between gap-20">
             {/* LEFT */}
-            <div className="flex flex-col items-end" style={{width: `${imageSize + 50}px`}}>
+            <div className="flex flex-col items-end">
               <div
-                className={`inline-block border-2 rounded-full bg-white dark:bg-black ml-24 p-1 aspect-square z-10 ${blackBorder}`}
+                className={`inline-block border-2 rounded-full bg-white dark:bg-black ml-8 sm:ml-10 md:ml-15 lg:ml-20 p-1 aspect-square z-10 ${blackBorder}`}
                 style={{width: `${imageSize}px`}}
               >
                 <img src="portrait.jpg" className="rounded-full " />
