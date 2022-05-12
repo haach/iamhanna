@@ -39,19 +39,19 @@ export const PageLayout: FC<{title: string; subTitle?: string; sideBar?: ReactNo
           /* style={{left: 0, right: 0, top: 0, transform: `translate3d(0px, ${imageSize / 2 + 58}px, 0)`}} */
           style={{transform: `translate3d(0px, ${imageSize / 2 + 58}px, 0)`}}
         />
-        <div className="container mx-auto max-w-screen-xl border-box px-5 sm:px-10 md:px-20 print:px-10 py-5 sm:py-8 md:py-10 print:py-5 zoomOutForPrint">
+        <div className="container mx-auto max-w-screen-xl border-box px-5 sm:px-8 md:px-10 lg:px-20 print:px-10 py-3 sm:py-5 md:py-8 lg:py-10 print:py-5 zoomOutForPrint">
           <header className="flex flex-row justify-end print:hidden">
             <DarkModeSwitch />
           </header>
 
-          <div className="flex flex-row justify-between gap-20">
+          <div className="flex flex-row justify-between gap-10 sm:gap-15 md-gap-20">
             {/* LEFT */}
             <div className="flex flex-col items-end">
               <div
                 className={`inline-block border-2 rounded-full bg-white dark:bg-black ml-8 sm:ml-10 md:ml-15 lg:ml-20 p-1 aspect-square z-10 ${blackBorder}`}
                 style={{width: `${imageSize}px`}}
               >
-                <img src="portrait.jpg" className="rounded-full " />
+                <img src="/portrait.jpg" className="rounded-full " />
               </div>
               {sideBar}
             </div>

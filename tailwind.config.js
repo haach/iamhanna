@@ -10,7 +10,7 @@ module.exports = {
         gl: colors.neutral[200], // gray-light
         g: colors.neutral[300], // gray
         gd: colors.neutral[400], // gray-dark
-        bl: colors.stone[700], // black-light
+        bl: colors.neutral[900], // black-light
       },
       fontFamily: {
         sans: ['Roboto Condensed', 'sans-serif'],

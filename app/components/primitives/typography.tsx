@@ -120,6 +120,14 @@ const SPAN: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
   const className = classNames('font-thin', commonClasssNames(typoProps), colorClasses(typoProps), typoProps.className);
   return <span className={className}>{children}</span>;
 };
+const LINK_INTERNAL: FC<BaseTypoProps & {isActive?: boolean}> = ({children, isActive, ...typoProps}) => {
+  const className = classNames(
+    'font-thin uppercase',
+    {'cursor-default text-y': isActive, 'hover:text-g dark:hover:text-gd transition-colors': !isActive},
+    typoProps.className
+  );
+  return <span className={className}>{children}</span>;
+};
 const CAPTION: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
   const className = classNames(
     'text-xs font-thin',
@@ -141,5 +149,6 @@ export const Typo = {
   h4: H4,
   p: P,
   span: SPAN,
+  linkInternal: LINK_INTERNAL,
   caption: CAPTION,
 } as const;

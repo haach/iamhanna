@@ -1,14 +1,16 @@
-import {ActionFunction, MetaFunction} from '@remix-run/node';
+import {ActionFunction, MetaFunction, redirect} from '@remix-run/node';
+import {Link, Outlet} from '@remix-run/react';
+import classNames from 'classnames';
 import dotenv from 'dotenv';
 import {FC, useState} from 'react';
-import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
-import {PageLayout} from '~/components/molecules/PageLayout';
-import {button_primary, hideLineOverflow, input, link} from '~/components/primitives';
-import {Typo} from '~/components/primitives/typography';
 import {DiGithubFull} from 'react-icons/di';
 import {RiLinkedinBoxFill} from 'react-icons/ri';
 import {SiCodewars} from 'react-icons/si';
-import classNames from 'classnames';
+import {Input} from '~/components/molecules/FormComponents';
+import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
+import {PageLayout} from '~/components/molecules/PageLayout';
+import {hideLineOverflow, link} from '~/components/primitives';
+import {Typo} from '~/components/primitives/typography';
 
 export const meta: MetaFunction = () => ({
   title: 'i am hanna - contact',
@@ -18,26 +20,38 @@ export const action: ActionFunction = async ({request}) => {
   const form = await request.formData();
   console.log('form', form);
 
-  const contactReason = form.get('contactReason');
-  const name = form.get('name');
-  const email = form.get('email');
-  const message = form.get('message');
+  const possibleFields = [
+    'contactReason',
+    'name',
+    'email',
+    'message',
+    'employer',
+    'compensation',
+    'workingModel',
+    'workingModelDescription',
+    'dogsAllowed',
+    'benefits',
+  ];
 
-  switch (contactReason) {
-    case ContactReason.JOB:
-    case ContactReason.FREELANCE:
-    case ContactReason.HELLO:
-  }
+  const fields = possibleFields.reduce((acc: {[field: string]: string}, val) => {
+    const field = form.get(val);
+    if (field) {
+      acc[val] = field as string;
+    }
+    return acc;
+  }, {});
 
-  const fields = {contactReason, name, email, message};
   console.log('fields', fields);
+
+  // SANATIZE !!!
+
   /* 
   let session = await getSession(request.headers.get('Cookie'));
   // perform the login here and store something in the session
   return redirect('/dashboard', {
     headers: {'Set-Cookie': await commitSession(session)},
   }); */
-  return null;
+  return redirect('/contact/success');
 };
 
 export async function loader() {
@@ -48,19 +62,30 @@ export async function loader() {
 }
 
 enum ContactReason {
+  UNSET = 'UNSET',
   HELLO = 'HELLO',
   JOB = 'JOB',
   FREELANCE = 'FREELANCE',
 }
 
 const contactReasonLang = {
-  [ContactReason.HELLO]: 'Just quickly saying hi',
+  [ContactReason.UNSET]: 'UNSET',
+  [ContactReason.HELLO]: 'Just saying hi',
   [ContactReason.JOB]: 'Job opportunity',
   [ContactReason.FREELANCE]: 'Freelance project',
 };
 
+const contactReasonFromURL = () => {
+  const {pathname} = window?.location;
+  if (pathname === '/contact/job-opportunity') return ContactReason.JOB;
+  else if (pathname === '/contact/freelance') return ContactReason.FREELANCE;
+  else if (pathname === '/contact/hello') return ContactReason.HELLO;
+  return ContactReason.UNSET;
+};
+
 const Contact: FC = () => {
-  const [contactReason, setContactReason] = useState<ContactReason>();
+  const [contactReason, setContactReason] = useState<ContactReason>(contactReasonFromURL());
+
   return (
     <PageLayout
       title="Hanna Achenbach"
@@ -103,49 +128,53 @@ const Contact: FC = () => {
       <HeadlineWithDivider title="Get in touch" />
       <form action="/contact" method="post">
         <div className="flex flex-col gap-20">
+          <Input type="hidden" name="contactReason" value={contactReason} />
+
           <div className="flex flex-col gap-8">
             <Typo.p>
               You are interested in working with me or just want to say hi? Please select a subject below and then fill
-              in the form.
+              the form.
             </Typo.p>
 
-            <select
-              defaultValue="Please select"
-              className={input}
-              name="contactReason"
-              placeholder="Please select the subject"
-              onChange={(e) => setContactReason(e.target.value as ContactReason)}
-            >
-              <option value="">- Please select -</option>
-              <option value={ContactReason.JOB}>{contactReasonLang[ContactReason.JOB]}</option>
-              <option value={ContactReason.FREELANCE}>{contactReasonLang[ContactReason.FREELANCE]}</option>
-              <option value={ContactReason.HELLO}>{contactReasonLang[ContactReason.HELLO]}</option>
-            </select>
-            {contactReason && (
-              <ul className="flex flex-col gap-4">
-                {contactReason === ContactReason.HELLO && (
-                  <>
-                    <li className="flex flex-col">
-                      <label htmlFor="name">Your name</label>
-                      <input name="name" required type="text" className={input} />
-                    </li>
-                    <li className="flex flex-col">
-                      <label htmlFor="email">Your email</label>
-                      <input type="email" id="email" required name="email" className={input} />
-                    </li>
-                    <li className="flex flex-col">
-                      <label htmlFor="message">Your message</label>
-                      <textarea name="message" required className={input} />
-                    </li>
-                  </>
-                )}
-                <li className="flex flex-col">
-                  <button type="submit" className={button_primary}>
-                    send
-                  </button>
-                </li>
-              </ul>
-            )}
+            <Typo.p uppercase className="flex flex-col md:flex-row gap-4">
+              <Link
+                to="/contact/job-opportunity"
+                replace
+                onClick={() => {
+                  setContactReason(ContactReason.JOB);
+                }}
+              >
+                <Typo.linkInternal isActive={window?.location.pathname === '/contact/job-opportunity'}>
+                  {contactReasonLang[ContactReason.JOB]}
+                </Typo.linkInternal>
+              </Link>
+              |
+              <Link
+                to="/contact/freelance"
+                replace
+                onClick={() => {
+                  setContactReason(ContactReason.FREELANCE);
+                }}
+              >
+                <Typo.linkInternal isActive={window?.location.pathname === '/contact/freelance'}>
+                  {contactReasonLang[ContactReason.FREELANCE]}
+                </Typo.linkInternal>
+              </Link>
+              |
+              <Link
+                to="/contact/hello"
+                replace
+                onClick={() => {
+                  setContactReason(ContactReason.HELLO);
+                }}
+              >
+                <Typo.linkInternal isActive={window?.location.pathname === '/contact/hello'}>
+                  {contactReasonLang[ContactReason.HELLO]}
+                </Typo.linkInternal>
+              </Link>
+            </Typo.p>
+
+            <Outlet />
           </div>
         </div>
       </form>
