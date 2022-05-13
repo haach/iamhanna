@@ -675,6 +675,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   cursor: default;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .resize {
   resize: both;
 }

@@ -20,7 +20,6 @@ export const meta: MetaFunction = () => ({
 
 export const action: ActionFunction = async ({request}) => {
   const form = await request.formData();
-  console.log('form', form);
 
   const possibleFields = [
     'contactReason',
@@ -37,12 +36,14 @@ export const action: ActionFunction = async ({request}) => {
 
   const fields = possibleFields.reduce((acc: {[field: string]: string}, val) => {
     const field = form.get(val);
+    console.log('field', field);
     if (field) {
       acc[val] = field as string;
     }
     return acc;
   }, {});
 
+  console.log('form fields', fields);
   dotenv.config();
   //dotenv.config({path: `.env.${process.env.NODE_ENV}`});
   dotenv.config({path: `.env`});
@@ -51,15 +52,15 @@ export const action: ActionFunction = async ({request}) => {
 
   if (apiKey && email) {
     SendgridMail.setApiKey(apiKey);
-    console.log('email', email);
-    console.log('fields', fields);
+    // SANATIZE !!!
+    const text = `Message over the contact form - ${fields.name} regrding ${fields.contactReason}`;
+    const html = Object.entries(fields).map(([key, value]) => '<p><b>' + key + '</b>: ' + value + '</p>');
     const messsage = {
       to: email,
       from: email,
       subject: `Message over the contact form - ${fields.name} regrding ${fields.contactReason}`,
-      // SANATIZE !!!
-      text: `${JSON.stringify(fields)}`,
-      html: `<p>${JSON.stringify(fields)}</p>`,
+      text,
+      html: html.join(''),
     };
     return SendgridMail.send(messsage)
       .then(([res]) => redirect(`/contact/${res.statusCode === 202 ? 'success' : 'error'}`))
@@ -101,7 +102,6 @@ const contactReasonFromURL = () => {
 
 const Contact: FC = () => {
   const [contactReason, setContactReason] = useState<ContactReason>(contactReasonFromURL());
-
   return (
     <PageLayout
       title="Hanna Achenbach"
@@ -153,41 +153,38 @@ const Contact: FC = () => {
             </Typo.p>
 
             <Typo.p uppercase className="flex flex-col md:flex-row gap-4">
-              <Link
+              <Typo.linkInternal
                 to="/contact/job-opportunity"
                 replace
                 onClick={() => {
                   setContactReason(ContactReason.JOB);
                 }}
+                isActive={window?.location.pathname === '/contact/job-opportunity'}
               >
-                <Typo.linkInternal isActive={window?.location.pathname === '/contact/job-opportunity'}>
-                  {contactReasonLang[ContactReason.JOB]}
-                </Typo.linkInternal>
-              </Link>
+                {contactReasonLang[ContactReason.JOB]}
+              </Typo.linkInternal>
               |
-              <Link
+              <Typo.linkInternal
                 to="/contact/freelance"
                 replace
                 onClick={() => {
                   setContactReason(ContactReason.FREELANCE);
                 }}
+                isActive={window?.location.pathname === '/contact/freelance'}
               >
-                <Typo.linkInternal isActive={window?.location.pathname === '/contact/freelance'}>
-                  {contactReasonLang[ContactReason.FREELANCE]}
-                </Typo.linkInternal>
-              </Link>
+                {contactReasonLang[ContactReason.FREELANCE]}
+              </Typo.linkInternal>
               |
-              <Link
+              <Typo.linkInternal
                 to="/contact/hello"
                 replace
                 onClick={() => {
                   setContactReason(ContactReason.HELLO);
                 }}
+                isActive={window?.location.pathname === '/contact/hello'}
               >
-                <Typo.linkInternal isActive={window?.location.pathname === '/contact/hello'}>
-                  {contactReasonLang[ContactReason.HELLO]}
-                </Typo.linkInternal>
-              </Link>
+                {contactReasonLang[ContactReason.HELLO]}
+              </Typo.linkInternal>
             </Typo.p>
 
             <Outlet />

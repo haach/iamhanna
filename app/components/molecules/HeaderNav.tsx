@@ -20,9 +20,9 @@ export const HeaderNav: FC = () => {
             routeName === 'contact' ? window.location?.pathname.includes(to) : window.location?.pathname === to;
           return (
             <li key={routeName}>
-              <Link to={to}>
-                <Typo.linkInternal isActive={isActive}>{routeName}</Typo.linkInternal>
-              </Link>
+              <Typo.linkInternal isActive={isActive} to={to}>
+                {routeName}
+              </Typo.linkInternal>
             </li>
           );
         })}
