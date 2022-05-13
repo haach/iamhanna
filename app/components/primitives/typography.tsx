@@ -122,11 +122,27 @@ const SPAN: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
 };
 const LINK_INTERNAL: FC<BaseTypoProps & {isActive?: boolean}> = ({children, isActive, ...typoProps}) => {
   const className = classNames(
-    'font-thin uppercase',
-    {'cursor-default text-y': isActive, 'hover:text-g dark:hover:text-gd transition-colors': !isActive},
+    'font-thin uppercase pointer',
+    {'cursor-default text-y': isActive, 'hover:text-gd dark:hover:text-g transition-colors': !isActive},
     typoProps.className
   );
   return <span className={className}>{children}</span>;
+};
+const LINK_EXTERNAL: FC<
+  BaseTypoProps & {isActive?: boolean} & React.DetailedHTMLProps<
+      React.AnchorHTMLAttributes<HTMLAnchorElement>,
+      HTMLAnchorElement
+    >
+> = ({children, isActive, ...typoProps}) => {
+  const className = classNames(
+    'font-thin underline pointer hover:text-gd dark:hover:text-g transition-colors',
+    typoProps.className
+  );
+  return (
+    <a {...typoProps} className={className} target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
+  );
 };
 const CAPTION: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
   const className = classNames(
@@ -150,5 +166,6 @@ export const Typo = {
   p: P,
   span: SPAN,
   linkInternal: LINK_INTERNAL,
+  linkExternal: LINK_EXTERNAL,
   caption: CAPTION,
 } as const;

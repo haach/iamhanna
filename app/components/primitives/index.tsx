@@ -10,6 +10,7 @@ export const input =
 export const hideLineOverflow = 'h-8 overflow-hidden';
 export const button_primary =
   'uppercase bg-y focus:bg-o focus-within:bg-o text-black rounded-md px-2 py-1 h-10 outline-none max-w-12';
+export const pill = 'bg-gl text-black dark:bg-white dark:text-black rounded-full px-3 py-1';
 
 /**
  *

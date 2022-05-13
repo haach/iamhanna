@@ -6,6 +6,8 @@
     .zoomOutForPrint { zoom: 0.75; } 
   }
   
+    .max-w-4 { width: 100%;max-width: 4rem; } 
+    .max-w-8 { width: 100%;max-width: 8rem; } 
     .max-w-12 { width: 100%;max-width: 12rem; } 
 /* debug css */
 /* * > * {
