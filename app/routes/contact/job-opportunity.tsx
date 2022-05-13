@@ -1,7 +1,7 @@
 import {MetaFunction} from '@remix-run/node';
 import classNames from 'classnames';
 import {FC, useState} from 'react';
-import {Input, TextArea} from '~/components/molecules/FormComponents';
+import {Input, RadioGroup, TextArea} from '~/components/molecules/FormComponents';
 import {button_primary, input} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 
@@ -32,7 +32,7 @@ const JobOpportunity: FC = () => {
         <Input label="Compensation" name="compensation" required placeholder="Enter fixed or range" />
       </li>
       <li className="flex flex-col">
-        <label htmlFor="workingModel">Working model</label>
+        <label htmlFor="workingModel">Working model *</label>
         <select className={input} name="workingModel" onChange={(e) => setWorkingModel(e.target.value as WorkingModel)}>
           <option value="">- Please select -</option>
           <option value={WorkingModel.REMOTE}>{workingModelLang[WorkingModel.REMOTE]}</option>
@@ -47,28 +47,15 @@ const JobOpportunity: FC = () => {
       )}
       {workingModel && workingModel !== WorkingModel.REMOTE && (
         <li className="flex flex-row items-center gap-4">
-          <Typo.span>Dogs are</Typo.span>
-          <div className="flex flex-row items-center gap-1">
-            <input
-              type="radio"
-              name="dogsAllowed"
-              id="dogsAllowedYES"
-              value={'YES'}
-              required={workingModel === WorkingModel.HYBRID}
-            />
-            <label htmlFor="dogsAllowedYES">allowed</label>
-          </div>
-          <div className="flex flex-row items-center gap-1">
-            <input
-              type="radio"
-              name="dogsAllowed"
-              id="dogsAllowedNO"
-              value={'NO'}
-              required={workingModel === WorkingModel.HYBRID}
-            />
-            <label htmlFor="dogsAllowedNO">not allowed</label>
-          </div>
-          <Typo.span>in the office</Typo.span>
+          <RadioGroup
+            name="dogsAllowed"
+            label={['Dogs are', 'in the office']}
+            options={[
+              {value: 'YES', label: 'allowed'},
+              {value: 'NO', label: 'not allowed'},
+            ]}
+            required={workingModel === WorkingModel.HYBRID}
+          />
         </li>
       )}
       <li className="flex flex-col">
