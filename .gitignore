@@ -9,6 +9,4 @@ node_modules
 /public/build
 /api/index.js
 
-public/cv-data.ts
-
 .DS_Store
