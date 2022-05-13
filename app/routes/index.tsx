@@ -117,7 +117,7 @@ const Index: FC = () => {
       subTitle="Frontend engineer"
       sideBar={
         <>
-          <HeadlineWithDivider title="The tech stack" />
+          <HeadlineWithDivider title="The tech stack" align="right" />
           <div className="flex flex-row flex-wrap justify-end gap-2" style={{maxWidth: 'fit-content'}}>
             {tags.map((tag) => (
               <div className={classNames(pill, 'text-xs')} key={tag}>

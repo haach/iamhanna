@@ -1,4 +1,4 @@
-import {MetaFunction} from '@remix-run/node';
+import {LoaderFunction, MetaFunction} from '@remix-run/node';
 import {educations, experiences} from 'public/cv-data';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {defaultSpacing, PageLayout} from '~/components/molecules/PageLayout';
@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => ({
   title: 'i am hanna - cv',
 });
 
-export default function CV() {
+const CV = () => {
   return (
     <PageLayout
       title="Hanna Achenbach"
@@ -70,4 +70,5 @@ export default function CV() {
       </div>
     </PageLayout>
   );
-}
+};
+export default CV;

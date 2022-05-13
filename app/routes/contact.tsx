@@ -11,6 +11,8 @@ import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {hideLineOverflow, link} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
+import * as SendgridMail from '@sendgrid/mail';
+import {ClientResponse} from '@sendgrid/mail';
 
 export const meta: MetaFunction = () => ({
   title: 'i am hanna - contact',
@@ -41,17 +43,31 @@ export const action: ActionFunction = async ({request}) => {
     return acc;
   }, {});
 
-  console.log('fields', fields);
+  dotenv.config();
+  //dotenv.config({path: `.env.${process.env.NODE_ENV}`});
+  dotenv.config({path: `.env`});
+  const email = process.env.EMAIL;
+  const apiKey = process.env.APIKEY;
 
-  // SANATIZE !!!
-
-  /* 
-  let session = await getSession(request.headers.get('Cookie'));
-  // perform the login here and store something in the session
-  return redirect('/dashboard', {
-    headers: {'Set-Cookie': await commitSession(session)},
-  }); */
-  return redirect('/contact/success');
+  if (apiKey && email) {
+    SendgridMail.setApiKey(apiKey);
+    console.log('email', email);
+    console.log('fields', fields);
+    const messsage = {
+      to: email,
+      from: email,
+      subject: `Message over the contact form - ${fields.name} regrding ${fields.contactReason}`,
+      // SANATIZE !!!
+      text: `${JSON.stringify(fields)}`,
+      html: `<p>${JSON.stringify(fields)}</p>`,
+    };
+    return SendgridMail.send(messsage)
+      .then(([res]) => redirect(`/contact/${res.statusCode === 202 ? 'success' : 'error'}`))
+      .catch((err) => {
+        console.log(err);
+        return redirect(`/contact/error`);
+      });
+  }
 };
 
 export async function loader() {
