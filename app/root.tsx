@@ -67,9 +67,16 @@ const App: FC = () => {
   return (
     <ThemeContextProvider>
       <Document>
-        <Layout>
-          <Outlet />
-        </Layout>
+        <div>
+          <h1 className="text-3xl font-bold underline">Hey there! ✌️</h1>
+          <p className="text-m">
+            I am currently reworking my website. Please come back in a couple of days or hit me up on{' '}
+            <a href="https://www.linkedin.com/in/hanna-achenbach/" className="underline">
+              LinkedIn
+            </a>{' '}
+            meanwhile.
+          </p>
+        </div>
       </Document>
     </ThemeContextProvider>
   );
