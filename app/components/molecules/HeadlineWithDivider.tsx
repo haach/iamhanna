@@ -9,11 +9,11 @@ import {Typo} from '~/components/primitives/typography';
  */
 export const HeadlineWithDivider: FC<{title: ReactNode; align?: 'left' | 'right'}> = ({title, align = 'left'}) => {
   return (
-    <>
+    <div className="flex flex-col gap-1 sm:gap-2">
       <Typo.h2 yellow className={`text-${align}`}>
         {title}
       </Typo.h2>
-      <HR className="mb-6" />
-    </>
+      <HR />
+    </div>
   );
 };

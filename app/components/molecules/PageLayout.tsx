@@ -2,6 +2,7 @@ import {Link} from '@remix-run/react';
 import {FC, ReactNode, useContext, useEffect, useState} from 'react';
 import {DarkModeSwitch} from '~/components/molecules/DarkModeSwitch';
 import {HeaderNav} from '~/components/molecules/HeaderNav';
+import {ContainerOuter} from '~/components/molecules/Layout';
 import {blackBorder, HR} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 import {WindowContext} from '~/WindowContext';
@@ -40,7 +41,7 @@ export const PageLayout: FC<{title: string; subTitle?: string; sideBar?: ReactNo
             <DarkModeSwitch />
           </header>
 
-          <div className="flex flex-row justify-between gap-10 sm:gap-15 md-gap-20">
+          <div className="flex flex-row justify-between gap-10 sm:gap-15 md:gap-20 lg:gap-20">
             {/* LEFT */}
             <div className="flex flex-col">
               <div
@@ -49,7 +50,7 @@ export const PageLayout: FC<{title: string; subTitle?: string; sideBar?: ReactNo
               >
                 <img src="/portrait.jpg" className="rounded-full " />
               </div>
-              <div className="flex flex-col py-10 sm:py-15 md:py-20 flex-1">{sideBar}</div>
+              <ContainerOuter className="flex-1">{sideBar}</ContainerOuter>
             </div>
 
             {/* RIGHT */}
@@ -68,7 +69,7 @@ export const PageLayout: FC<{title: string; subTitle?: string; sideBar?: ReactNo
               </div>
 
               {/* CONTENT HERE  */}
-              <div className="flex flex-col py-10 sm:py-15 md:py-20 gap-3 sm:gap-5 md:gap-5">{children}</div>
+              <ContainerOuter>{children}</ContainerOuter>
             </div>
           </div>
         </div>

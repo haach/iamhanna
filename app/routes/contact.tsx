@@ -9,6 +9,7 @@ import {RiLinkedinBoxFill} from 'react-icons/ri';
 import {SiCodewars} from 'react-icons/si';
 import {Input} from '~/components/molecules/FormComponents';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
+import {ContainerInner} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {hideLineOverflow, link} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
@@ -95,8 +96,8 @@ const Contact: FC = () => {
       title="Hanna Achenbach"
       subTitle="Frontend engineer"
       sideBar={
-        <div className="flex flex-col items-end w-full">
-          <HeadlineWithDivider title="Find me on" />
+        <ContainerInner>
+          <HeadlineWithDivider title="Find me on" align="right" />
           <div className="flex flex-row gap-4 justify-end w-full">
             <a
               className={classNames(link, hideLineOverflow)}
@@ -126,59 +127,64 @@ const Contact: FC = () => {
               <SiCodewars className="h-5 w-5" />
             </a>
           </div>
-        </div>
+        </ContainerInner>
       }
     >
-      <HeadlineWithDivider title="Get in touch" />
-      <form action="/contact" method="post">
-        <div className="flex flex-col gap-20">
-          <Input type="hidden" name="contactReason" value={contactReason} />
+      <ContainerInner>
+        <HeadlineWithDivider title="Get in touch" />
+        <form action="/contact" method="post">
+          <div className="flex flex-col gap-20">
+            <Input type="hidden" name="contactReason" value={contactReason} />
 
-          <div className="flex flex-col gap-8">
-            <Typo.p>
-              You are interested in working with me or just want to say hi? Please select a subject below and then fill
-              the form.
-            </Typo.p>
+            <div className="flex flex-col gap-8">
+              <Typo.p>
+                You are interested in working with me or just want to say hi? Please select a subject below and then
+                fill the form.
+              </Typo.p>
 
-            <Typo.p uppercase className="flex flex-col md:flex-row gap-4">
-              <Typo.linkInternal
-                to="/contact/job-opportunity"
-                replace
-                onClick={() => {
-                  setContactReason(ContactReason.JOB);
-                }}
-                isActive={window?.location.pathname === '/contact/job-opportunity'}
-              >
-                {contactReasonLang[ContactReason.JOB]}
-              </Typo.linkInternal>
-              |
-              <Typo.linkInternal
-                to="/contact/freelance"
-                replace
-                onClick={() => {
-                  setContactReason(ContactReason.FREELANCE);
-                }}
-                isActive={window?.location.pathname === '/contact/freelance'}
-              >
-                {contactReasonLang[ContactReason.FREELANCE]}
-              </Typo.linkInternal>
-              |
-              <Typo.linkInternal
-                to="/contact/hello"
-                replace
-                onClick={() => {
-                  setContactReason(ContactReason.HELLO);
-                }}
-                isActive={window?.location.pathname === '/contact/hello'}
-              >
-                {contactReasonLang[ContactReason.HELLO]}
-              </Typo.linkInternal>
-            </Typo.p>
+              <Typo.p className="flex flex-col md:flex-row gap-4">
+                <Typo.linkInternal
+                  to="/contact/job-opportunity"
+                  replace
+                  onClick={() => {
+                    setContactReason(ContactReason.JOB);
+                  }}
+                  block
+                  isActive={window?.location.pathname === '/contact/job-opportunity'}
+                >
+                  {contactReasonLang[ContactReason.JOB]}
+                </Typo.linkInternal>
+                |
+                <Typo.linkInternal
+                  to="/contact/freelance"
+                  replace
+                  onClick={() => {
+                    setContactReason(ContactReason.FREELANCE);
+                  }}
+                  block
+                  isActive={window?.location.pathname === '/contact/freelance'}
+                >
+                  {contactReasonLang[ContactReason.FREELANCE]}
+                </Typo.linkInternal>
+                |
+                <Typo.linkInternal
+                  to="/contact/hello"
+                  replace
+                  onClick={() => {
+                    setContactReason(ContactReason.HELLO);
+                  }}
+                  block
+                  isActive={window?.location.pathname === '/contact/hello'}
+                >
+                  {contactReasonLang[ContactReason.HELLO]}
+                </Typo.linkInternal>
+              </Typo.p>
 
-            <Outlet />
+              <Outlet />
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </ContainerInner>
     </PageLayout>
   );
 };

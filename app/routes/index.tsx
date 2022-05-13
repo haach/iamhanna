@@ -1,11 +1,11 @@
 import {MetaFunction} from '@remix-run/node';
 import classNames from 'classnames';
-import {FC, Fragment, ReactNode} from 'react';
-import {FiHeart} from 'react-icons/fi';
-import {SiCpanel} from 'react-icons/si';
+import {FC, ReactNode} from 'react';
+import {HiHeart} from 'react-icons/hi';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
+import {ContainerInner, TwoColumnText} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
-import {link, pill} from '~/components/primitives';
+import {pill} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 
 export const meta: MetaFunction = () => ({
@@ -38,7 +38,7 @@ const loves: Array<{
   links?: Array<{text: string; href: string}>;
 }> = [
   {
-    title: 'Remix on Vercel',
+    title: 'Remix + Vercel',
     text: (
       <>
         Honestly, how amazing is it to be able to write a full stack app all in JS, all in one repo, even all in one
@@ -116,7 +116,7 @@ const Index: FC = () => {
       title="Hanna Achenbach"
       subTitle="Frontend engineer"
       sideBar={
-        <>
+        <ContainerInner>
           <HeadlineWithDivider title="The tech stack" align="right" />
           <div className="flex flex-row flex-wrap justify-end gap-2" style={{maxWidth: 'fit-content'}}>
             {tags.map((tag) => (
@@ -125,31 +125,37 @@ const Index: FC = () => {
               </div>
             ))}
           </div>
-        </>
+        </ContainerInner>
       }
     >
-      <HeadlineWithDivider title="Intro" />
-      {/* TODO: unify spacing with cv  */}
-      <div className="flex flex-col gap-8">
-        <Typo.p>How I got here</Typo.p>
-        <Typo.p>
-          I created my first website during my web design classes in high school back in 2006. Since then, I began with
-          an autodidactic approach to web development, and then in 2014, I completed my degree in media design. <br />
-          The wide variety of possibilies offered by web technology fascinates me ever since and therefore, I strive to
-          develop applications that solve tricky issues and have the potential to make their users lives easier and more
-          entertaining. Coming from a design and architecture influen- ced background, I endeavour to make every product
-          unique, aesthetic and usable for its specific target group.
-        </Typo.p>
-        <Typo.p>What I recently focus on</Typo.p>
-      </div>
-      <HeadlineWithDivider
-        title={
-          <div className="flex">
-            Things I currently <FiHeart className="h-5" />
-          </div>
-        }
-      />
-      <div className="flex flex-col gap-3 sm:gap-5">
+      <ContainerInner>
+        <HeadlineWithDivider title="Intro" />
+        <TwoColumnText>
+          <Typo.p>
+            After taking a little deture and getting my B.o.S. in landscape architecture I decided for a career change,
+            got an intership and eventually completed my degree in media design. Back in 2006 I had created my first
+            website during my web design courses in high school.
+          </Typo.p>
+          <Typo.p>
+            This particular background has shaped the way I am working today as a frontend engineer. I strive to develop
+            applications that solve tricky issues for their users and endeavour to make every product unique,
+            aesthetically pleasing and usable for its specific target group.
+          </Typo.p>
+          <Typo.p>
+            Even though I consider myself mainly a frontend engineer, i don't shy away from full-stacky tasks and am
+            more and more interested in apllication architecture design as well. - If this sparks joy pop me a message{' '}
+            <Typo.linkInternal to="/contact">here</Typo.linkInternal>
+          </Typo.p>
+        </TwoColumnText>
+      </ContainerInner>
+      <ContainerInner>
+        <HeadlineWithDivider
+          title={
+            <div className="flex">
+              Things I currently <HiHeart className="h-5" />
+            </div>
+          }
+        />
         {loves.map(({title, text, links}) => (
           <div key={title} className="flex flex-col gap-1 sm:gap-2">
             <Typo.h3>{title}</Typo.h3>
@@ -161,29 +167,13 @@ const Index: FC = () => {
                   <span className="text-xs">🔗</span>
                   <Typo.linkExternal href={href} title={linkText} className="ml-2 inline-block">
                     {linkText}
-                  </Typo.linkExternal>{' '}
+                  </Typo.linkExternal>
                 </span>
               ))}
             </Typo.p>
           </div>
-        ))}{' '}
-        {/* 
-          <div key={title} className="flex flex-row gap-5 sm:gap-10"><div className="flex-1">
-              <img src={imgSrc} alt={title} className="object-cover h-44 w-72" />
-            </div>
-            <div className="flex-auto w-64">
-              <Typo.h3>{title}</Typo.h3>
-              <Typo.p>
-                {text}
-                {(links && links.length > 0 ? links : []).map(({text: linkText, href}) => (
-                  <Typo.linkExternal key={linkText} href={href} title={linkText} className="ml-2">
-                    {linkText}
-                  </Typo.linkExternal>
-                ))}
-              </Typo.p>
-            </div> 
-          </div>*/}
-      </div>
+        ))}
+      </ContainerInner>
     </PageLayout>
   );
 };

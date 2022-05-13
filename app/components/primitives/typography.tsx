@@ -122,17 +122,17 @@ const SPAN: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
   const className = classNames('font-thin', commonClasssNames(typoProps), colorClasses(typoProps), typoProps.className);
   return <span className={className}>{children}</span>;
 };
-const LINK_INTERNAL: FC<BaseTypoProps & {to: string; replace?: boolean; isActive?: boolean; onClick?(): void}> = ({
-  children,
-  to,
-  replace,
-  isActive,
-  onClick,
-  ...typoProps
-}) => {
+const LINK_INTERNAL: FC<
+  BaseTypoProps & {to: string; replace?: boolean; block?: boolean; isActive?: boolean; onClick?(): void}
+> = ({children, to, replace, block, isActive, onClick, ...typoProps}) => {
   const className = classNames(
-    'font-thin uppercase',
-    {'cursor-default text-y': isActive, 'hover:text-gd dark:hover:text-g transition-colors cursor-pointer ': !isActive},
+    'font-thin ',
+    {
+      'cursor-default text-y': isActive,
+      'hover:text-gd dark:hover:text-gd transition-colors cursor-pointer ': !isActive,
+      underline: !block,
+      uppercase: block,
+    },
     typoProps.className
   );
   return (
@@ -142,13 +142,10 @@ const LINK_INTERNAL: FC<BaseTypoProps & {to: string; replace?: boolean; isActive
   );
 };
 const LINK_EXTERNAL: FC<
-  BaseTypoProps & {isActive?: boolean} & React.DetailedHTMLProps<
-      React.AnchorHTMLAttributes<HTMLAnchorElement>,
-      HTMLAnchorElement
-    >
-> = ({children, isActive, ...typoProps}) => {
+  BaseTypoProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
+> = ({children, ...typoProps}) => {
   const className = classNames(
-    'font-thin underline pointer hover:text-gd dark:hover:text-g transition-colors  cursor-pointer ',
+    'font-thin underline pointer hover:text-gd dark:hover:text-gd transition-colors cursor-pointer ',
     typoProps.className
   );
   return (

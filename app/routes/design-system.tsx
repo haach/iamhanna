@@ -1,4 +1,5 @@
 import {MetaFunction} from '@remix-run/node';
+import {ContainerInner} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {Typo} from '~/components/primitives/typography';
 
@@ -9,7 +10,7 @@ export const meta: MetaFunction = () => ({
 export default function DesignSystem() {
   return (
     <PageLayout title="For the design geeks">
-      <div className="flex flex-col gap-5 sm:gap-10 md:gap-15">
+      <ContainerInner>
         <Typo.h1>Typo.headline 1 - Bebas Neue, sans-serif</Typo.h1>
         <Typo.h2>Typo.headline 2 - Bebas Neue, sans-serif</Typo.h2>
         <Typo.h3>Typo.headline 3 - Playfair Display, serif</Typo.h3>
@@ -25,7 +26,7 @@ export default function DesignSystem() {
         </Typo.p>
         <Typo.caption>Typo.caption - Roboto Condensed, sans-serif</Typo.caption>
         {/* <Typo.h1 className={'text-6xl italic font-serif font-black'}>Present 2018</Typo.h1> */}
-      </div>
+      </ContainerInner>
     </PageLayout>
   );
 }

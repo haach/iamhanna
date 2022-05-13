@@ -1,6 +1,7 @@
 import {LoaderFunction, MetaFunction} from '@remix-run/node';
 import {educations, experiences} from 'public/cv-data';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
+import {ContainerInner} from '~/components/molecules/Layout';
 import {defaultSpacing, PageLayout} from '~/components/molecules/PageLayout';
 import {Typo} from '~/components/primitives/typography';
 
@@ -15,25 +16,23 @@ const CV = () => {
       /* subTitle="Curriculum vitae" */
       subTitle="Frontend engineer"
       sideBar={
-        <div className="flex flex-col items-end w-full">
-          <HeadlineWithDivider title="Education" />
-          <div className="flex flex-col gap-20">
-            {Object.entries(educations).map(([key, education]) => (
-              <div key={key} className="text-right" style={{maxWidth: `${defaultSpacing}px`}}>
-                <Typo.h3>{education.to}</Typo.h3>
-                <Typo.h4 className="-mt-1">{education.from}</Typo.h4>
-                <Typo.h2 className="leading-tight">{education.title}</Typo.h2>
-                <Typo.p dense style={{textAlign: 'right', whiteSpace: 'pre-wrap'}}>
-                  {education.footer}
-                </Typo.p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <ContainerInner>
+          <HeadlineWithDivider title="Education" align="right" />
+          {Object.entries(educations).map(([key, education]) => (
+            <div key={key} className="text-right" /* style={{maxWidth: `${defaultSpacing}px`}} */>
+              <Typo.h3>{education.to}</Typo.h3>
+              <Typo.h4 className="-mt-1">{education.from}</Typo.h4>
+              <Typo.h2 className="leading-tight">{education.title}</Typo.h2>
+              <Typo.p dense style={{textAlign: 'right', whiteSpace: 'pre-wrap'}}>
+                {education.footer}
+              </Typo.p>
+            </div>
+          ))}
+        </ContainerInner>
       }
     >
-      <HeadlineWithDivider title="Experience" />
-      <div className="flex flex-col gap-20">
+      <ContainerInner>
+        <HeadlineWithDivider title="Experience" />
         {Object.entries(experiences).map(([key, experience]) => (
           <div key={key}>
             <div className="flex w-full">
@@ -67,7 +66,7 @@ const CV = () => {
             )}
           </div>
         ))}
-      </div>
+      </ContainerInner>
     </PageLayout>
   );
 };

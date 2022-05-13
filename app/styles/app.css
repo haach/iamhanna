@@ -551,10 +551,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 0.5rem;
 }
 
-.mb-6 {
-  margin-bottom: 1.5rem;
-}
-
 .ml-8 {
   margin-left: 2rem;
 }
@@ -575,8 +571,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 2rem;
 }
 
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
 .box-border {
   box-sizing: border-box;
+}
+
+.block {
+  display: block;
 }
 
 .inline-block {
@@ -615,10 +619,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 1.25rem;
 }
 
-.h-44 {
-  height: 11rem;
-}
-
 .h-10 {
   height: 2.5rem;
 }
@@ -645,14 +645,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-5 {
   width: 1.25rem;
-}
-
-.w-72 {
-  width: 18rem;
-}
-
-.w-64 {
-  width: 16rem;
 }
 
 .max-w-screen-xl {
@@ -747,20 +739,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 2rem;
 }
 
-.gap-5 {
-  gap: 1.25rem;
-}
-
 .gap-2 {
   gap: 0.5rem;
 }
 
-.gap-3 {
-  gap: 0.75rem;
-}
-
 .gap-1 {
   gap: 0.25rem;
+}
+
+.gap-5 {
+  gap: 1.25rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
 }
 
 .gap-10 {
@@ -847,11 +839,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(229 229 229 / var(--tw-bg-opacity));
 }
 
-.object-cover {
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
 .p-1 {
   padding: 0.25rem;
 }
@@ -866,6 +853,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 6rem;
 }
 
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -874,11 +866,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
 }
 
 .px-2 {
@@ -1051,12 +1038,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-duration: 150ms;
 }
 
-@media print {
-  .zoomOutForPrint {
-    zoom: 0.75;
-  }
-}
-
 .max-w-4 {
   width: 100%;
   max-width: 4rem;
@@ -1070,6 +1051,23 @@ Ensure the default browser behavior of the `hidden` attribute.
 .max-w-12 {
   width: 100%;
   max-width: 12rem;
+}
+
+.resonsive-columns {
+  -moz-column-width: 250px;
+       column-width: 250px;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+}
+
+.resonsive-columns > p + p {
+  margin-top: 1em;
+}
+
+@media print {
+  .zoomOutForPrint {
+    zoom: 0.75;
+  }
 }
 
 /* debug css */
@@ -1189,6 +1187,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(212 212 212 / var(--tw-text-opacity));
 }
 
+.dark .dark\:hover\:text-gd:hover {
+  --tw-text-opacity: 1;
+  color: rgb(163 163 163 / var(--tw-text-opacity));
+}
+
 @media print {
   .print\:hidden {
     display: none;
@@ -1210,16 +1213,16 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-left: 2.5rem;
   }
 
+  .sm\:gap-2 {
+    gap: 0.5rem;
+  }
+
   .sm\:gap-10 {
     gap: 2.5rem;
   }
 
   .sm\:gap-5 {
     gap: 1.25rem;
-  }
-
-  .sm\:gap-2 {
-    gap: 0.5rem;
   }
 
   .sm\:px-8 {
@@ -1238,8 +1241,17 @@ Ensure the default browser behavior of the `hidden` attribute.
     flex-direction: row;
   }
 
-  .md\:gap-5 {
-    gap: 1.25rem;
+  .md\:gap-8 {
+    gap: 2rem;
+  }
+
+  .md\:gap-20 {
+    gap: 5rem;
+  }
+
+  .md\:py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
   }
 
   .md\:px-10 {
@@ -1251,16 +1263,19 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
-
-  .md\:py-20 {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
 }
 
 @media (min-width: 1024px) {
   .lg\:ml-20 {
     margin-left: 5rem;
+  }
+
+  .lg\:gap-20 {
+    gap: 5rem;
+  }
+
+  .lg\:gap-10 {
+    gap: 2.5rem;
   }
 
   .lg\:px-20 {
