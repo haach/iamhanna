@@ -49,7 +49,6 @@ export const RadioGroup: FC<
     options: Array<{value: string; label: string}>;
   }
 > = ({label, options, ...props}) => {
-  console.log('props.name', props.name);
   return (
     <>
       <Typo.span>{label[0]}</Typo.span>

@@ -1,5 +1,6 @@
 import {ActionFunction, MetaFunction, redirect} from '@remix-run/node';
-import {Link, Outlet} from '@remix-run/react';
+import {Outlet} from '@remix-run/react';
+import * as SendgridMail from '@sendgrid/mail';
 import classNames from 'classnames';
 import dotenv from 'dotenv';
 import {FC, useState} from 'react';
@@ -11,8 +12,6 @@ import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {hideLineOverflow, link} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
-import * as SendgridMail from '@sendgrid/mail';
-import {ClientResponse} from '@sendgrid/mail';
 
 export const meta: MetaFunction = () => ({
   title: 'i am hanna - contact',
@@ -36,16 +35,12 @@ export const action: ActionFunction = async ({request}) => {
 
   const fields = possibleFields.reduce((acc: {[field: string]: string}, val) => {
     const field = form.get(val);
-    console.log('field', field);
     if (field) {
       acc[val] = field as string;
     }
     return acc;
   }, {});
 
-  console.log('form fields', fields);
-  dotenv.config();
-  //dotenv.config({path: `.env.${process.env.NODE_ENV}`});
   dotenv.config({path: `.env`});
   const email = process.env.EMAIL;
   const apiKey = process.env.APIKEY;
@@ -70,13 +65,6 @@ export const action: ActionFunction = async ({request}) => {
       });
   }
 };
-
-export async function loader() {
-  dotenv.config();
-  //dotenv.config({path: `.env.${process.env.NODE_ENV}`});
-  dotenv.config({path: `.env`});
-  return process.env.EMAIL;
-}
 
 enum ContactReason {
   UNSET = 'UNSET',

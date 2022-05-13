@@ -12,16 +12,16 @@ const FreelanceOpportunity: FC = () => {
   return (
     <ul className="flex flex-col gap-4">
       <li className="flex flex-col">
-        <Input label="Company name" name="employer" required />
+        <Input label="Company name" name="employer" required placeholder="Monster Corp" />
       </li>
       <li className="flex flex-col">
         <Input label="Compensation / rate" name="compensation" required placeholder="Enter fixed or range" />
       </li>
       <li className="flex flex-col">
-        <Input label="Your name" name="name" required />
+        <Input label="Your name" name="name" required placeholder="Jane Doe" />
       </li>
       <li className="flex flex-col">
-        <Input label="Your email" type="email" name="email" required />
+        <Input label="Your email" type="email" name="email" required placeholder="janedoe@monster.com" />
       </li>
       <li className="flex flex-col">
         <TextArea
