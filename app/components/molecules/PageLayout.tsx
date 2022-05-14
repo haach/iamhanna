@@ -34,7 +34,7 @@ export const PageLayout: FC<{title: string; subTitle?: string; sideBar?: ReactNo
 
   return (
     <div>
-      <div className="relative py-3 sm:py-5 md:py-8 lg:py-10 print:py-5">
+      <div className="relative py-8 lg:py-10 print:py-5">
         <HR className="-z-10" style={{transform: `translate3d(0px, ${imageSize / 2}px, 0)`}} />
         <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 sm:pl-8 sm:pr-8 md:pl-8 md:pr-8 lg:pl-0 lg:pr-10 xl:pl-0 xl:pr-20 print:px-10 zoomOutForPrint">
           {/* 0 - 767,sm */}

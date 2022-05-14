@@ -96,9 +96,9 @@ const Contact: FC = () => {
       title="Hanna Achenbach"
       subTitle="Frontend engineer"
       sideBar={
-        <ContainerInner>
+        <ContainerInner className="md:text-right">
           <HeadlineWithDivider title="Find me on" className="md:text-right" />
-          <div className="flex flex-row gap-4 justify-end w-full">
+          <div className="flex flex-row gap-4 md:justify-end w-full">
             <a
               className={classNames(link, hideLineOverflow)}
               href="https://github.com/haach"
@@ -154,7 +154,7 @@ const Contact: FC = () => {
                 >
                   {contactReasonLang[ContactReason.JOB]}
                 </Typo.linkInternal>
-                |
+                <span className="hidden sm:visible">|</span>
                 <Typo.linkInternal
                   to="/contact/freelance"
                   replace
@@ -166,7 +166,7 @@ const Contact: FC = () => {
                 >
                   {contactReasonLang[ContactReason.FREELANCE]}
                 </Typo.linkInternal>
-                |
+                <span className="hidden sm:visible">|</span>
                 <Typo.linkInternal
                   to="/contact/hello"
                   replace
