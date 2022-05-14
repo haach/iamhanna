@@ -41,7 +41,7 @@ const colorClasses = (typoProps: TypoColorProps) => ({
 
 const H1: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
-    'uppercase text-1xl sm:text-2xl md:text-3xl lg:text-5xl',
+    'uppercase text-2xl sm:text-2xl md:text-3xl lg:text-5xl',
     commonClasssNames(typoProps),
     colorClasses({yellow: true}),
     typoProps.className

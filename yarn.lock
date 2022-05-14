@@ -3981,6 +3981,11 @@ jsonfile@^6.0.1:
     array-includes "^3.1.4"
     object.assign "^4.1.2"
 
+just-debounce@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/just-debounce/-/just-debounce-1.1.0.tgz#2f81a3ad4121a76bc7cb45dbf704c0d76a8e5ddf"
+  integrity sha512-qpcRocdkUmf+UTNBYx5w6dexX5J31AKK1OmPwH630a83DdVVUIngk55RSAiIGpQyoH0dlr872VHfPjnQnK1qDQ==
+
 keyv@^4.0.0:
   version "4.2.2"
   resolved "https://registry.npmjs.org/keyv/-/keyv-4.2.2.tgz"
