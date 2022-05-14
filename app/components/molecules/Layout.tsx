@@ -6,7 +6,7 @@ export const ContainerOuter: FC<React.DetailedHTMLProps<HTMLAttributes<HTMLDivEl
   className,
 }) => {
   return (
-    <div className={classNames('flex flex-col py-10 sm:py-15 md:py-20 gap-5 sm:gap-10 md:gap-15 lg:gap-20', className)}>
+    <div className={classNames('flex flex-col sm-0 md:py-10 lg:py-10 gap-10 sm:gap-10 md:gap-16 lg:gap-20', className)}>
       {children}
     </div>
   );

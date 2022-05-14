@@ -10,7 +10,7 @@ export const Input: FC<
   return (
     <>
       {label && (
-        <label htmlFor={props.name}>
+        <label htmlFor={props.name} className="mb-2">
           {label}
           {props.required && ' *'}
         </label>
@@ -26,7 +26,7 @@ export const TextArea: FC<
   return (
     <>
       {label && (
-        <label htmlFor={props.name}>
+        <label htmlFor={props.name} className="mb-2">
           {label}
           {props.required && ' *'}
         </label>

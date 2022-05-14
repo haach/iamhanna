@@ -2,15 +2,15 @@ import classNames from 'classnames';
 import {FC} from 'react';
 import {ReactProps} from '~/components';
 
-export const blackBorder = 'border-solid border-black dark:border-white';
+export const blackBorder = 'border-solid border-bl dark:border-white';
 export const link =
-  'border-b border-b-transparent hover:border-b-black dark:hover:border-b-white flex flex-row gap-2 items-center';
+  'flex flex-row items-center text-bl dark:text-white hover:text-gd dark:hover:text-gd transistion-colors';
 export const input =
-  'font-thin bg-transparent border border-black dark:border-white focus:border-o focus-within:border-o rounded-md px-2 py-1 h-10 outline-none';
+  'font-thin bg-transparent border border-bl dark:border-white focus:border-o focus-within:border-o rounded-md px-2 py-1 h-10 outline-none';
 export const hideLineOverflow = 'h-8 overflow-hidden';
 export const button_primary =
   'uppercase bg-y focus:bg-o focus-within:bg-o text-black rounded-md px-2 py-1 h-10 outline-none max-w-12';
-export const pill = 'bg-gl text-black dark:bg-white dark:text-black rounded-full px-3 py-1';
+export const pill = 'bg-gl text-black dark:bg-neutral-700 dark:text-white rounded-full px-3 py-1';
 
 /**
  *

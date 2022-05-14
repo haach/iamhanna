@@ -3,21 +3,26 @@ import {WindowContext} from '~/WindowContext';
 
 interface ThemeContext {
   darkMode: boolean | null;
+  systemDarkMode: boolean | null;
   switchDarkMode(): void;
 }
 
 export const ThemeContext = createContext<ThemeContext>({
   darkMode: null,
+  systemDarkMode: null,
   switchDarkMode: () => null,
 });
 
 export const ThemeContextProvider: FC = ({children}) => {
   const [darkMode, setDarkMode] = useState<ThemeContext['darkMode']>(null);
+  const [systemDarkMode, setSystemDarkMode] = useState<ThemeContext['systemDarkMode']>(null);
   const windowContext = useContext(WindowContext);
 
   useEffect(() => {
     // check if window is initialised
     if (windowContext) {
+      const system = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setSystemDarkMode(system);
       let isDarkMode = false;
       if (window.matchMedia && window.matchMedia('print').matches) {
         // print mode
@@ -28,7 +33,7 @@ export const ThemeContextProvider: FC = ({children}) => {
         isDarkMode = JSON.parse(window.localStorage.getItem('darkMode') ?? 'false');
       } else {
         // check system preference
-        isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        isDarkMode = system;
       }
       persistSetting(isDarkMode);
     }
@@ -43,6 +48,7 @@ export const ThemeContextProvider: FC = ({children}) => {
     <ThemeContext.Provider
       value={{
         darkMode,
+        systemDarkMode,
         switchDarkMode: () => persistSetting(!darkMode),
       }}
     >

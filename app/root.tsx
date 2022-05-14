@@ -24,7 +24,7 @@ const Layout: FC = ({children}) => {
 };
 
 const Document: FC = ({children}) => {
-  const {darkMode} = useContext(ThemeContext);
+  const {darkMode, systemDarkMode} = useContext(ThemeContext);
   const className = classNames('min-h-full', {
     dark: darkMode,
   });
@@ -32,9 +32,9 @@ const Document: FC = ({children}) => {
     <html lang="en" className={className}>
       <head>
         <Meta />
-        <link rel="icon" href={darkMode ? '/dog_light.svg' : '/dog.svg'} />
+        <link rel="icon" href={systemDarkMode ? '/dog_light.svg' : '/dog.svg'} />
         <link
-          href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
           rel="stylesheet"
         />
         <Links />

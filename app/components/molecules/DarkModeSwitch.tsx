@@ -1,12 +1,17 @@
 import classNames from 'classnames';
 import {FC, useContext} from 'react';
+import {ReactProps} from '~/components';
 import {Typo} from '~/components/primitives/typography';
 import {ThemeContext} from '~/ThemeContext';
 
-export const DarkModeSwitch: FC = () => {
+export const DarkModeSwitch: FC<ReactProps> = ({className, style}) => {
   const {darkMode, switchDarkMode} = useContext(ThemeContext);
   return (
-    <button onClick={switchDarkMode} className="flex flex-row content-center items-center text-xs print:hidden">
+    <button
+      style={style}
+      onClick={switchDarkMode}
+      className={classNames('flex flex-row content-center items-center text-xs print:hidden', className)}
+    >
       <Typo.caption className="mt-0 mr-2">Dark mode</Typo.caption>
       <div
         className={classNames('grid grid-cols-2 rounded-full border-1 border-solid box-border transition-colors ', {

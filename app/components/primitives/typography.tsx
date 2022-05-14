@@ -5,26 +5,18 @@ import {FC} from 'react';
 import {ReactProps} from '~/components';
 
 interface BaseTypoProps extends ReactProps {
-  noMargin?: boolean;
   dense?: boolean;
 }
 interface TypoProps extends BaseTypoProps {
-  lght?: boolean;
-  regular?: boolean;
-  bold?: boolean;
   underline?: boolean;
   uppercase?: boolean;
   capitalize?: boolean;
 }
 
 const commonClasssNames = (typoProps: TypoProps) => ({
-  'font-thin': typoProps?.lght,
-  'font-regular': typoProps?.regular,
-  'font-bold': typoProps?.bold,
   underline: typoProps?.underline,
   uppercase: typoProps?.uppercase,
   capitalize: typoProps?.capitalize,
-  'mb-0': typoProps?.noMargin,
   'leading-tight': typoProps?.dense,
 });
 interface TypoColorProps {
@@ -39,7 +31,7 @@ interface TypoColorProps {
 
 const colorClasses = (typoProps: TypoColorProps) => ({
   'text-black dark:text-white': typoProps?.black,
-  'text-bl dark:text-g': typoProps?.blackLight,
+  'text-bl dark:text-gl': typoProps?.blackLight,
   'text-gd dark:text-gl': typoProps?.grayDark,
   'text-g dark:text-g': typoProps?.gray,
   'text-gl dark:text-gd': typoProps?.grayLight,
@@ -49,8 +41,7 @@ const colorClasses = (typoProps: TypoColorProps) => ({
 
 const H1: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
-    'font-title uppercase text-5xl',
-    /* {'mb-14': !typoProps.noMargin}, */
+    'uppercase text-1xl sm:text-2xl md:text-3xl lg:text-5xl',
     commonClasssNames(typoProps),
     colorClasses({yellow: true}),
     typoProps.className
@@ -63,8 +54,7 @@ const H1: FC<BaseTypoProps> = ({children, ...typoProps}) => {
 };
 const H2: FC<BaseTypoProps & Pick<TypoColorProps, 'yellow'>> = ({children, ...typoProps}) => {
   const className = classNames(
-    'font-title uppercase text-2xl leading-none font-light',
-    /*  {'mb-10': !typoProps.noMargin}, */
+    'uppercase text-1xl lg:text-2xl leading-none font-medium',
     commonClasssNames(typoProps),
     colorClasses({blackLight: true, ...typoProps}),
     typoProps.className
@@ -77,8 +67,7 @@ const H2: FC<BaseTypoProps & Pick<TypoColorProps, 'yellow'>> = ({children, ...ty
 };
 const H3: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
-    'font-serif text-3xl italic font-black',
-    /*  {'mb-8': !typoProps.noMargin}, */
+    'font-serif text-3xl font-bold italic',
     colorClasses({orange: true}),
     commonClasssNames(typoProps),
     typoProps.className
@@ -91,8 +80,7 @@ const H3: FC<BaseTypoProps> = ({children, ...typoProps}) => {
 };
 const H4: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
-    'font-serif text-1xl mb italic font-black',
-    /*   {'mb-6': !typoProps.noMargin}, */
+    'font-serif text-1xl leading-none italic',
     commonClasssNames(typoProps),
     colorClasses({grayDark: true}),
     typoProps.className
@@ -106,7 +94,6 @@ const H4: FC<BaseTypoProps> = ({children, ...typoProps}) => {
 const P: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
   const className = classNames(
     'font-thin text-justify',
-    /*   {'mb-6': !typoProps.noMargin}, */
     {'leading-7': !typoProps.dense},
     commonClasssNames(typoProps),
     colorClasses(typoProps),

@@ -11,10 +11,10 @@ export default function DesignSystem() {
   return (
     <PageLayout title="For the design geeks">
       <ContainerInner>
-        <Typo.h1>Typo.headline 1 - Bebas Neue, sans-serif</Typo.h1>
-        <Typo.h2>Typo.headline 2 - Bebas Neue, sans-serif</Typo.h2>
-        <Typo.h3>Typo.headline 3 - Playfair Display, serif</Typo.h3>
-        <Typo.h4>Typo.headline 4 - Playfair Display, serif</Typo.h4>
+        <Typo.h1>Typo.headline 1 - Roboto Condensed, sans-serif</Typo.h1>
+        <Typo.h2>Typo.headline 2 - Roboto Condensed, sans-serif</Typo.h2>
+        <Typo.h3>Typo.headline 3 - Cormorant Infant, serif</Typo.h3>
+        <Typo.h4>Typo.headline 4 - Cormorant Infant, serif</Typo.h4>
         <Typo.p>
           Typo.p - Roboto Condensed, sans-serif
           <br />I am a filler text Bacon ipsum dolor amet bresaola salami drumstick pancetta jowl andouille alcatra
@@ -25,7 +25,6 @@ export default function DesignSystem() {
           capicola sTypo.hank bresaola alcatra brisket fatback turducken filet mignon.
         </Typo.p>
         <Typo.caption>Typo.caption - Roboto Condensed, sans-serif</Typo.caption>
-        {/* <Typo.h1 className={'text-6xl italic font-serif font-black'}>Present 2018</Typo.h1> */}
       </ContainerInner>
     </PageLayout>
   );

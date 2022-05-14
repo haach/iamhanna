@@ -15,9 +15,10 @@ export const meta: MetaFunction = () => ({
 const tags = [
   'React',
   'TypeScript',
-  'Emotion',
-  'Git',
   'Styled Components 💅',
+  'Emotion',
+  'CSS modules',
+  'Git',
   'Radix',
   'Remix',
   'Vite',
@@ -41,9 +42,10 @@ const loves: Array<{
     title: 'Remix + Vercel',
     text: (
       <>
-        Honestly, how amazing is it to be able to write a full stack app all in JS, all in one repo, even all in one
-        file. And on top you have continous deployment in a one click setup on top of that? Web technology has come a
-        long way and I like were this is going. (Full disclaimer: I also hated configuring webpack)
+        Honestly, how amazing is it to be able to write a whole full stack app all in JS, all in one project, even all
+        in one file and on top you have continous deployment in a one click setup? Web technology has come a long way
+        and I like were this is going. (Full disclaimer: I also hated configuring webpack) This is the perfect setup for
+        small projets afor me right now.
       </>
     ),
     links: [
@@ -55,9 +57,9 @@ const loves: Array<{
     title: 'Warp Terminal',
     text: (
       <>
-        It seems most command line apps still look and feel like OG Vim. Because I am a strong proponent for useability
-        and pleasing visuals, Warp filled a nieche in my work setup, I never really knew existed - and I am very happy
-        about it.(It also comes with loads of options for customization!)
+        It seems most command line applications still look and feel like OG Vim. Because I am a strong proponent for
+        useability and pleasing visuals, Warp filled a nieche in my work setup, I never really knew existed - and I am
+        very happy about it. (It also comes with loads of options for customization!)
       </>
     ),
     links: [{text: 'Warp terminal', href: 'https://www.warp.dev/'}],
@@ -67,9 +69,9 @@ const loves: Array<{
     text: (
       <>
         For a long time I had a really hard time keeping up with current web development trends while working a 9 to 5
-        as well. Then I noticed that I probably spend around 15h a week on my daily walks with the dog. With the body
-        motor functions occupied my mind seemed a lot sharper so I gave web dev podcasts a try and landed on Syntax. The
-        two hosts have a great way of presenting complex topics in a digestable way and keeping it light - I highly
+        as well. Then I noticed that I probably spend around 15h every just walking. (I have a dog) With the body motor
+        functions occupied my mind seemed a lot sharper so I gave web dev podcasts a try and landed on Syntax. The two
+        hosts have a great way of presenting complex topics in a digestable way and keeping it light - I highly
         recommend!
       </>
     ),
@@ -79,10 +81,10 @@ const loves: Array<{
     title: 'My portafilter machine',
     text: (
       <>
-        I can't even say this enough how happy I am to move away from my good old mocca maker to a portafilter. After a
-        small research I went for the BEEM ESPRESSO-GRIND-PROFESSION with intigrated grinder and milk frapper. It took
-        me a couple of days tofigure the perfect setting out, but now my favourite oat milk flat white is served at
-        home.
+        I can't even say this enough how happy I am to have moved away from my good old mocca maker to a portafilter.
+        After a small research I went for the BEEM ESPRESSO-GRIND-PROFESSION with intigrated grinder and milk frapper.
+        It took me a couple of days tofigure the perfect setting out, but now my favourite oat milk flat white is served
+        here at home.
       </>
     ),
     links: [
@@ -96,9 +98,9 @@ const loves: Array<{
     title: 'A soft murmur',
     text: (
       <>
-        Working can be pretty hard when there is a lot of ambient noise distracting you. I am easily distracted, but I
-        don't always want to play music on my head phones to get into the focus zone. Asoftmurmur is a simple age that
-        let's you mix ambient sounds like rain or waves into for that soothing hyper focus sound.
+        Working can be pretty hard when there is a lot of ambient noise distracting you, but I don't always want to play
+        music on my head phones to get into the focus zone. Asoftmurmur is a simple age that let's you mix ambient
+        sounds like rain or waves together for that soothing hyper focus soundtrack.
       </>
     ),
     links: [
@@ -117,8 +119,11 @@ const Index: FC = () => {
       subTitle="Frontend engineer"
       sideBar={
         <ContainerInner>
-          <HeadlineWithDivider title="The tech stack" align="right" />
-          <div className="flex flex-row flex-wrap justify-end gap-2" style={{maxWidth: 'fit-content'}}>
+          <HeadlineWithDivider title="The tech stack" className="md:text-right" />
+          <div
+            className="flex flex-row flex-wrap md:justify-end gap-2 pl-0 lg:pl-5 xl:pl-10"
+            style={{maxWidth: 'fit-content'}}
+          >
             {tags.map((tag) => (
               <div className={classNames(pill, 'text-xs')} key={tag}>
                 {tag}
@@ -132,19 +137,20 @@ const Index: FC = () => {
         <HeadlineWithDivider title="Intro" />
         <TwoColumnText>
           <Typo.p>
-            After taking a little deture and getting my B.o.S. in landscape architecture I decided for a career change,
-            got an intership and eventually completed my degree in media design. Back in 2006 I had created my first
-            website during my web design courses in high school.
+            After taking a little deture and getting my B.o.S. in landscape architecture in 2013 I decided for a career
+            change, got an intership and eventually completed my degree in media design. Prior to starting my studies in
+            Berlin I had already created my first website in high school around 2006 and from that moment onwards my
+            interest developed into a real passion.
           </Typo.p>
           <Typo.p>
             This particular background has shaped the way I am working today as a frontend engineer. I strive to develop
-            applications that solve tricky issues for their users and endeavour to make every product unique,
-            aesthetically pleasing and usable for its specific target group.
+            applications that solve issues for their users without adding complexity to their workflows. For me this
+            principle goes hand in hand with great usability and visul bla bla.
           </Typo.p>
           <Typo.p>
-            Even though I consider myself mainly a frontend engineer, i don't shy away from full-stacky tasks and am
-            more and more interested in apllication architecture design as well. - If this sparks joy pop me a message{' '}
-            <Typo.linkInternal to="/contact">here</Typo.linkInternal>
+            Even though I consider myself mainly a frontend engineer, I recently have a growing interest in apllication
+            architecture designand and am going more into a full stack direction as well. - If this sparks joy pop me a
+            message <Typo.linkInternal to="/contact">here</Typo.linkInternal>
           </Typo.p>
         </TwoColumnText>
       </ContainerInner>

@@ -97,7 +97,7 @@ const Contact: FC = () => {
       subTitle="Frontend engineer"
       sideBar={
         <ContainerInner>
-          <HeadlineWithDivider title="Find me on" align="right" />
+          <HeadlineWithDivider title="Find me on" className="md:text-right" />
           <div className="flex flex-row gap-4 justify-end w-full">
             <a
               className={classNames(link, hideLineOverflow)}

@@ -24,7 +24,7 @@ const workingModelLang = {
 const JobOpportunity: FC = () => {
   const [workingModel, setWorkingModel] = useState<WorkingModel>();
   return (
-    <ul className="flex flex-col gap-4">
+    <ul className="flex flex-col gap-6">
       <li className="flex flex-col">
         <Input label="Employer" name="employer" required placeholder="Monster Corp" />
       </li>
@@ -32,7 +32,9 @@ const JobOpportunity: FC = () => {
         <Input label="Compensation" name="compensation" required placeholder="Enter fixed or range" />
       </li>
       <li className="flex flex-col">
-        <label htmlFor="workingModel">Working model *</label>
+        <label htmlFor="workingModel" className="mb-2">
+          Working model *
+        </label>
         <select className={input} name="workingModel" onChange={(e) => setWorkingModel(e.target.value as WorkingModel)}>
           <option value="">- Please select -</option>
           <option value={WorkingModel.REMOTE}>{workingModelLang[WorkingModel.REMOTE]}</option>
