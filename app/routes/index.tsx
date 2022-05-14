@@ -43,9 +43,9 @@ const loves: Array<{
     text: (
       <>
         Honestly, how amazing is it to be able to write a whole full stack app all in JS, all in one project, even all
-        in one file and on top you have continous deployment in a one click setup? Web technology has come a long way
-        and I like were this is going. (Full disclaimer: I also hated configuring webpack) This is the perfect setup for
-        small projets afor me right now.
+        in one file, add SSR to the mix and on top you have continous deployment in a one click setup? Web technology
+        has come a long way and I like were this is going. (Full disclaimer: I also was over configuring webpack) This
+        is the perfect setup for small projets for me right now.
       </>
     ),
     links: [
@@ -91,6 +91,21 @@ const loves: Array<{
       {
         text: 'BEEM',
         href: 'https://beem.de/products/espresso-grind-profession-siebtragermaschine?variant=41409181581471&currency=EUR&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&gclid=Cj0KCQjwg_iTBhDrARIsAD3Ib5iII73DQXDBRVMIZsuXrXV0kHckZ-cF8vIxXNhwFQmuQzDfRsFDqMoaApAnEALw_wcB',
+      },
+    ],
+  },
+  {
+    title: 'Just functions',
+    text: (
+      <>
+        A set of hyper lightweight, fully tested, fully typed JS utility functions. You can install the full set or just
+        the ones you need. Bye bye Lodash!
+      </>
+    ),
+    links: [
+      {
+        text: 'just on Github',
+        href: 'https://github.com/angus-c/just',
       },
     ],
   },
@@ -167,9 +182,8 @@ const Index: FC = () => {
             <Typo.h3>{title}</Typo.h3>
             <Typo.p>
               {text}
-              {/* {links && links.length > 0 && ' 🔗'} */}
               {(links && links.length > 0 ? links : []).map(({text: linkText, href}) => (
-                <span key={linkText} className="ml-2">
+                <span key={linkText} className="ml-2" style={{whiteSpace: 'nowrap'}}>
                   <span className="text-xs">🔗</span>
                   <Typo.linkExternal href={href} title={linkText} className="ml-2 inline-block">
                     {linkText}
