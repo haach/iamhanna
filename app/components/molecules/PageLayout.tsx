@@ -39,61 +39,83 @@ export const PageLayout: FC<{title: string; subTitle?: string; sideBar?: ReactNo
         <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 sm:pl-8 sm:pr-8 md:pl-8 md:pr-8 lg:pl-0 lg:pr-10 xl:pl-0 xl:pr-20 print:px-10 zoomOutForPrint">
           {/* 0 - 767,sm */}
           {globalWindow?.width && globalWindow?.width < 768 && (
-            <div className="flex flex-col justify-between gap-10 sm:gap-10 md:gap-14 lg:gap-14 xl:gap-20 ">
+            <div className="flex flex-col justify-between gap-10 sm:gap-10">
               {/* TOP */}
-              <div className="sm:flex sm:flex-row justify-between gap-10 sm:gap-10 md:gap-14 lg:gap-14 xl:gap-20 ">
-                <div className="flex flex-col">
+              {globalWindow?.width && globalWindow?.width < 640 && (
+                <div className="flex flex-col justify-between gap-4">
                   <div
                     className={`inline-block border-2 rounded-full bg-white dark:bg-black m-auto sm:ml-8 md:ml-10 lg:ml-10 xl:ml-20 p-1 aspect-square z-10 ${blackBorder}`}
-                    style={{width: `${imageSize}px`}}
+                    style={{width: `${150}px`}}
                   >
                     <img src="/portrait.jpg" className="rounded-full " />
                   </div>
+                  <Typo.h1>{title}</Typo.h1>
+                  {subTitle && (
+                    <Typo.h2 className="-mt-4">
+                      {'// '}
+                      {subTitle}
+                    </Typo.h2>
+                  )}
+                  <DarkModeSwitch />
+                  <HeaderNav />
                 </div>
-                {globalWindow?.width && globalWindow?.width >= 640 && (
-                  <>
-                    <div className="flex flex-1 flex-col">
-                      <div className="flex items-end justify-between pb-4" style={{height: `${imageSize / 2}px`}}>
-                        <div>
-                          <Typo.h1 className="mb-2">{title}</Typo.h1>
-                          {subTitle && (
-                            <Typo.h2>
-                              {'// '}
-                              {subTitle}
-                            </Typo.h2>
-                          )}
+              )}
+              {globalWindow?.width && globalWindow?.width >= 640 && (
+                <div className="sm:flex sm:flex-row justify-between gap-10 sm:gap-10 md:gap-14 lg:gap-14 xl:gap-20 ">
+                  <div className="flex flex-col">
+                    <div
+                      className={`inline-block border-2 rounded-full bg-white dark:bg-black m-auto sm:ml-8 md:ml-10 lg:ml-10 xl:ml-20 p-1 aspect-square z-10 ${blackBorder}`}
+                      style={{width: `${imageSize}px`}}
+                    >
+                      <img src="/portrait.jpg" className="rounded-full " />
+                    </div>
+                    {globalWindow?.width && globalWindow?.width < 640 && (
+                      <>
+                        <div className="flex flex-1 flex-col">
+                          <div className="flex items-end justify-between pb-4" style={{height: `${imageSize / 2}px`}}>
+                            <div>
+                              <Typo.h1 className="mb-2">{title}</Typo.h1>
+                              {subTitle && (
+                                <Typo.h2>
+                                  {'// '}
+                                  {subTitle}
+                                </Typo.h2>
+                              )}
+                            </div>
+                          </div>
+                          <div className="flex flex-col sm:flex-row justify-between mt-6">
+                            <DarkModeSwitch className="mb-4" />
+                            <HeaderNav />
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                  {globalWindow?.width && globalWindow?.width >= 640 && (
+                    <>
+                      <div className="flex flex-1 flex-col">
+                        <div className="flex items-end justify-between pb-4" style={{height: `${imageSize / 2}px`}}>
+                          <div>
+                            <Typo.h1 className="mb-2">{title}</Typo.h1>
+                            {subTitle && (
+                              <Typo.h2>
+                                {'// '}
+                                {subTitle}
+                              </Typo.h2>
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex flex-col sm:flex-row justify-between mt-6">
+                          <DarkModeSwitch className="mb-4" />
+                          <HeaderNav />
                         </div>
                       </div>
-                      <div className="flex flex-col sm:flex-row justify-between mt-6">
-                        <DarkModeSwitch className="mb-4" />
-                        <HeaderNav />
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div>
-              {/* BOTTOM */}
-              {globalWindow?.width && globalWindow?.width < 640 && (
-                <>
-                  <div className="flex flex-1 flex-col">
-                    <div className="flex items-end justify-between pb-4" style={{height: `${imageSize / 2}px`}}>
-                      <div>
-                        <Typo.h1 className="mb-2">{title}</Typo.h1>
-                        {subTitle && (
-                          <Typo.h2>
-                            {'// '}
-                            {subTitle}
-                          </Typo.h2>
-                        )}
-                      </div>
-                    </div>
-                    <div className="flex flex-col sm:flex-row justify-between mt-6">
-                      <DarkModeSwitch className="mb-4" />
-                      <HeaderNav />
-                    </div>
-                  </div>
-                </>
+                    </>
+                  )}
+                </div>
               )}
+
+              {/* BOTTOM */}
 
               {/* CONTENT HERE  */}
               <ContainerOuter>{children}</ContainerOuter>

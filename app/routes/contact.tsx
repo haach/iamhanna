@@ -142,7 +142,7 @@ const Contact: FC = () => {
                 fill the form.
               </Typo.p>
 
-              <Typo.p className="flex flex-col md:flex-row gap-4">
+              <Typo.p className="flex flex-col sm:flex-row gap-2 sm:gap-4">
                 <Typo.linkInternal
                   to="/contact/job-opportunity"
                   replace
@@ -154,7 +154,7 @@ const Contact: FC = () => {
                 >
                   {contactReasonLang[ContactReason.JOB]}
                 </Typo.linkInternal>
-                <span className="hidden sm:visible">|</span>
+                <span className="hidden sm:inline-block">|</span>
                 <Typo.linkInternal
                   to="/contact/freelance"
                   replace
@@ -166,7 +166,7 @@ const Contact: FC = () => {
                 >
                   {contactReasonLang[ContactReason.FREELANCE]}
                 </Typo.linkInternal>
-                <span className="hidden sm:visible">|</span>
+                <span className="hidden sm:inline-block">|</span>
                 <Typo.linkInternal
                   to="/contact/hello"
                   replace

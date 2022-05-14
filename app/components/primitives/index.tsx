@@ -9,7 +9,7 @@ export const input =
   'font-thin bg-transparent border border-bl dark:border-white focus:border-o focus-within:border-o rounded-md px-2 py-1 h-10 outline-none';
 export const hideLineOverflow = 'h-8 overflow-hidden';
 export const button_primary =
-  'uppercase bg-y focus:bg-o focus-within:bg-o text-black rounded-md px-2 py-1 h-10 outline-none max-w-12';
+  'uppercase bg-y focus:bg-o focus-within:bg-o text-black rounded-md px-2 py-1 h-10 outline-none w-full sm:max-w-12';
 export const pill = 'bg-gl text-black dark:bg-neutral-700 dark:text-white rounded-full px-3 py-1';
 
 /**

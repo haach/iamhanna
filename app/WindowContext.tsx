@@ -29,6 +29,6 @@ export const WindowContextProvider: FC = ({children}) => {
     // Remove event listener on cleanup
     return () => window.removeEventListener('resize', debouncedHandleResize);
   }, []); // Empty array ensures that effect is only run on mount
-  console.log('windowObject', windowObject);
+
   return <WindowContext.Provider value={windowObject}>{children}</WindowContext.Provider>;
 };

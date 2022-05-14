@@ -41,11 +41,11 @@ const CV = () => {
           <div key={key} className="flex flex-col gap-3">
             <div className="flex flex-col sm:flex-row w-full">
               <div
-                className="flex flex-row justify-between items-end gap-2 sm:gap-0 sm:block sm:float-left "
+                className="flex flex-row justify-between items-center gap-2 sm:gap-0 sm:block sm:float-left "
                 style={{whiteSpace: 'nowrap'}}
               >
                 <Typo.h3>{experience.to}</Typo.h3>
-                <Typo.h4>{experience.from}</Typo.h4>
+                <Typo.h4 className="mt-1.5 sm:mt-0">{experience.from}</Typo.h4>
               </div>
               <div className="flex-auto pt-2 sm:pl-6 mb-3 sm:mb-0 lg:-mt-1">
                 <Typo.h2 className="leading-tight">{experience.title}</Typo.h2>
