@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import {FC, ReactNode} from 'react';
 import {ReactProps} from '~/components';
 import {HR} from '~/components/primitives';
@@ -10,8 +11,8 @@ import {Typo} from '~/components/primitives/typography';
  */
 export const HeadlineWithDivider: FC<{title: ReactNode} & ReactProps> = ({title, className, style, key}) => {
   return (
-    <div className={'flex flex-col items-center gap-1 sm:gap-2'} key={key}>
-      <Typo.h2 yellow className={className} style={style}>
+    <div key={key} className="flex flex-col gap-1 sm:gap-2">
+      <Typo.h2 yellow className={classNames('gap-1 sm:gap-2 w-full', className)} style={style}>
         {title}
       </Typo.h2>
       <HR />

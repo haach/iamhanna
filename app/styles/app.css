@@ -913,6 +913,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-align: justify;
 }
 
+.align-middle {
+  vertical-align: middle;
+}
+
+.align-text-top {
+  vertical-align: text-top;
+}
+
+.align-text-bottom {
+  vertical-align: text-bottom;
+}
+
 .font-serif {
   font-family: Cormorant Infant, serif;
 }
@@ -1264,6 +1276,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 768px) {
+  .md\:visible {
+    visibility: visible;
+  }
+
   .md\:ml-10 {
     margin-left: 2.5rem;
   }

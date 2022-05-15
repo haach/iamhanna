@@ -172,9 +172,9 @@ const Index: FC = () => {
       <ContainerInner>
         <HeadlineWithDivider
           title={
-            <div className="flex">
-              Things I currently <HiHeart className="h-5" />
-            </div>
+            <>
+              Things I currently <HiHeart className="h-5 inline-block align-text-bottom" />
+            </>
           }
         />
         {loves.map(({title, text, links}) => (
