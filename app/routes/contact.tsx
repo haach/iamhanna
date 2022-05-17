@@ -32,6 +32,20 @@ const contactReasonLang = {
   [ContactReason.FREELANCE]: 'Freelance project',
 };
 
+const sanitize = (string: string) => {
+  // escape dangerous character
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#x27;',
+    '/': '&#x2F;',
+  };
+  const reg = /[&<>"'/]/gi;
+  return string.replace(reg, (match) => map[match as keyof typeof map]);
+};
+
 export const action: ActionFunction = async ({request}) => {
   const form = await request.formData();
 
@@ -51,8 +65,9 @@ export const action: ActionFunction = async ({request}) => {
   const fields = possibleFields.reduce((acc: {[field: string]: string}, val) => {
     const field = form.get(val);
     if (field) {
-      if (val === 'contactReason') acc[val] = contactReasonLang[field as ContactReason] as string;
-      else acc[val] = field as string;
+      const cleanField = sanitize(field as string);
+      if (val === 'contactReason') acc[val] = contactReasonLang[cleanField as ContactReason];
+      else acc[val] = cleanField;
     }
     return acc;
   }, {});

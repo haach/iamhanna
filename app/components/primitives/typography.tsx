@@ -143,7 +143,7 @@ const LINK_EXTERNAL: FC<
 };
 const CAPTION: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
   const className = classNames(
-    'text-xs font-thin',
+    'text-sm font-thin',
     commonClasssNames(typoProps),
     colorClasses(typoProps),
     typoProps.className

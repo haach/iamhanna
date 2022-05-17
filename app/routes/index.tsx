@@ -1,12 +1,13 @@
 import {MetaFunction} from '@remix-run/node';
 import classNames from 'classnames';
-import {FC, ReactNode} from 'react';
+import {FC, ReactNode, useContext} from 'react';
 import {HiHeart} from 'react-icons/hi';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {ContainerInner, TwoColumnText} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {pill} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
+import {WindowContext} from '~/WindowContext';
 
 export const meta: MetaFunction = () => ({
   title: 'i am hanna',
@@ -128,24 +129,28 @@ const loves: Array<{
 ];
 
 const Index: FC = () => {
+  const globalWindow = useContext(WindowContext);
   return (
     <PageLayout
       title="Hanna Achenbach"
       subTitle="Frontend engineer"
       sideBar={
-        <ContainerInner>
-          <HeadlineWithDivider title="The tech stack" className="md:text-right" />
-          <div
-            className="flex flex-row flex-wrap md:justify-end gap-2 pl-0 lg:pl-5 xl:pl-10"
-            style={{maxWidth: 'fit-content'}}
-          >
-            {tags.map((tag) => (
-              <div className={classNames(pill, 'text-xs')} key={tag}>
-                {tag}
-              </div>
-            ))}
-          </div>
-        </ContainerInner>
+        globalWindow?.width &&
+        globalWindow?.width >= 768 && (
+          <ContainerInner>
+            <HeadlineWithDivider title="The tech stack" className="md:text-right" />
+            <div
+              className="flex flex-row flex-wrap md:justify-end gap-2 pl-0 lg:pl-5 xl:pl-10"
+              style={{maxWidth: 'fit-content'}}
+            >
+              {tags.map((tag) => (
+                <Typo.caption className={classNames(pill, 'text-xs')} key={tag}>
+                  {tag}
+                </Typo.caption>
+              ))}
+            </div>
+          </ContainerInner>
+        )
       }
     >
       <ContainerInner>
@@ -153,9 +158,9 @@ const Index: FC = () => {
         <TwoColumnText>
           <Typo.p>
             After taking a little deture and getting my B.o.S. in landscape architecture in 2013 I decided for a career
-            change, got an intership and eventually completed my degree in media design. Prior to starting my studies in
-            Berlin I had already created my first website in high school around 2006 and from that moment onwards my
-            interest developed into a real passion.
+            change, got an intership in a small agency and eventually completed my degree in media design. Prior to
+            starting my studies in Berlin I had already created my first website in high school and from that moment
+            onwards my interest developed into a real passion.
           </Typo.p>
           <Typo.p>
             This particular background has shaped the way I am working today as a frontend engineer. I strive to develop
@@ -169,6 +174,21 @@ const Index: FC = () => {
           </Typo.p>
         </TwoColumnText>
       </ContainerInner>
+      {globalWindow?.width && globalWindow?.width < 768 && (
+        <ContainerInner>
+          <HeadlineWithDivider title="The tech stack" className="md:text-right" />
+          <div
+            className="flex flex-row flex-wrap md:justify-end gap-2 pl-0 lg:pl-5 xl:pl-10"
+            style={{maxWidth: 'fit-content'}}
+          >
+            {tags.map((tag) => (
+              <Typo.caption className={classNames(pill)} key={tag}>
+                {tag}
+              </Typo.caption>
+            ))}
+          </div>
+        </ContainerInner>
+      )}
       <ContainerInner>
         <HeadlineWithDivider
           title={
@@ -177,6 +197,7 @@ const Index: FC = () => {
             </>
           }
         />
+
         {loves.map(({title, text, links}) => (
           <div key={title} className="flex flex-col gap-1 sm:gap-2">
             <Typo.h3>{title}</Typo.h3>
