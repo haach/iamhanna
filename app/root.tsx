@@ -1,11 +1,13 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
-import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration} from '@remix-run/react';
+import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch, useLoaderData} from '@remix-run/react';
 import classNames from 'classnames';
 import {FC, useContext} from 'react';
 import {Typo} from '~/components/primitives/typography';
 import {ThemeContext, ThemeContextProvider} from '~/ThemeContext';
 import {WindowContextProvider} from '~/WindowContext';
 import styles from './styles/app.css';
+import ReactGA from 'react-ga';
+import dotenv from 'dotenv';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -21,6 +23,13 @@ const Layout: FC = ({children}) => {
   // prevent loading in wrong color schema before context is up
   if (darkMode === null) return null;
   return <div>{children}</div>;
+};
+
+export const loader = () => {
+  dotenv.config({path: `.env`});
+  const TRACKING_ID = process?.env.TRACKING_ID;
+  TRACKING_ID && ReactGA.initialize(TRACKING_ID);
+  return TRACKING_ID;
 };
 
 const Document: FC = ({children}) => {
@@ -50,18 +59,47 @@ const Document: FC = ({children}) => {
 };
 
 export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
-  console.log('There was an error\n', error);
+  ReactGA.exception({
+    description: 'An error ocurred',
+    message: error.message,
+    stack: error.stack,
+    fatal: true,
+  });
   return (
     <WindowContextProvider>
       <ThemeContextProvider>
         <Document>
           <Layout>
-            <div className="flex flex-col items-center content-center px-32 py-24">
-              <div>
+            <div className="flex flex-col items-center content-center justify-center">
+              <div className="py-10 px-10 w-max-sm">
                 <Typo.h1>...oh dang 😖</Typo.h1>
                 <Typo.p>something went south.</Typo.p>
                 <Typo.p className="text-red-600">Error: {error.message}</Typo.p>
                 {process.env.NODE_ENV === 'development' && <pre className="text-red-600">Stack: {error.stack}</pre>}
+              </div>
+            </div>
+          </Layout>
+        </Document>
+      </ThemeContextProvider>
+    </WindowContextProvider>
+  );
+};
+
+export const CatchBoundary: FC = () => {
+  const caught = useCatch();
+  ReactGA.exception({
+    description: 'A 404 error ocurred',
+    fatal: false,
+  });
+  return (
+    <WindowContextProvider>
+      <ThemeContextProvider>
+        <Document>
+          <Layout>
+            <div className="flex flex-col items-center content-center justify-center">
+              <div className="py-10 px-10 w-max-sm">
+                <Typo.h1>... oh oh a {caught.status} 😖</Typo.h1>
+                <Typo.p className="text-red-600"> {caught.statusText}</Typo.p>
               </div>
             </div>
           </Layout>
