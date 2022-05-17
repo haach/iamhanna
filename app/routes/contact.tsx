@@ -3,7 +3,7 @@ import {Outlet} from '@remix-run/react';
 import * as SendgridMail from '@sendgrid/mail';
 import classNames from 'classnames';
 import dotenv from 'dotenv';
-import {FC, useState} from 'react';
+import {FC, useRef, useState} from 'react';
 import {DiGithubFull} from 'react-icons/di';
 import {RiLinkedinBoxFill} from 'react-icons/ri';
 import {SiCodewars} from 'react-icons/si';
@@ -11,12 +11,26 @@ import {Input} from '~/components/molecules/FormComponents';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {ContainerInner} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
-import {hideLineOverflow, link} from '~/components/primitives';
+import {button_primary, hideLineOverflow, link} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 
 export const meta: MetaFunction = () => ({
   title: 'i am hanna - contact',
 });
+
+enum ContactReason {
+  UNSET = 'UNSET',
+  HELLO = 'HELLO',
+  JOB = 'JOB',
+  FREELANCE = 'FREELANCE',
+}
+
+const contactReasonLang = {
+  [ContactReason.UNSET]: 'UNSET',
+  [ContactReason.HELLO]: 'Just saying hi',
+  [ContactReason.JOB]: 'Job opportunity',
+  [ContactReason.FREELANCE]: 'Freelance project',
+};
 
 export const action: ActionFunction = async ({request}) => {
   const form = await request.formData();
@@ -37,23 +51,29 @@ export const action: ActionFunction = async ({request}) => {
   const fields = possibleFields.reduce((acc: {[field: string]: string}, val) => {
     const field = form.get(val);
     if (field) {
-      acc[val] = field as string;
+      if (val === 'contactReason') acc[val] = contactReasonLang[field as ContactReason] as string;
+      else acc[val] = field as string;
     }
     return acc;
   }, {});
 
   dotenv.config({path: `.env`});
-  const email = process.env.EMAIL;
+  const fromEmail = process.env.EMAIL_FROM;
+  const toEmail = process.env.EMAIL_TO;
   const apiKey = process.env.APIKEY;
 
-  if (apiKey && email) {
+  if (apiKey && fromEmail && toEmail) {
     SendgridMail.setApiKey(apiKey);
     // SANATIZE !!!
     const text = `Message over the contact form - ${fields.name} regrding ${fields.contactReason}`;
-    const html = Object.entries(fields).map(([key, value]) => '<p><b>' + key + '</b>: ' + value + '</p>');
+    const html = Object.entries(fields).map(([key, value]) =>
+      key === 'email'
+        ? '<p><b>' + key + '</b>: <a href="mailto:' + value + '" >' + value + '</a></p>'
+        : '<p><b>' + key + '</b>: ' + value + '</p>'
+    );
     const messsage = {
-      to: email,
-      from: email,
+      to: toEmail,
+      from: fromEmail,
       subject: `Message over the contact form - ${fields.name} regrding ${fields.contactReason}`,
       text,
       html: html.join(''),
@@ -67,20 +87,6 @@ export const action: ActionFunction = async ({request}) => {
   }
 };
 
-enum ContactReason {
-  UNSET = 'UNSET',
-  HELLO = 'HELLO',
-  JOB = 'JOB',
-  FREELANCE = 'FREELANCE',
-}
-
-const contactReasonLang = {
-  [ContactReason.UNSET]: 'UNSET',
-  [ContactReason.HELLO]: 'Just saying hi',
-  [ContactReason.JOB]: 'Job opportunity',
-  [ContactReason.FREELANCE]: 'Freelance project',
-};
-
 const contactReasonFromURL = () => {
   const {pathname} = window?.location;
   if (pathname === '/contact/job-opportunity') return ContactReason.JOB;
@@ -91,6 +97,19 @@ const contactReasonFromURL = () => {
 
 const Contact: FC = () => {
   const [contactReason, setContactReason] = useState<ContactReason>(contactReasonFromURL());
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const handleSubmit = () => {
+    const form = formRef?.current;
+    if (!form) return;
+    // check if form is valid
+    if (form.checkValidity() === false) return;
+    // setIsSubmitting
+    setIsSubmitting(true);
+    // perform submit
+    form.submit();
+    // No need to reset because of redirect from action
+  };
   return (
     <PageLayout
       title="Hanna Achenbach"
@@ -132,7 +151,7 @@ const Contact: FC = () => {
     >
       <ContainerInner>
         <HeadlineWithDivider title="Get in touch" />
-        <form action="/contact" method="post">
+        <form action="/contact" method="post" ref={formRef}>
           <div className="flex flex-col gap-20">
             <Input type="hidden" name="contactReason" value={contactReason} />
 
@@ -181,6 +200,13 @@ const Contact: FC = () => {
               </Typo.p>
 
               <Outlet />
+              {contactReason !== ContactReason.UNSET && (
+                <div className="flex flex-row justify-end">
+                  <button type="submit" className={button_primary} onClick={handleSubmit} disabled={isSubmitting}>
+                    send
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </form>

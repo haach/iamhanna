@@ -1089,6 +1089,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(217 119 6 / var(--tw-bg-opacity));
 }
 
+.disabled\:bg-g:disabled {
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 212 212 / var(--tw-bg-opacity));
+}
+
+.focus\:disabled\:bg-g:disabled:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 212 212 / var(--tw-bg-opacity));
+}
+
 .dark .dark\:border-white {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));

@@ -1,9 +1,7 @@
 import {MetaFunction} from '@remix-run/node';
-import classNames from 'classnames';
 import {FC, useState} from 'react';
 import {Input, RadioGroup, TextArea} from '~/components/molecules/FormComponents';
-import {button_primary, input} from '~/components/primitives';
-import {Typo} from '~/components/primitives/typography';
+import {input} from '~/components/primitives';
 
 export const meta: MetaFunction = () => ({
   title: 'i am hanna - send me a job opportunity',
@@ -76,12 +74,6 @@ const JobOpportunity: FC = () => {
       </li>
       <li className="flex flex-col">
         <TextArea label="Your message" name="message" required placeholder="Describe the role or drop a link" />
-      </li>
-
-      <li className="flex flex-row justify-end">
-        <button type="submit" className={button_primary}>
-          send
-        </button>
       </li>
     </ul>
   );

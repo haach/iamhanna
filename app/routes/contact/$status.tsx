@@ -4,7 +4,6 @@ import {Typo} from '~/components/primitives/typography';
 
 const SuccessOrFailure: FC = () => {
   const {status} = useParams();
-  console.log('status', status);
   return (
     <div>
       {status === 'success' ? (
