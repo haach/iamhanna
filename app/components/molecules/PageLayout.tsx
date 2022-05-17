@@ -1,5 +1,4 @@
-import {Link} from '@remix-run/react';
-import {FC, ReactNode, useContext, useEffect, useMemo, useState} from 'react';
+import {FC, ReactNode, useContext} from 'react';
 import {DarkModeSwitch} from '~/components/molecules/DarkModeSwitch';
 import {HeaderNav} from '~/components/molecules/HeaderNav';
 import {ContainerOuter} from '~/components/molecules/Layout';
@@ -9,6 +8,8 @@ import {WindowContext} from '~/WindowContext';
 
 export const defaultSpacing = 240;
 
+const imgCSS = 'clamp(125px, 20vw, 250px)';
+const halfImgCSS = 'clamp(75px, 10vw, 125px)';
 interface PageLayoutProps {
   title: string;
   subTitle?: string;
@@ -16,16 +17,15 @@ interface PageLayoutProps {
 }
 
 const MobileLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
-  const imageSize = 150;
   return (
-    <div className="relative py-8print:py-5">
-      <HR className="-z-10" style={{transform: `translate3d(0px, ${imageSize / 2}px, 0)`}} />
+    <div className="relative py-8 print:py-5">
+      <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
       <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 print:px-10 zoomOutForPrint">
         <div className="flex flex-col justify-between gap-10">
           <div className="flex flex-col justify-between gap-4">
             <div
               className={`inline-block border-2 rounded-full bg-white dark:bg-black m-auto aspect-square z-10 ${blackBorder}`}
-              style={{width: `${150}px`}}
+              style={{width: imgCSS}}
             >
               <img src="/portrait.jpg" className="rounded-full " />
             </div>
@@ -50,10 +50,9 @@ const MobileLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar})
 };
 
 const TabletLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
-  const imageSize = 150;
   return (
     <div className="relative py-8 print:py-5">
-      <HR className="-z-10" style={{transform: `translate3d(0px, ${imageSize / 2}px, 0)`}} />
+      <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
       <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 sm:pl-8 sm:pr-8print:px-10 zoomOutForPrint">
         <div className="flex flex-col justify-between gap-10 sm:gap-10">
           {/* TOP */}
@@ -61,13 +60,13 @@ const TabletLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar})
             <div className="flex flex-col">
               <div
                 className={`inline-block border-2 rounded-full bg-white dark:bg-black m-auto sm:ml-8 p-1 aspect-square z-10 ${blackBorder}`}
-                style={{width: `${imageSize}px`}}
+                style={{width: imgCSS}}
               >
                 <img src="/portrait.jpg" className="rounded-full " />
               </div>
             </div>
             <div className="flex flex-1 flex-col">
-              <div className="flex items-end justify-between pb-4" style={{height: `${imageSize / 2}px`}}>
+              <div className="flex items-end justify-between pb-4" style={{height: halfImgCSS}}>
                 <div>
                   <Typo.h1 className="mb-2">{title}</Typo.h1>
                   {subTitle && (
@@ -95,41 +94,16 @@ const TabletLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar})
 };
 
 const Layout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
-  const windowContext = useContext(WindowContext);
-  const [imageSize, setImageSize] = useState<number>(defaultSpacing);
-  const width = windowContext?.width ?? 0;
-
-  const calcSizeFn = useMemo(
-    () => () => {
-      let calcSize = defaultSpacing;
-      // TODO this does work :/ https://bugs.chromium.org/p/chromium/issues/detail?id=401179
-      if (width && window.matchMedia('print').matches) calcSize = 10;
-      else if (width && width > 1024) calcSize = defaultSpacing;
-      else if (width && width < 1024) {
-        const scaled = width * 0.2;
-        // min width
-        if (scaled < 150) calcSize = 150;
-        else calcSize = scaled;
-      } else calcSize = 200;
-      setImageSize(calcSize);
-    },
-    [width]
-  );
-
-  useEffect(() => {
-    calcSizeFn();
-  }, [width]);
-
   return (
     <div className="relative py-8 lg:py-10 print:py-5">
-      <HR className="-z-10" style={{transform: `translate3d(0px, ${imageSize / 2}px, 0)`}} />
+      <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
       <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 md:pl-8 md:pr-8 lg:pl-0 lg:pr-10 xl:pl-0 xl:pr-20 print:px-10 zoomOutForPrint">
         <div className="flex flex-row justify-between md:gap-14 lg:gap-14 xl:gap-20 ">
           {/* LEFT */}
           <div className="flex flex-col">
             <div
               className={`inline-block border-2 rounded-full bg-white dark:bg-black md:ml-10 lg:ml-10 xl:ml-20 p-1 aspect-square z-10 ${blackBorder}`}
-              style={{width: `${imageSize}px`}}
+              style={{width: imgCSS}}
             >
               <img src="/portrait.jpg" className="rounded-full " />
             </div>
@@ -138,7 +112,7 @@ const Layout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
 
           {/* RIGHT */}
           <div className="flex flex-1 flex-col">
-            <div className="flex items-end justify-between pb-4" style={{height: `${imageSize / 2}px`}}>
+            <div className="flex items-end justify-between pb-4" style={{height: halfImgCSS}}>
               <div>
                 <Typo.h1 className="mb-2">{title}</Typo.h1>
                 {subTitle && (
