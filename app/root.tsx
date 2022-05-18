@@ -35,6 +35,7 @@ const Layout: FC = ({children}) => {
   useEffect(() => {
     // only initialise tracking after consent
     if (consent === true) {
+      console.log('Layout useEffect');
       TRACKING_ID && GoogleAnalytics.initialize(TRACKING_ID);
     }
   }, [consent]);
