@@ -18,11 +18,7 @@ const CV = () => {
         <ContainerInner className="">
           <HeadlineWithDivider title="Education" className="md:text-right" />
           {Object.entries(educations).map(([key, education]) => (
-            <div
-              key={key}
-              className=" md:text-right md:self-end pl-0 lg:pl-5 xl:pl-16"
-              style={{maxWidth: 'fit-content'}}
-            >
+            <div key={key} className="md:text-right md:self-end pl-0 lg:pl-5 xl:pl-16 max-w-fit print:max-w-[200px]">
               <Typo.h3>{education.to}</Typo.h3>
               <Typo.h4 className="">{education.from}</Typo.h4>
               <Typo.h2 className="leading-tight my-3 sm:mb-0">{education.title}</Typo.h2>

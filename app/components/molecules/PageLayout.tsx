@@ -20,7 +20,7 @@ const MobileLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar})
   return (
     <div className="relative py-8 print:py-5">
       <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
-      <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 print:px-10 zoomOutForPrint">
+      <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 ">
         <div className="flex flex-col justify-between gap-10">
           <div className="flex flex-col justify-between gap-4">
             <div
@@ -53,7 +53,7 @@ const TabletLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar})
   return (
     <div className="relative py-8 print:py-5">
       <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
-      <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 sm:pl-8 sm:pr-8print:px-10 zoomOutForPrint">
+      <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 sm:pl-8 sm:pr-8">
         <div className="flex flex-col justify-between gap-10 sm:gap-10">
           {/* TOP */}
           <div className="sm:flex sm:flex-row justify-between gap-10 sm:gap-10 ">
@@ -97,8 +97,8 @@ const Layout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
   return (
     <div className="relative py-8 lg:py-10 print:py-5">
       <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
-      <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 md:pl-8 md:pr-8 lg:pl-0 lg:pr-10 xl:pl-0 xl:pr-20 print:px-10 zoomOutForPrint">
-        <div className="flex flex-row justify-between md:gap-14 lg:gap-14 xl:gap-20 ">
+      <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 md:pl-8 md:pr-8 lg:pl-0 lg:pr-10 xl:pl-0 xl:pr-20 print:px-10">
+        <div className="flex flex-row justify-between md:gap-14 lg:gap-14 xl:gap-20 print:gap-20 ">
           {/* LEFT */}
           <div className="flex flex-col">
             <div
@@ -107,7 +107,7 @@ const Layout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
             >
               <img src="/portrait.jpg" className="rounded-full " />
             </div>
-            <ContainerOuter className="flex-1">{sideBar}</ContainerOuter>
+            <ContainerOuter className="flex-1 print:max-w-xs">{sideBar}</ContainerOuter>
           </div>
 
           {/* RIGHT */}

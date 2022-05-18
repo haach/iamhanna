@@ -596,10 +596,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 1.5rem;
 }
 
-.mr-3 {
-  margin-right: 0.75rem;
-}
-
 .box-border {
   box-sizing: border-box;
 }
@@ -678,6 +674,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .max-w-lg {
   max-width: 32rem;
+}
+
+.max-w-fit {
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 
 .max-w-2xl {
@@ -1090,12 +1092,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-duration: 150ms;
 }
 
-.transition-opacity {
-  transition-property: opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
 .resonsive-columns {
   -moz-column-width: 280px;
        column-width: 280px;
@@ -1106,24 +1102,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .resonsive-columns > p + p {
   margin-top: 1em;
 }
-
-@media print {
-  .zoomOutForPrint {
-    zoom: 0.75;
-  }
-}
-
-/* debug css */
-
-/* * > * {
-    background-color: rgba(120, 33, 44 ,0.1);
-}
-* + * > *{
-    background-color: rgba(222, 130, 44 ,0.1);
-}
-* + * > * + * {
-    background-color: rgba(222, 130, 240 ,0.1);
-} */
 
 .focus-within\:border-o:focus-within {
   --tw-border-opacity: 1;
@@ -1275,6 +1253,22 @@ Ensure the default browser behavior of the `hidden` attribute.
     display: none;
   }
 
+  .print\:max-w-\[200px\] {
+    max-width: 200px;
+  }
+
+  .print\:max-w-xs {
+    max-width: 20rem;
+  }
+
+  .print\:gap-20 {
+    gap: 5rem;
+  }
+
+  .print\:gap-5 {
+    gap: 1.25rem;
+  }
+
   .print\:py-5 {
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
@@ -1283,6 +1277,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   .print\:px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
+  }
+
+  .print\:py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 }
 
@@ -1341,6 +1340,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .sm\:pl-8 {
     padding-left: 2rem;
+  }
+
+  .sm\:pr-8 {
+    padding-right: 2rem;
   }
 
   .sm\:text-2xl {
@@ -1470,4 +1473,4 @@ Ensure the default browser behavior of the `hidden` attribute.
   .xl\:pr-20 {
     padding-right: 5rem;
   }
-}
+} 
