@@ -37,6 +37,7 @@ const Layout: FC = ({children}) => {
     // only initialise tracking after consent
     if (consent === true && TRACKING_ID) {
       setTimeout(() => {
+        ReactGA.set({username: 'user'});
         ReactGA.initialize(TRACKING_ID, {debug: true});
         ReactGA.pageview(location.pathname + location.search);
       }, 5000);
