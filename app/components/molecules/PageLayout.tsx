@@ -1,10 +1,10 @@
-import {FC, ReactNode, useContext} from 'react';
+import {FC, ReactNode} from 'react';
 import {DarkModeSwitch} from '~/components/molecules/DarkModeSwitch';
 import {HeaderNav} from '~/components/molecules/HeaderNav';
 import {ContainerOuter} from '~/components/molecules/Layout';
 import {blackBorder, HR} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
-import {WindowContext} from '~/WindowContext';
+import {useWindow} from '~/WindowContext';
 
 export const defaultSpacing = 240;
 
@@ -138,20 +138,20 @@ const Layout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
 };
 
 export const PageLayout: FC<PageLayoutProps> = ({title, subTitle, sideBar, children}) => {
-  const globalWindow = useContext(WindowContext);
+  const windowContext = useWindow();
   return (
     <>
-      {globalWindow?.width && globalWindow?.width < 640 && (
+      {windowContext?.width && windowContext?.width < 640 && (
         <MobileLayout title={title} subTitle={subTitle} sideBar={sideBar}>
           {children}
         </MobileLayout>
       )}
-      {globalWindow?.width && globalWindow?.width >= 640 && globalWindow?.width < 768 && (
+      {windowContext?.width && windowContext?.width >= 640 && windowContext?.width < 768 && (
         <TabletLayout title={title} subTitle={subTitle} sideBar={sideBar}>
           {children}
         </TabletLayout>
       )}
-      {globalWindow?.width && globalWindow?.width >= 768 && (
+      {windowContext?.width && windowContext?.width >= 768 && (
         <Layout title={title} subTitle={subTitle} sideBar={sideBar}>
           {children}
         </Layout>

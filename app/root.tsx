@@ -1,13 +1,14 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
-import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch, useLoaderData} from '@remix-run/react';
+import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch} from '@remix-run/react';
 import classNames from 'classnames';
-import {FC, useContext} from 'react';
+import dotenv from 'dotenv';
+import {FC} from 'react';
+import ReactGA from 'react-ga';
+import {CookieBanner} from '~/components/molecules/CookieBanner';
 import {Typo} from '~/components/primitives/typography';
-import {ThemeContext, ThemeContextProvider} from '~/ThemeContext';
+import {ThemeContextProvider, useTheme} from '~/ThemeContext';
 import {WindowContextProvider} from '~/WindowContext';
 import styles from './styles/app.css';
-import ReactGA from 'react-ga';
-import dotenv from 'dotenv';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -19,7 +20,7 @@ export const links: LinksFunction = () => {
 };
 
 const Layout: FC = ({children}) => {
-  const {darkMode} = useContext(ThemeContext);
+  const {darkMode} = useTheme();
   // prevent loading in wrong color schema before context is up
   if (darkMode === null) return null;
   return <div>{children}</div>;
@@ -33,10 +34,16 @@ export const loader = () => {
 };
 
 const Document: FC = ({children}) => {
-  const {darkMode, systemDarkMode} = useContext(ThemeContext);
+  const {darkMode, systemDarkMode} = useTheme();
   const className = classNames('min-h-full', {
     dark: darkMode,
   });
+  const accept = () => {
+    console.log('accept');
+  };
+  const reject = () => {
+    console.log('reject');
+  };
   return (
     <html lang="en" className={className}>
       <head>
@@ -51,6 +58,7 @@ const Document: FC = ({children}) => {
       <body className="bg-white dark:bg-bl min-h-full font-thin text-black dark:text-white ">
         {process.env.NODE_ENV === 'development' && <LiveReload />}
         {children}
+        <CookieBanner onAccept={accept} onReject={reject} />
         <ScrollRestoration />
         <Scripts />
       </body>

@@ -1,9 +1,15 @@
 import debounce from 'just-debounce';
-import {FC, useEffect, useMemo, useState, createContext} from 'react';
+import {FC, useEffect, useMemo, useState, createContext, useContext} from 'react';
 
 type WindowContext = {width: number; height: number} | null;
 
-export const WindowContext = createContext<WindowContext>(null);
+const WindowContext = createContext<WindowContext>(null);
+
+/* Custom hook for better usability */
+export const useWindow = () => {
+  const context = useContext(WindowContext);
+  return context;
+};
 
 /**
  *

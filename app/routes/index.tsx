@@ -1,6 +1,6 @@
 import {MetaFunction} from '@remix-run/node';
 import classNames from 'classnames';
-import {FC, useContext} from 'react';
+import {FC} from 'react';
 import {HiHeart} from 'react-icons/hi';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {ContainerInner, TwoColumnText} from '~/components/molecules/Layout';
@@ -8,7 +8,7 @@ import {PageLayout} from '~/components/molecules/PageLayout';
 import {pill} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 import {loves} from '~/intro-data';
-import {WindowContext} from '~/WindowContext';
+import {useWindow} from '~/WindowContext';
 
 export const meta: MetaFunction = () => ({
   title: 'i am hanna',
@@ -36,14 +36,14 @@ const tags = [
 ];
 
 const Index: FC = () => {
-  const globalWindow = useContext(WindowContext);
+  const windowContext = useWindow();
   return (
     <PageLayout
       title="Hanna Achenbach"
       subTitle="Frontend engineer"
       sideBar={
-        globalWindow?.width &&
-        globalWindow?.width >= 768 && (
+        windowContext?.width &&
+        windowContext?.width >= 768 && (
           <ContainerInner>
             <HeadlineWithDivider title="The tech stack" className="md:text-right" />
             <div
@@ -81,7 +81,7 @@ const Index: FC = () => {
           </Typo.p>
         </TwoColumnText>
       </ContainerInner>
-      {globalWindow?.width && globalWindow?.width < 768 && (
+      {windowContext?.width && windowContext?.width < 768 && (
         <ContainerInner>
           <HeadlineWithDivider title="The tech stack" className="md:text-right" />
           <div

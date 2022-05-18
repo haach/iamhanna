@@ -2,10 +2,10 @@ import classNames from 'classnames';
 import {FC, useContext} from 'react';
 import {ReactProps} from '~/components';
 import {Typo} from '~/components/primitives/typography';
-import {ThemeContext} from '~/ThemeContext';
+import {useTheme} from '~/ThemeContext';
 
 export const DarkModeSwitch: FC<ReactProps> = ({className, style}) => {
-  const {darkMode, switchDarkMode} = useContext(ThemeContext);
+  const {darkMode, switchDarkMode} = useTheme();
   return (
     <button
       style={style}
