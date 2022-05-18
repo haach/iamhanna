@@ -7,6 +7,7 @@ import {FC, useRef, useState} from 'react';
 import {DiGithubFull} from 'react-icons/di';
 import {RiLinkedinBoxFill} from 'react-icons/ri';
 import {SiCodewars} from 'react-icons/si';
+import {AiOutlineLoading3Quarters} from 'react-icons/ai';
 import {Input} from '~/components/molecules/FormComponents';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {ContainerInner} from '~/components/molecules/Layout';
@@ -220,11 +221,15 @@ const Contact: FC = () => {
                 <div className="flex flex-row justify-end">
                   <button
                     type="submit"
-                    className={classNames(btn, btn_primary)}
+                    className={classNames(btn, btn_primary, 'flex flex-row items-center justify-center')}
                     onClick={handleSubmit}
                     disabled={isSubmitting}
                   >
-                    send
+                    {isSubmitting ? (
+                      <AiOutlineLoading3Quarters className="animate-spin h-5 w-5 self-center" />
+                    ) : (
+                      <span>send</span>
+                    )}
                   </button>
                 </div>
               )}
