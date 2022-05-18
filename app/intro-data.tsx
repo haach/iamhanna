@@ -1,5 +1,26 @@
 import {ReactNode} from 'react';
 
+export const tags = [
+  'React',
+  'TypeScript',
+  'Styled Components 💅',
+  'Emotion',
+  'CSS modules',
+  'Git',
+  'Radix',
+  'Remix',
+  'Vite',
+  'Gatsby',
+  'Next',
+  'Anime',
+  'Node',
+  'Python',
+  'yarn 🧶',
+  'npm',
+  'Tailwind',
+  'Redux',
+];
+
 export const loves: Array<{
   title: string;
   text: ReactNode;

@@ -8,32 +8,11 @@ import {PageLayout} from '~/components/molecules/PageLayout';
 import {pill} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 import {useWindow} from '~/contexts/WindowContext';
-import {loves} from '~/intro-data';
+import {loves, tags} from '~/intro-data';
 
 export const meta: MetaFunction = () => ({
   title: 'i am hanna',
 });
-
-const tags = [
-  'React',
-  'TypeScript',
-  'Styled Components 💅',
-  'Emotion',
-  'CSS modules',
-  'Git',
-  'Radix',
-  'Remix',
-  'Vite',
-  'Gatsby',
-  'Next',
-  'Anime',
-  'Node',
-  'Python',
-  'yarn 🧶',
-  'npm',
-  'Tailwind',
-  'Redux',
-];
 
 const Index: FC = () => {
   const windowContext = useWindow();

@@ -1,5 +1,5 @@
 import {ActionFunction, MetaFunction, redirect} from '@remix-run/node';
-import {Outlet} from '@remix-run/react';
+import {Outlet, useLocation} from '@remix-run/react';
 import * as SendgridMail from '@sendgrid/mail';
 import classNames from 'classnames';
 import dotenv from 'dotenv';
@@ -103,7 +103,7 @@ export const action: ActionFunction = async ({request}) => {
 };
 
 const contactReasonFromURL = () => {
-  const {pathname} = window?.location;
+  const {pathname} = useLocation();
   if (pathname === '/contact/job-opportunity') return ContactReason.JOB;
   else if (pathname === '/contact/freelance') return ContactReason.FREELANCE;
   else if (pathname === '/contact/hello') return ContactReason.HELLO;
@@ -111,6 +111,7 @@ const contactReasonFromURL = () => {
 };
 
 const Contact: FC = () => {
+  const location = useLocation();
   const [contactReason, setContactReason] = useState<ContactReason>(contactReasonFromURL());
   const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -184,7 +185,7 @@ const Contact: FC = () => {
                     setContactReason(ContactReason.JOB);
                   }}
                   block
-                  isActive={window?.location.pathname === '/contact/job-opportunity'}
+                  isActive={location.pathname === '/contact/job-opportunity'}
                 >
                   {contactReasonLang[ContactReason.JOB]}
                 </Typo.linkInternal>
@@ -196,7 +197,7 @@ const Contact: FC = () => {
                     setContactReason(ContactReason.FREELANCE);
                   }}
                   block
-                  isActive={window?.location.pathname === '/contact/freelance'}
+                  isActive={location.pathname === '/contact/freelance'}
                 >
                   {contactReasonLang[ContactReason.FREELANCE]}
                 </Typo.linkInternal>
@@ -208,7 +209,7 @@ const Contact: FC = () => {
                     setContactReason(ContactReason.HELLO);
                   }}
                   block
-                  isActive={window?.location.pathname === '/contact/hello'}
+                  isActive={location.pathname === '/contact/hello'}
                 >
                   {contactReasonLang[ContactReason.HELLO]}
                 </Typo.linkInternal>

@@ -1,4 +1,4 @@
-import {Link} from '@remix-run/react';
+import {Link, useLocation} from '@remix-run/react';
 import {FC} from 'react';
 import {Typo} from '~/components/primitives/typography';
 import {useCookieConsent} from '~/contexts/CookieContext';
@@ -10,6 +10,7 @@ import GoogleAnalytics from 'react-ga';
  */
 export const HeaderNav: FC = () => {
   const {consent} = useCookieConsent();
+  const location = useLocation();
   const links = [
     ['home', '/'],
     ['cv', '/cv'],
@@ -19,8 +20,7 @@ export const HeaderNav: FC = () => {
     <nav className="print:hidden">
       <ul className="flex flex-row justify-start gap-4">
         {links.map(([routeName, to]) => {
-          const isActive =
-            routeName === 'contact' ? window.location?.pathname.includes(to) : window.location?.pathname === to;
+          const isActive = routeName === 'contact' ? location.pathname.includes(to) : location.pathname === to;
           return (
             <li key={routeName}>
               <Typo.h2>
@@ -33,7 +33,7 @@ export const HeaderNav: FC = () => {
                       ? () =>
                           GoogleAnalytics.send({
                             type: 'Navigation clicked',
-                            from: window.location?.pathname,
+                            from: location.pathname,
                             to: to,
                           })
                       : undefined

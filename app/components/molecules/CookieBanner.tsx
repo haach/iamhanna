@@ -1,9 +1,9 @@
+import {useLocation} from '@remix-run/react';
 import classNames from 'classnames';
 import {FC} from 'react';
-import {btn_primary, btn, btn_small, btn_secondary} from '~/components/primitives';
+import {btn_primary, btn_secondary, btn_small} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 import {useCookieConsent} from '~/contexts/CookieContext';
-import {useWindow} from '~/contexts/WindowContext';
 
 interface CookieBanner {
   onAccept(): void;
@@ -11,7 +11,7 @@ interface CookieBanner {
 }
 
 export const CookieBanner: FC = () => {
-  const windowContext = useWindow();
+  const location = useLocation();
   const {consent, setConsent} = useCookieConsent();
 
   if (consent !== null) return null;
@@ -26,7 +26,7 @@ export const CookieBanner: FC = () => {
           <div className="flex flex-col gap-2 min-h-100 max-w-2xl mx-auto px-10 py-5 bg-white dark:bg-b">
             <Typo.p>
               🍪 We use tasty cookies and Google Analytics on this site for statistical purposes
-              {windowContext && window?.location.pathname !== '/cookie-consent' && (
+              {location.pathname !== '/cookie-consent' && (
                 <>
                   {' '}
                   - <Typo.linkInternal to="/cookie-consent">Read more</Typo.linkInternal>
