@@ -6,9 +6,8 @@ import {blackBorder, HR} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 import {useWindow} from '~/contexts/WindowContext';
 
-export const defaultSpacing = 240;
-
 const imgCSS = 'clamp(125px, 20vw, 250px)';
+const imgConatinerCSS = 'clamp(160px, 25vw, 320px)';
 const halfImgCSS = 'clamp(75px, 10vw, 125px)';
 interface PageLayoutProps {
   title: string;
@@ -100,14 +99,15 @@ const Layout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
       <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 md:pl-8 md:pr-8 lg:pl-0 lg:pr-10 xl:pl-0 xl:pr-20 print:px-10">
         <div className="flex flex-row justify-between md:gap-14 lg:gap-14 xl:gap-20 print:gap-20 ">
           {/* LEFT */}
-          <div className="flex flex-col">
+          <div className="flex flex-col" style={{width: imgConatinerCSS}}>
             <div
-              className={`inline-block border-2 rounded-full bg-white dark:bg-black md:ml-10 lg:ml-10 xl:ml-20 p-1 aspect-square z-10 ${blackBorder}`}
+              /* md:ml-10 lg:ml-10 xl:ml-20 */
+              className={`inline-block border-2 ml-auto rounded-full bg-white dark:bg-black p-1 aspect-square z-10 ${blackBorder}`}
               style={{width: imgCSS}}
             >
-              <img src="/portrait.jpg" className="rounded-full " />
+              <img src="/portrait.jpg" className="rounded-full" />
             </div>
-            <ContainerOuter className="flex-1 print:max-w-xs">{sideBar}</ContainerOuter>
+            <ContainerOuter className="flex-1 max-w-100">{sideBar}</ContainerOuter>
           </div>
 
           {/* RIGHT */}

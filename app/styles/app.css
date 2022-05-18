@@ -596,6 +596,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 1.5rem;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -696,6 +700,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .max-w-\[8rem\] {
   max-width: 8rem;
+}
+
+.max-w-\[\] {
+  max-width: ;
 }
 
 .flex-auto {
@@ -825,6 +833,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .gap-6 {
   gap: 1.5rem;
+}
+
+.self-end {
+  align-self: flex-end;
 }
 
 .self-center {
@@ -1265,8 +1277,9 @@ Ensure the default browser behavior of the `hidden` attribute.
     gap: 5rem;
   }
 
-  .print\:gap-5 {
-    gap: 1.25rem;
+  .print\:py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 
   .print\:py-5 {
@@ -1279,9 +1292,8 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-right: 2.5rem;
   }
 
-  .print\:py-10 {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
+  .print\:text-right {
+    text-align: right;
   }
 }
 
