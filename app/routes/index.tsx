@@ -7,8 +7,8 @@ import {ContainerInner, TwoColumnText} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {pill} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
+import {useWindow} from '~/contexts/WindowContext';
 import {loves} from '~/intro-data';
-import {useWindow} from '~/WindowContext';
 
 export const meta: MetaFunction = () => ({
   title: 'i am hanna',

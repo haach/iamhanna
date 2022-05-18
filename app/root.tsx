@@ -1,13 +1,14 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
-import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch} from '@remix-run/react';
+import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch, useLoaderData} from '@remix-run/react';
 import classNames from 'classnames';
 import dotenv from 'dotenv';
-import {FC} from 'react';
+import {FC, useEffect} from 'react';
 import ReactGA from 'react-ga';
 import {CookieBanner} from '~/components/molecules/CookieBanner';
 import {Typo} from '~/components/primitives/typography';
-import {ThemeContextProvider, useTheme} from '~/ThemeContext';
-import {WindowContextProvider} from '~/WindowContext';
+import {CookieContextProvider, useCookieConsent} from '~/contexts/CookieContext';
+import {ThemeContextProvider, useTheme} from '~/contexts/ThemeContext';
+import {WindowContextProvider} from '~/contexts/WindowContext';
 import styles from './styles/app.css';
 
 export const meta: MetaFunction = () => ({
@@ -18,19 +19,32 @@ export const meta: MetaFunction = () => ({
 export const links: LinksFunction = () => {
   return [{rel: 'stylesheet', href: styles}];
 };
-
-const Layout: FC = ({children}) => {
-  const {darkMode} = useTheme();
-  // prevent loading in wrong color schema before context is up
-  if (darkMode === null) return null;
-  return <div>{children}</div>;
-};
-
 export const loader = () => {
   dotenv.config({path: `.env`});
   const TRACKING_ID = process?.env.TRACKING_ID;
-  TRACKING_ID && ReactGA.initialize(TRACKING_ID);
   return TRACKING_ID;
+};
+
+const Layout: FC = ({children}) => {
+  const {darkMode} = useTheme();
+  const {consent} = useCookieConsent();
+  const TRACKING_ID = useLoaderData();
+
+  useEffect(() => {
+    // only initialise tracking after consent
+    if (consent === true) {
+      TRACKING_ID && ReactGA.initialize(TRACKING_ID);
+    }
+  }, [consent]);
+
+  // prevent loading in wrong color schema before context is up
+  if (darkMode === null) return null;
+  return (
+    <>
+      {children}
+      <CookieBanner />
+    </>
+  );
 };
 
 const Document: FC = ({children}) => {
@@ -38,12 +52,6 @@ const Document: FC = ({children}) => {
   const className = classNames('min-h-full', {
     dark: darkMode,
   });
-  const accept = () => {
-    console.log('accept');
-  };
-  const reject = () => {
-    console.log('reject');
-  };
   return (
     <html lang="en" className={className}>
       <head>
@@ -58,7 +66,6 @@ const Document: FC = ({children}) => {
       <body className="bg-white dark:bg-bl min-h-full font-thin text-black dark:text-white ">
         {process.env.NODE_ENV === 'development' && <LiveReload />}
         {children}
-        <CookieBanner onAccept={accept} onReject={reject} />
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -66,85 +73,76 @@ const Document: FC = ({children}) => {
   );
 };
 
-export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
-  ReactGA.exception({
-    description: 'An error ocurred',
-    message: error.message,
-    stack: error.stack,
-    fatal: true,
-  });
+const Wrapper: FC = ({children}) => {
   return (
     <WindowContextProvider>
       <ThemeContextProvider>
         <Document>
-          <Layout>
-            <div className="flex flex-col items-center content-center justify-center">
-              <div className="py-10 px-10 w-max-sm">
-                <Typo.h1>...oh dang 😖</Typo.h1>
-                <Typo.p>something went south.</Typo.p>
-                <Typo.p className="text-red-600">Error: {error.message}</Typo.p>
-                {process.env.NODE_ENV === 'development' && <pre className="text-red-600">Stack: {error.stack}</pre>}
-              </div>
-            </div>
-          </Layout>
+          <CookieContextProvider>
+            <Layout>{children}</Layout>
+          </CookieContextProvider>
         </Document>
       </ThemeContextProvider>
     </WindowContextProvider>
+  );
+};
+
+export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
+  const {consent} = useCookieConsent();
+  useEffect(() => {
+    if (consent === true) {
+      ReactGA.exception({
+        description: 'An error ocurred',
+        message: error.message,
+        stack: error.stack,
+        fatal: true,
+      });
+    }
+  }, [consent]);
+  return (
+    <Wrapper>
+      <div className="flex flex-col items-center content-center justify-center">
+        <div className="py-10 px-10 w-max-sm">
+          <Typo.h1>...oh dang 😖</Typo.h1>
+          <Typo.p>something went south.</Typo.p>
+          <Typo.p className="text-red-600">Error: {error.message}</Typo.p>
+          {process.env.NODE_ENV === 'development' && <pre className="text-red-600">Stack: {error.stack}</pre>}
+        </div>
+      </div>
+    </Wrapper>
   );
 };
 
 export const CatchBoundary: FC = () => {
   const caught = useCatch();
-  ReactGA.exception({
-    description: 'A 404 error ocurred',
-    fatal: false,
-  });
+
+  const {consent} = useCookieConsent();
+  useEffect(() => {
+    if (consent === true) {
+      ReactGA.exception({
+        description: 'A 404 error ocurred',
+        fatal: false,
+      });
+    }
+  }, [consent]);
+
   return (
-    <WindowContextProvider>
-      <ThemeContextProvider>
-        <Document>
-          <Layout>
-            <div className="flex flex-col items-center content-center justify-center">
-              <div className="py-10 px-10 w-max-sm">
-                <Typo.h1>... oh oh a {caught.status} 😖</Typo.h1>
-                <Typo.p className="text-red-600"> {caught.statusText}</Typo.p>
-              </div>
-            </div>
-          </Layout>
-        </Document>
-      </ThemeContextProvider>
-    </WindowContextProvider>
+    <Wrapper>
+      <div className="flex flex-col items-center content-center justify-center">
+        <div className="py-10 px-10 w-max-sm">
+          <Typo.h1>... oh oh a {caught.status} 😖</Typo.h1>
+          <Typo.p className="text-red-600"> {caught.statusText}</Typo.p>
+        </div>
+      </div>
+    </Wrapper>
   );
 };
 
 const App: FC = () => {
   return (
-<<<<<<< HEAD
-    <ThemeContextProvider>
-      <Document>
-        <div>
-          <h1 className="text-3xl font-bold underline">Hey there! ✌️</h1>
-          <p className="text-m">
-            I am currently reworking my website. Please come back in a couple of days or hit me up on{' '}
-            <a href="https://www.linkedin.com/in/hanna-achenbach/" className="underline">
-              LinkedIn
-            </a>{' '}
-            meanwhile.
-          </p>
-        </div>
-      </Document>
-    </ThemeContextProvider>
-=======
-    <WindowContextProvider>
-      <ThemeContextProvider>
-        <Document>
-          <Layout>
-            <Outlet />
-          </Layout>
-        </Document>
-      </ThemeContextProvider>
-    </WindowContextProvider>
->>>>>>> 91cffe9 (create a context for global Window obj check)
+    <Wrapper>
+      <Outlet />
+    </Wrapper>
   );
 };
 

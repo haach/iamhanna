@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-    .max-w-4 { width: 100%;max-width: 4rem; } 
-    .max-w-8 { width: 100%;max-width: 8rem; } 
-    .max-w-12 { width: 100%;max-width: 12rem; }
-
     .resonsive-columns { column-width: 280px; column-gap: 2rem; } 
     .resonsive-columns > p + p { margin-top: 1em;} 
 

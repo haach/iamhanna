@@ -1,5 +1,5 @@
 import {createContext, FC, useContext, useEffect, useState} from 'react';
-import {useWindow} from '~/WindowContext';
+import {useWindow} from '~/contexts/WindowContext';
 
 interface ThemeContext {
   darkMode: boolean | null;

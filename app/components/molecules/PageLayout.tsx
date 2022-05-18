@@ -4,7 +4,7 @@ import {HeaderNav} from '~/components/molecules/HeaderNav';
 import {ContainerOuter} from '~/components/molecules/Layout';
 import {blackBorder, HR} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
-import {useWindow} from '~/WindowContext';
+import {useWindow} from '~/contexts/WindowContext';
 
 export const defaultSpacing = 240;
 

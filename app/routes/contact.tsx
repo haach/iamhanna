@@ -11,7 +11,7 @@ import {Input} from '~/components/molecules/FormComponents';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {ContainerInner} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
-import {button_primary, hideLineOverflow, link} from '~/components/primitives';
+import {btn_primary, btn, hideLineOverflow, link} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 
 export const meta: MetaFunction = () => ({
@@ -217,7 +217,12 @@ const Contact: FC = () => {
               <Outlet />
               {contactReason !== ContactReason.UNSET && (
                 <div className="flex flex-row justify-end">
-                  <button type="submit" className={button_primary} onClick={handleSubmit} disabled={isSubmitting}>
+                  <button
+                    type="submit"
+                    className={classNames(btn, btn_primary)}
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                  >
                     send
                   </button>
                 </div>
