@@ -1,10 +1,11 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
-import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch, useLoaderData} from '@remix-run/react';
+import {Links, LiveReload, Meta, Outlet, Scripts, useCatch, useLoaderData} from '@remix-run/react';
 import classNames from 'classnames';
 import dotenv from 'dotenv';
 import {FC, useEffect} from 'react';
 import GoogleAnalytics from 'react-ga';
 import {CookieBanner} from '~/components/molecules/CookieBanner';
+import {SrollPosition} from '~/components/molecules/SrollPosition';
 import {Typo} from '~/components/primitives/typography';
 import {CookieContextProvider, useCookieConsent} from '~/contexts/CookieContext';
 import {ThemeContextProvider, useTheme} from '~/contexts/ThemeContext';
@@ -67,8 +68,9 @@ const Document: FC = ({children}) => {
       <body className="bg-white dark:bg-bl min-h-full font-thin text-black dark:text-white ">
         {process.env.NODE_ENV === 'development' && <LiveReload />}
         {children}
-        <ScrollRestoration />
         <Scripts />
+        <SrollPosition />
+        {/* <ScrollRestoration /> */}
       </body>
     </html>
   );

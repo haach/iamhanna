@@ -1,7 +1,7 @@
 import debounce from 'just-debounce';
 import {FC, useEffect, useMemo, useState, createContext, useContext} from 'react';
 
-type WindowContext = {width: number; height: number} | null;
+type WindowContext = {width: number; height: number; pageYOffset: number} | null;
 
 const WindowContext = createContext<WindowContext>(null);
 
@@ -21,7 +21,7 @@ export const WindowContextProvider: FC = ({children}) => {
   // Handler to call on window resize
   const handleResize = () => {
     // Set window to state
-    window && setWindowObject({width: window.innerWidth, height: window.innerHeight});
+    window && setWindowObject({width: window.innerWidth, height: window.innerHeight, pageYOffset: window.pageYOffset});
   };
 
   // Handler to call on window resize
@@ -30,10 +30,14 @@ export const WindowContextProvider: FC = ({children}) => {
   useEffect(() => {
     // Add event listener
     window.addEventListener('resize', debouncedHandleResize);
+    window.addEventListener('scroll', debouncedHandleResize);
     // Call handler right away so state gets updated with initial window size
     handleResize();
     // Remove event listener on cleanup
-    return () => window.removeEventListener('resize', debouncedHandleResize);
+    return () => {
+      window.removeEventListener('resize', debouncedHandleResize);
+      window.removeEventListener('scroll', debouncedHandleResize);
+    };
   }, []); // Empty array ensures that effect is only run on mount
 
   return <WindowContext.Provider value={windowObject}>{children}</WindowContext.Provider>;
