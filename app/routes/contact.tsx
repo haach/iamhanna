@@ -4,15 +4,15 @@ import * as SendgridMail from '@sendgrid/mail';
 import classNames from 'classnames';
 import dotenv from 'dotenv';
 import {FC, useRef, useState} from 'react';
+import {AiOutlineLoading3Quarters} from 'react-icons/ai';
 import {DiGithubFull} from 'react-icons/di';
 import {RiLinkedinBoxFill} from 'react-icons/ri';
 import {SiCodewars} from 'react-icons/si';
-import {AiOutlineLoading3Quarters} from 'react-icons/ai';
 import {Input} from '~/components/molecules/FormComponents';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {ContainerInner} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
-import {btn_primary, btn, hideLineOverflow, link} from '~/components/primitives';
+import {btn, btn_primary, hideLineOverflow, link} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 
 export const meta: MetaFunction = () => ({

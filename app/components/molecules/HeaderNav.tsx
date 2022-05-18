@@ -1,8 +1,8 @@
-import {Link, useLocation} from '@remix-run/react';
+import {useLocation} from '@remix-run/react';
 import {FC} from 'react';
+import GoogleAnalytics from 'react-ga';
 import {Typo} from '~/components/primitives/typography';
 import {useCookieConsent} from '~/contexts/CookieContext';
-import GoogleAnalytics from 'react-ga';
 
 /**
  *

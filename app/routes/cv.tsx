@@ -1,6 +1,6 @@
 import {MetaFunction} from '@remix-run/node';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
-import {ContainerInner, TwoColumnText} from '~/components/molecules/Layout';
+import {ContainerInner} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {Typo} from '~/components/primitives/typography';
 import {educations, experiences} from '~/cv-data';

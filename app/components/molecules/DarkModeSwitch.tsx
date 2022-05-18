@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import {FC, useContext} from 'react';
+import {FC} from 'react';
 import {ReactProps} from '~/components';
 import {Typo} from '~/components/primitives/typography';
 import {useTheme} from '~/contexts/ThemeContext';

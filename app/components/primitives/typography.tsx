@@ -1,5 +1,4 @@
 import {Link} from '@remix-run/react';
-import {RemixLinkProps} from '@remix-run/react/components';
 import classNames from 'classnames';
 import {FC} from 'react';
 import {ReactProps} from '~/components';

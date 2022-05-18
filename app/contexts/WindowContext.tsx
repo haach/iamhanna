@@ -1,5 +1,5 @@
 import debounce from 'just-debounce';
-import {FC, useEffect, useMemo, useState, createContext, useContext} from 'react';
+import {createContext, FC, useContext, useEffect, useMemo, useState} from 'react';
 
 type WindowContext = {width: number; height: number; pageYOffset: number} | null;
 
