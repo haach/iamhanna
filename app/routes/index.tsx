@@ -83,7 +83,6 @@ const Index: FC = () => {
             </>
           }
         />
-
         {loves.map(({title, text, links}) => (
           <div key={title} className="flex flex-col gap-1 sm:gap-2">
             <Typo.h3>{title}</Typo.h3>

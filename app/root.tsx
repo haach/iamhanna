@@ -1,9 +1,9 @@
 import type {LinksFunction, MetaFunction} from '@remix-run/node';
-import {Links, LiveReload, Meta, Outlet, Scripts, useCatch, useLoaderData} from '@remix-run/react';
+import {Links, LiveReload, Meta, Outlet, Scripts, useCatch, useLoaderData, useLocation} from '@remix-run/react';
 import classNames from 'classnames';
 import dotenv from 'dotenv';
 import {FC, useEffect} from 'react';
-import GoogleAnalytics from 'react-ga';
+import ReactGA from 'react-ga';
 import {CookieBanner} from '~/components/molecules/CookieBanner';
 import {SrollPosition} from '~/components/molecules/SrollPosition';
 import {Typo} from '~/components/primitives/typography';
@@ -30,13 +30,16 @@ export const loader = () => {
 const Layout: FC = ({children}) => {
   const {darkMode} = useTheme();
   const {consent} = useCookieConsent();
+  const location = useLocation();
   const TRACKING_ID = useLoaderData();
 
   useEffect(() => {
     // only initialise tracking after consent
-    if (consent === true) {
-      console.log('Layout useEffect');
-      TRACKING_ID && GoogleAnalytics.initialize(TRACKING_ID);
+    if (consent === true && TRACKING_ID) {
+      setTimeout(() => {
+        ReactGA.initialize(TRACKING_ID, {debug: true});
+        ReactGA.pageview(location.pathname + location.search);
+      }, 5000);
     }
   }, [consent]);
 
@@ -95,7 +98,7 @@ export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
   const {consent} = useCookieConsent();
   useEffect(() => {
     if (consent === true) {
-      GoogleAnalytics.exception({
+      ReactGA.exception({
         description: 'An error ocurred',
         message: error.message,
         stack: error.stack,
@@ -123,7 +126,7 @@ export const CatchBoundary: FC = () => {
   const {consent} = useCookieConsent();
   useEffect(() => {
     if (consent === true) {
-      GoogleAnalytics.exception({
+      ReactGA.exception({
         description: 'A 404 error ocurred',
         fatal: false,
       });

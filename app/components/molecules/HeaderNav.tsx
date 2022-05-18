@@ -1,6 +1,6 @@
 import {useLocation} from '@remix-run/react';
 import {FC} from 'react';
-import GoogleAnalytics from 'react-ga';
+import ReactGA from 'react-ga';
 import {Typo} from '~/components/primitives/typography';
 import {useCookieConsent} from '~/contexts/CookieContext';
 
@@ -31,7 +31,7 @@ export const HeaderNav: FC = () => {
                   onClick={
                     consent === true
                       ? () =>
-                          GoogleAnalytics.send({
+                          ReactGA.send({
                             type: 'Navigation clicked',
                             from: location.pathname,
                             to: to,

@@ -19,10 +19,10 @@ export const CookieBanner: FC = () => {
   return (
     <div
       className="
-    min-h-screen min-w-screen fixed top-0 bottom-0 left-0 right-0 z-50 bg-neutral-900/50 dark:bg-netral-300/25"
+    min-h-screen min-w-full fixed top-0 bottom-0 left-0 right-0 z-50 bg-neutral-900/50 dark:bg-netral-300/25"
     >
       <div className="flex flex-col min-h-full justify-end">
-        <div className="bg-white dark:bg-b">
+        <div className="bg-white dark:bg-b text-black dark:text-white ">
           <div className="flex flex-col gap-2 min-h-100 max-w-2xl mx-auto px-10 py-5 bg-white dark:bg-b">
             <Typo.p>
               🍪 We use tasty cookies and Google Analytics on this site for statistical purposes
