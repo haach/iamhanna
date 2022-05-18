@@ -3,7 +3,7 @@ import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch, u
 import classNames from 'classnames';
 import dotenv from 'dotenv';
 import {FC, useEffect} from 'react';
-import ReactGA from 'react-ga';
+import GoogleAnalytics from 'react-ga';
 import {CookieBanner} from '~/components/molecules/CookieBanner';
 import {Typo} from '~/components/primitives/typography';
 import {CookieContextProvider, useCookieConsent} from '~/contexts/CookieContext';
@@ -19,6 +19,7 @@ export const meta: MetaFunction = () => ({
 export const links: LinksFunction = () => {
   return [{rel: 'stylesheet', href: styles}];
 };
+
 export const loader = () => {
   dotenv.config({path: `.env`});
   const TRACKING_ID = process?.env.TRACKING_ID;
@@ -33,7 +34,7 @@ const Layout: FC = ({children}) => {
   useEffect(() => {
     // only initialise tracking after consent
     if (consent === true) {
-      TRACKING_ID && ReactGA.initialize(TRACKING_ID);
+      TRACKING_ID && GoogleAnalytics.initialize(TRACKING_ID);
     }
   }, [consent]);
 
@@ -91,7 +92,7 @@ export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
   const {consent} = useCookieConsent();
   useEffect(() => {
     if (consent === true) {
-      ReactGA.exception({
+      GoogleAnalytics.exception({
         description: 'An error ocurred',
         message: error.message,
         stack: error.stack,
@@ -119,7 +120,7 @@ export const CatchBoundary: FC = () => {
   const {consent} = useCookieConsent();
   useEffect(() => {
     if (consent === true) {
-      ReactGA.exception({
+      GoogleAnalytics.exception({
         description: 'A 404 error ocurred',
         fatal: false,
       });
