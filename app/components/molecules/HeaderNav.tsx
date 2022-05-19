@@ -1,6 +1,5 @@
 import {useLocation} from '@remix-run/react';
 import {FC} from 'react';
-import ReactGA from 'react-ga';
 import {Typo} from '~/components/primitives/typography';
 import {useCookieConsent} from '~/contexts/CookieContext';
 
@@ -28,16 +27,16 @@ export const HeaderNav: FC = () => {
                   block
                   isActive={isActive}
                   to={to}
-                  onClick={
+                  /* onClick={
                     consent === true
                       ? () =>
-                          ReactGA?.send({
+                          ReactGA.send({
                             type: 'Navigation clicked',
                             from: location.pathname,
                             to: to,
                           })
                       : undefined
-                  }
+                  } */
                 >
                   {routeName}
                 </Typo.linkInternal>

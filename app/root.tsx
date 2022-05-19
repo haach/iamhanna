@@ -3,7 +3,6 @@ import {Links, LiveReload, Meta, Outlet, Scripts, useCatch, useLoaderData, useLo
 import classNames from 'classnames';
 import dotenv from 'dotenv';
 import {FC, useEffect} from 'react';
-import ReactGA from 'react-ga';
 import {CookieBanner} from '~/components/molecules/CookieBanner';
 import {SrollPosition} from '~/components/molecules/SrollPosition';
 import {Typo} from '~/components/primitives/typography';
@@ -11,6 +10,9 @@ import {CookieContextProvider, useCookieConsent} from '~/contexts/CookieContext'
 import {ThemeContextProvider, useTheme} from '~/contexts/ThemeContext';
 import {WindowContextProvider} from '~/contexts/WindowContext';
 import styles from './styles/app.css';
+
+import * as gtag from '~/utils/gtags.client';
+import {appendGtmScripts} from '~/utils/appendGtmScripts';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -34,12 +36,11 @@ const Layout: FC = ({children}) => {
   const TRACKING_ID = useLoaderData();
 
   useEffect(() => {
-    // only initialise tracking after consent
-    if (consent === true && TRACKING_ID && ReactGA) {
-      ReactGA?.initialize(TRACKING_ID, {debug: true});
-      ReactGA?.pageview(location.pathname + location.search);
+    if (consent === true && TRACKING_ID?.length) {
+      appendGtmScripts(TRACKING_ID);
+      gtag.pageview(location.pathname, TRACKING_ID);
     }
-  }, [consent, ReactGA]);
+  }, [consent, location, TRACKING_ID]);
 
   // prevent loading in wrong color schema before context is up
   if (darkMode === null) return null;
@@ -53,6 +54,7 @@ const Layout: FC = ({children}) => {
 
 const Document: FC = ({children}) => {
   const {darkMode, systemDarkMode} = useTheme();
+  const TRACKING_ID = useLoaderData();
   const className = classNames('min-h-full', {
     dark: darkMode,
   });
@@ -68,6 +70,27 @@ const Document: FC = ({children}) => {
         <Links />
       </head>
       <body className="bg-white dark:bg-bl min-h-full font-thin text-black dark:text-white ">
+        {/* {
+          process.env.NODE_ENV === 'development' || !TRACKING_ID ? null : (
+            <>
+              <script async src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`} />
+              <script
+                async
+                id="gtag-init"
+                dangerouslySetInnerHTML={{
+                  __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+                }}
+              />
+            </>
+          )
+        } */}
         {process.env.NODE_ENV === 'development' && <LiveReload />}
         {children}
         <Scripts />
@@ -96,12 +119,12 @@ export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
   const {consent} = useCookieConsent();
   useEffect(() => {
     if (consent === true) {
-      ReactGA?.exception({
+      /*  ReactGA.exception({
         description: 'An error ocurred',
         message: error.message,
         stack: error.stack,
         fatal: true,
-      });
+      }); */
     }
   }, [consent]);
   return (
@@ -124,10 +147,10 @@ export const CatchBoundary: FC = () => {
   const {consent} = useCookieConsent();
   useEffect(() => {
     if (consent === true) {
-      ReactGA?.exception({
+      /* ReactGA.exception({
         description: 'A 404 error ocurred',
         fatal: false,
-      });
+      }); */
     }
   }, [consent]);
 
