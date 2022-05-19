@@ -8,8 +8,8 @@ export const link =
 export const input =
   'font-thin bg-transparent border border-bl dark:border-white focus:border-o focus-within:border-o rounded-md px-2 py-1 h-10 outline-none';
 export const hideLineOverflow = 'h-8 overflow-hidden';
-export const btn = 'uppercase rounded-md px-2 py-1 h-10 w-full max-w-xs';
-export const btn_small = 'uppercase rounded-md px-2 py-1 h-6 w-full max-w-[8rem] text-xs';
+export const btn = 'uppercase rounded-md px-2 py-1 h-10 w-full md:max-w-xs';
+export const btn_small = 'uppercase rounded-md px-2 py-1 h-6 w-full md:max-w-[8rem] text-xs';
 export const btn_primary =
   'bg-y hover:bg-yellow-500 focus:bg-o focus-within:bg-o disabled:bg-g focus:disabled:bg-g text-black outline-none transition-colors';
 export const btn_secondary = `${blackBorder} bg-transparent hover:bg-gl dark:hover:bg-bl border focus:border-g focus-within:border-g disabled:bg-gl dark:disabled:bg-bl focus:disabled:bg-gl dark:focus:disabled:bg-bl text-black dark:text-white outline-none transition-colors`;

@@ -656,10 +656,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   min-height: 100%;
 }
 
-.min-h-screen {
-  min-height: 100vh;
-}
-
 .w-full {
   width: 100%;
 }
@@ -1359,6 +1355,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 @media (min-width: 768px) {
   .md\:ml-10 {
     margin-left: 2.5rem;
+  }
+
+  .md\:max-w-xs {
+    max-width: 20rem;
+  }
+
+  .md\:max-w-\[8rem\] {
+    max-width: 8rem;
   }
 
   .md\:justify-end {
