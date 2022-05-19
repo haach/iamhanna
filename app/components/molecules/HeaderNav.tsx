@@ -31,7 +31,7 @@ export const HeaderNav: FC = () => {
                   onClick={
                     consent === true
                       ? () =>
-                          ReactGA.send({
+                          ReactGA?.send({
                             type: 'Navigation clicked',
                             from: location.pathname,
                             to: to,

@@ -35,13 +35,11 @@ const Layout: FC = ({children}) => {
 
   useEffect(() => {
     // only initialise tracking after consent
-    if (consent === true && TRACKING_ID) {
-      setTimeout(() => {
-        ReactGA.initialize(TRACKING_ID, {debug: true});
-        ReactGA.pageview(location.pathname + location.search);
-      }, 5000);
+    if (consent === true && TRACKING_ID && ReactGA) {
+      ReactGA?.initialize(TRACKING_ID, {debug: true});
+      ReactGA?.pageview(location.pathname + location.search);
     }
-  }, [consent]);
+  }, [consent, ReactGA]);
 
   // prevent loading in wrong color schema before context is up
   if (darkMode === null) return null;
@@ -98,7 +96,7 @@ export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
   const {consent} = useCookieConsent();
   useEffect(() => {
     if (consent === true) {
-      ReactGA.exception({
+      ReactGA?.exception({
         description: 'An error ocurred',
         message: error.message,
         stack: error.stack,
@@ -126,7 +124,7 @@ export const CatchBoundary: FC = () => {
   const {consent} = useCookieConsent();
   useEffect(() => {
     if (consent === true) {
-      ReactGA.exception({
+      ReactGA?.exception({
         description: 'A 404 error ocurred',
         fatal: false,
       });
