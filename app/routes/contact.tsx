@@ -217,7 +217,7 @@ const Contact: FC = () => {
               </Typo.p>
 
               <Outlet />
-              {contactReason !== ContactReason.UNSET && (
+              {location.pathname !== '/contact' && (
                 <div className="flex flex-row justify-end">
                   <button
                     type="submit"
