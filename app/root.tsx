@@ -25,8 +25,7 @@ export const links: LinksFunction = () => {
 
 export const loader = () => {
   dotenv.config({path: `.env`});
-  const TRACKING_ID = process?.env.TRACKING_ID;
-  return TRACKING_ID;
+  return process?.env.TRACKING_ID;
 };
 
 const Layout: FC = ({children}) => {
@@ -38,6 +37,7 @@ const Layout: FC = ({children}) => {
   useEffect(() => {
     if (consent === true && TRACKING_ID?.length) {
       appendGtmScripts(TRACKING_ID);
+      gtag.event({consent: 'TRUE'});
       gtag.pageview(location.pathname, TRACKING_ID);
     }
   }, [consent, location, TRACKING_ID]);
@@ -54,7 +54,6 @@ const Layout: FC = ({children}) => {
 
 const Document: FC = ({children}) => {
   const {darkMode, systemDarkMode} = useTheme();
-  const TRACKING_ID = useLoaderData();
   const className = classNames('min-h-full', {
     dark: darkMode,
   });
@@ -70,27 +69,6 @@ const Document: FC = ({children}) => {
         <Links />
       </head>
       <body className="bg-white dark:bg-bl min-h-full font-thin text-black dark:text-white ">
-        {/* {
-          process.env.NODE_ENV === 'development' || !TRACKING_ID ? null : (
-            <>
-              <script async src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`} />
-              <script
-                async
-                id="gtag-init"
-                dangerouslySetInnerHTML={{
-                  __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${TRACKING_ID}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-                }}
-              />
-            </>
-          )
-        } */}
         {process.env.NODE_ENV === 'development' && <LiveReload />}
         {children}
         <Scripts />
@@ -116,17 +94,7 @@ const Wrapper: FC = ({children}) => {
 };
 
 export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
-  const {consent} = useCookieConsent();
-  useEffect(() => {
-    if (consent === true) {
-      /*  ReactGA.exception({
-        description: 'An error ocurred',
-        message: error.message,
-        stack: error.stack,
-        fatal: true,
-      }); */
-    }
-  }, [consent]);
+  // Errors are automatically tagged if user consented
   return (
     <Wrapper>
       <div className="flex flex-col items-center content-center justify-center">
@@ -143,17 +111,7 @@ export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
 
 export const CatchBoundary: FC = () => {
   const caught = useCatch();
-
-  const {consent} = useCookieConsent();
-  useEffect(() => {
-    if (consent === true) {
-      /* ReactGA.exception({
-        description: 'A 404 error ocurred',
-        fatal: false,
-      }); */
-    }
-  }, [consent]);
-
+  // Exeptions are automatically tagged if user consented
   return (
     <Wrapper>
       <div className="flex flex-col items-center content-center justify-center">
