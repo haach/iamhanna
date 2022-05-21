@@ -1041,18 +1041,18 @@
     "@typescript-eslint/types" "5.22.0"
     eslint-visitor-keys "^3.0.0"
 
-"@vercel/node-bridge@2.2.1":
-  version "2.2.1"
-  resolved "https://registry.npmjs.org/@vercel/node-bridge/-/node-bridge-2.2.1.tgz"
-  integrity sha512-GJdBio0nKyxvFwfLcj6CMp2s22d5V6K9tmhmHkQcaiFwdKWK/Pa7jngiO84a09fvX+DFaOtpalJuxQa5LAJ9xQ==
+"@vercel/node-bridge@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@vercel/node-bridge/-/node-bridge-2.2.2.tgz#f63466ab6a2588afdc6262c2d060289bfe8baa6b"
+  integrity sha512-haGBC8noyA5BfjCRXRH+VIkHCDVW5iD5UX24P2nOdilwUxI4qWsattS/co8QBGq64XsNLRAMdM5pQUE3zxkF9Q==
 
-"@vercel/node@^1.14.0":
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/@vercel/node/-/node-1.15.0.tgz"
-  integrity sha512-1xH2zBiLTPJKJPvF0odYna0ge5h754Ucpr3mdOtnrG2aW/F3DxS9TJ5h0GDwt15QVYfkdKmZ1RbNEj7ZOP4s4g==
+"@vercel/node@^1.15.3":
+  version "1.15.3"
+  resolved "https://registry.yarnpkg.com/@vercel/node/-/node-1.15.3.tgz#38f7cc9c025e42c040bed19267ef9c1227a7491e"
+  integrity sha512-eKm7/9UThh7TIdt7Rpcw40uMkWMQMo13G0E4g7Di2po+RSDKuD2G2sUwTRv8TzrjdB53rrqnuNo4a7xvGApBxA==
   dependencies:
     "@types/node" "*"
-    "@vercel/node-bridge" "2.2.1"
+    "@vercel/node-bridge" "2.2.2"
     ts-node "8.9.1"
     typescript "4.3.4"
 
@@ -4708,6 +4708,11 @@ nanoid@^3.3.3:
   resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.3.tgz"
   integrity sha512-p1sjXuopFs0xg+fPASzQ28agW1oHD7xDsd9Xkf3T15H3c/cifrFHVwrh74PdoklAPi+i7MdRsE47vm2r6JoB+w==
 
+nanoid@^3.3.4:
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
+  integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
+
 nanomatch@^1.2.9:
   version "1.2.13"
   resolved "https://registry.npmjs.org/nanomatch/-/nanomatch-1.2.13.tgz"
@@ -5169,12 +5174,21 @@ postcss-value-parser@^4.2.0:
   resolved "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
-postcss@^8.4.12, postcss@^8.4.13:
+postcss@^8.4.12:
   version "8.4.13"
   resolved "https://registry.npmjs.org/postcss/-/postcss-8.4.13.tgz"
   integrity sha512-jtL6eTBrza5MPzy8oJLFuUscHDXTV5KcLlqAWHl5q5WYRfnNRGSmOZmOZ1T6Gy7A99mOZfqungmZMpMmCVJ8ZA==
   dependencies:
     nanoid "^3.3.3"
+    picocolors "^1.0.0"
+    source-map-js "^1.0.2"
+
+postcss@^8.4.14:
+  version "8.4.14"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.14.tgz#ee9274d5622b4858c1007a74d76e42e56fd21caf"
+  integrity sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig==
+  dependencies:
+    nanoid "^3.3.4"
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
