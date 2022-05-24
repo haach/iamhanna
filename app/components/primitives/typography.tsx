@@ -1,9 +1,9 @@
 import {Link} from '@remix-run/react';
 import classNames from 'classnames';
 import {FC} from 'react';
-import {ReactProps} from '~/components';
+import {ReactPropsWithchildren} from '~/components';
 
-interface BaseTypoProps extends ReactProps {
+interface BaseTypoProps extends ReactPropsWithchildren {
   dense?: boolean;
 }
 interface TypoProps extends BaseTypoProps {
