@@ -966,6 +966,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-align: justify;
 }
 
+.align-baseline {
+  vertical-align: baseline;
+}
+
 .align-text-bottom {
   vertical-align: text-bottom;
 }
@@ -1095,9 +1099,9 @@ Ensure the default browser behavior of the `hidden` attribute.
        column-gap: 2rem;
 }
 
-.resonsive-columns > p + p {
-  margin-top: 1em;
-}
+/* .resonsive-columns > p + p:after {
+    content: "HELLO"
+} */
 
 .focus-within\:border-o:focus-within {
   --tw-border-opacity: 1;
