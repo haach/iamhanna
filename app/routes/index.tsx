@@ -52,7 +52,7 @@ const Index: FC = () => {
           </Typo.p>
           <Typo.p>
             As exciting as irrigation and trees and dirt are, I decided to go back to my original passion following the
-            completion of my bachelor's, and interned at a small software development agency while getting my degree in
+            completion of my bachelor's, and interned at a small software development agency before getting my degree in
             Media Design.
           </Typo.p>
           <Typo.p>
@@ -87,9 +87,9 @@ const Index: FC = () => {
       <ContainerInner>
         <HeadlineWithDivider
           title={
-            <>
-              Things I currently <HiHeart className="h-5 inline-block align-text-bottom" />
-            </>
+            <span className="flex flex-row items-center gap-1">
+              Things I currently <HiHeart className="h-5" />
+            </span>
           }
         />
         {loves.map(({title, text, links}) => (
