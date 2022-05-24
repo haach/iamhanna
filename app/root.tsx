@@ -13,6 +13,7 @@ import styles from './styles/app.css';
 
 import * as gtag from '~/utils/gtags.client';
 import {appendGtmScripts} from '~/utils/appendGtmScripts';
+import {ComponentWithChildren} from '~/components';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -28,7 +29,7 @@ export const loader = () => {
   return process?.env.TRACKING_ID;
 };
 
-const Layout: FC = ({children}) => {
+const Layout: ComponentWithChildren = ({children}) => {
   const {darkMode} = useTheme();
   const {consent} = useCookieConsent();
   const location = useLocation();
@@ -52,7 +53,7 @@ const Layout: FC = ({children}) => {
   );
 };
 
-const Document: FC = ({children}) => {
+const Document: ComponentWithChildren = ({children}) => {
   const {darkMode, systemDarkMode} = useTheme();
   const className = classNames('min-h-full', {
     dark: darkMode,
@@ -79,7 +80,7 @@ const Document: FC = ({children}) => {
   );
 };
 
-const Wrapper: FC = ({children}) => {
+const Wrapper: ComponentWithChildren = ({children}) => {
   return (
     <WindowContextProvider>
       <ThemeContextProvider>

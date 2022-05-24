@@ -1,4 +1,5 @@
 import {createContext, FC, useContext, useEffect, useState} from 'react';
+import {ComponentWithChildren} from '~/components';
 
 interface CookieContext {
   consent: boolean | null;
@@ -19,7 +20,7 @@ export const useCookieConsent = () => {
   return context;
 };
 
-export const CookieContextProvider: FC = ({children}) => {
+export const CookieContextProvider: ComponentWithChildren = ({children}) => {
   const [consent, setConsent] = useState<CookieContext['consent']>(null);
 
   const getCookie = (name: string): string | null => {

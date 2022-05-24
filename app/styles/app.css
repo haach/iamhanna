@@ -966,14 +966,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-align: justify;
 }
 
-.align-baseline {
-  vertical-align: baseline;
-}
-
-.align-text-bottom {
-  vertical-align: text-bottom;
-}
-
 .font-serif {
   font-family: Cormorant Infant, serif;
 }

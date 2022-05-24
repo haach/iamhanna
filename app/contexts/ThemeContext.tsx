@@ -1,4 +1,5 @@
 import {createContext, FC, useContext, useEffect, useState} from 'react';
+import {ComponentWithChildren} from '~/components';
 import {useWindow} from '~/contexts/WindowContext';
 
 interface ThemeContext {
@@ -22,7 +23,7 @@ export const useTheme = () => {
   return context;
 };
 
-export const ThemeContextProvider: FC = ({children}) => {
+export const ThemeContextProvider: ComponentWithChildren = ({children}) => {
   const [darkMode, setDarkMode] = useState<ThemeContext['darkMode']>(null);
   const [systemDarkMode, setSystemDarkMode] = useState<ThemeContext['systemDarkMode']>(null);
   const windowContext = useWindow();

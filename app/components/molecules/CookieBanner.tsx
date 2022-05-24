@@ -1,6 +1,7 @@
 import {useLocation} from '@remix-run/react';
 import classNames from 'classnames';
 import {FC} from 'react';
+import {ComponentWithChildren} from '~/components';
 import {btn_primary, btn_secondary, btn_small} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 import {useCookieConsent} from '~/contexts/CookieContext';

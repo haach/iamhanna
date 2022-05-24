@@ -1,4 +1,4 @@
-import {ReactNode} from 'react';
+import {FC, ReactNode} from 'react';
 
 export interface ReactProps {
   className?: string;
@@ -9,3 +9,5 @@ export interface ReactProps {
 export interface ReactPropsWithchildren extends ReactProps {
   children?: ReactNode | ReactNode[];
 }
+
+export type ComponentWithChildren<P = {}> = FC<ReactPropsWithchildren & P>;

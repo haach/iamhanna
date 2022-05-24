@@ -1,5 +1,6 @@
 import debounce from 'just-debounce';
 import {createContext, FC, useContext, useEffect, useMemo, useState} from 'react';
+import {ComponentWithChildren} from '~/components';
 
 type WindowContext = {width: number; height: number; pageYOffset: number} | null;
 
@@ -15,7 +16,7 @@ export const useWindow = () => {
  *
  * @returns a context which centralizes the check for the global window object, which would only be present on ther client
  */
-export const WindowContextProvider: FC = ({children}) => {
+export const WindowContextProvider: ComponentWithChildren = ({children}) => {
   const [windowObject, setWindowObject] = useState<WindowContext>(null);
 
   // Handler to call on window resize

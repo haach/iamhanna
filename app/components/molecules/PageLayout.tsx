@@ -1,4 +1,5 @@
-import {FC, ReactNode} from 'react';
+import {ReactNode} from 'react';
+import {ComponentWithChildren} from '~/components';
 import {DarkModeSwitch} from '~/components/molecules/DarkModeSwitch';
 import {HeaderNav} from '~/components/molecules/HeaderNav';
 import {ContainerOuter} from '~/components/molecules/Layout';
@@ -15,7 +16,7 @@ interface PageLayoutProps {
   sideBar?: ReactNode;
 }
 
-const MobileLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
+const MobileLayout: ComponentWithChildren<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
   return (
     <div className="relative py-8 print:py-5">
       <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
@@ -48,7 +49,7 @@ const MobileLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar})
   );
 };
 
-const TabletLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
+const TabletLayout: ComponentWithChildren<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
   return (
     <div className="relative py-8 print:py-5">
       <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
@@ -92,7 +93,7 @@ const TabletLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar})
   );
 };
 
-const Layout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
+const Layout: ComponentWithChildren<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
   return (
     <div className="relative py-8 lg:py-10 print:py-5">
       <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
@@ -137,7 +138,7 @@ const Layout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
   );
 };
 
-export const PageLayout: FC<PageLayoutProps> = ({title, subTitle, sideBar, children}) => {
+export const PageLayout: ComponentWithChildren<PageLayoutProps> = ({title, subTitle, sideBar, children}) => {
   const windowContext = useWindow();
   return (
     <>
