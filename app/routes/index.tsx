@@ -43,20 +43,29 @@ const Index: FC = () => {
         <HeadlineWithDivider title="Intro" />
         <TwoColumnText>
           <Typo.p>
-            After taking a little deture and getting my B.o.S. in landscape architecture in 2013 I decided for a career
-            change, got an intership in a small agency and eventually completed my degree in media design. Prior to
-            starting my studies in Berlin I had already created my first website in high school and from that moment
-            onwards my interest developed into a real passion.
+            Like many of the Myspace Generation™, my interest in web design started in high school, where I created my
+            first website. After high school, however, I took a little detour and got a bachelor's degree in Landscape
+            Architecture (so if you ever want some unsolicited commentary about the placement of greenery around Berlin,
+            I'm your person).
+            <br />
+            <br />
           </Typo.p>
           <Typo.p>
-            This particular background has shaped the way I am working today as a frontend engineer. I strive to develop
-            applications that solve issues for their users without adding complexity to their workflows. For me this
-            principle goes hand in hand with great usability and visul bla bla.
+            As exciting as irrigation and trees and dirt are, I decided to go back to my original passion following the
+            completion of my bachelor's, and interned at a small software development agency while getting my degree in
+            Media Design.
           </Typo.p>
           <Typo.p>
-            Even though I consider myself mainly a frontend engineer, I also have a growing interest in apllication
-            architecture designand and am going more into a full stack direction as well. - If this sparks joy pop me a
-            message <Typo.linkInternal to="/contact">here</Typo.linkInternal>
+            While I've been working mainly as a frontend engineer, I'm inevitably creeping towards the fullstack
+            direction. I have a growing interest in application architecture design, and have been doing more JavaScript
+            fullstack side projects recently.
+            <br />
+            <br />
+          </Typo.p>
+          <Typo.p>
+            If you've made it this far into my introduction, why not pop me a message{' '}
+            <Typo.linkInternal to="/contact">here</Typo.linkInternal>; I look forward to working in a team of smart,
+            fun, and motivated people to create some cool (and functional and beautiful) apps.
           </Typo.p>
         </TwoColumnText>
       </ContainerInner>
