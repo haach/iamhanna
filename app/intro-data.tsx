@@ -66,6 +66,21 @@ export const loves: Array<{
     links: [{text: 'Syntax.fm', href: 'https://syntax.fm/'}],
   },
   {
+    title: 'Just functions',
+    text: (
+      <>
+        A set of hyper lightweight, fully tested, fully typed JS utility functions. You can install the full set or just
+        the ones you need. Bye bye Lodash!
+      </>
+    ),
+    links: [
+      {
+        text: 'just on Github',
+        href: 'https://github.com/angus-c/just',
+      },
+    ],
+  },
+  {
     title: 'My portafilter machine',
     text: (
       <>
@@ -79,21 +94,6 @@ export const loves: Array<{
       {
         text: 'BEEM',
         href: 'https://beem.de/products/espresso-grind-profession-siebtragermaschine?variant=41409181581471&currency=EUR&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&gclid=Cj0KCQjwg_iTBhDrARIsAD3Ib5iII73DQXDBRVMIZsuXrXV0kHckZ-cF8vIxXNhwFQmuQzDfRsFDqMoaApAnEALw_wcB',
-      },
-    ],
-  },
-  {
-    title: 'Just functions',
-    text: (
-      <>
-        A set of hyper lightweight, fully tested, fully typed JS utility functions. You can install the full set or just
-        the ones you need. Bye bye Lodash!
-      </>
-    ),
-    links: [
-      {
-        text: 'just on Github',
-        href: 'https://github.com/angus-c/just',
       },
     ],
   },

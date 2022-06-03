@@ -88,7 +88,7 @@ const Index: FC = () => {
         <HeadlineWithDivider
           title={
             <span className="flex flex-row items-center gap-1">
-              Things I currently <HiHeart className="h-5" />
+              Things I currently <HiHeart className="h-4" />
             </span>
           }
         />
