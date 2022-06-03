@@ -19,8 +19,9 @@ export const CookieBanner: FC = () => {
 
   return (
     <div
-      className="
-    min-h-full min-w-full fixed top-0 bottom-0 left-0 right-0 z-50 bg-neutral-900/50 dark:bg-netral-300/25"
+      className={classNames('min-h-full min-w-full fixed top-0 bottom-0 left-0 right-0 z-50', {
+        ' bg-neutral-900/50 dark:bg-netral-300/25': location.pathname !== '/cookie-consent',
+      })}
     >
       <div className="flex flex-col min-h-full justify-end">
         <div className="bg-white dark:bg-b text-black dark:text-white ">
