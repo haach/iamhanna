@@ -63,13 +63,13 @@ const CV = () => {
       }
     >
       <ContainerInner>
+        <HeadlineWithDivider title="Experience" />
         <Typo.p>
           You can also{' '}
           <Typo.linkExternal href="/hanna_achenbach_short_cv.pdf" download>
             download the PDF version
           </Typo.linkExternal>
         </Typo.p>
-        <HeadlineWithDivider title="Experience" />
         {openSections &&
           Object.entries(experiences).map(([key, experience]) => (
             <div key={key} /* className="flex flex-col gap-6" */>
