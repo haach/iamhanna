@@ -50,7 +50,7 @@ export const experiences: Experiences = {
       'Improvements to the frontend architecture and tooling in favor of a better developer experience or performance',
     ],
     reflection: [
-      'Coming from an agency background, I was really grateful to get into the nitty-gritty details, that come with the work in product development. I began to enjoy dealing with tech depth, software architecture decisions or performance improvements, because those were the tasks, that made me grow the most.',
+      'Coming from an agency background, I was really grateful to get into the nitty-gritty details, that come with the work in product development. I began to enjoy dealing with tech depth, software architecture decisions or performance improvements, because those were the tasks, that helped me grow the most professionally.',
       'Back gave me the opportunity to work on a state of the art tech setup and I really enjoyed the close cooperation within the small team. As we all knew the product very well, engineers were included early in the process of developing new features, where my design background was valued many times.',
     ],
   },
@@ -89,9 +89,9 @@ export const experiences: Experiences = {
       'After finishing my apprenticeship at Autentek, I worked at this agency for two more years in a similar setup.',
     ],
     list: [
-      'Developing mobile friendly, cross browser web applications and hybrid web apps using Angular JS 2/4, Ionic 3, TypeScript, Flexbox, Twitter Bootstrap and jQuery',
-      'Creating unique conceptual designs for a wide variety of customers such as Zalando, Volkswagen Deutschland, EFOY by SFC Energy, Realisto, Goethe University Frankfurt or Chal-Tec',
-      'The interdisciplinary role also involved communication with clients, sketching and wireframing of concepts and new ideas, detailed designing of graphics and icons for user interfaces and finally the involvement in the project management / agile process',
+      'Developing mobile friendly, cross browser web applications and hybrid web apps using Angular JS 2/4, Ionic 3, TypeScript, Bootstrap and jQuery',
+      'Creating unique conceptual designs for a wide variety of customers such as Zalando, Volkswagen Deutschland, EFOY by SFC Energy, Realisto, Goethe University Frankfurt and Chal-Tec',
+      'The interdisciplinary role also involved communication with clients, sketching and wireframing of concepts and new ideas, creation of graphics and icons for user interfaces and finally the involvement in the project management / agile process',
     ],
     reflection: [
       'After the total four years at Autentek I am most grateful for the experience of building applications to control hardware devices and the opportunity to work on such versatile technologies. It was a unique experience so early on in my professional development that, I would not have been able to get at many other agencies of that size.',
@@ -109,7 +109,7 @@ export const experiences: Experiences = {
     ],
     link: 'https://autentek.de',
     team: [
-      "Due to the agency's size, the entire team used to work on one or two projects at a time together in a cross-functional setup consisting of web and mobile developer, tester, and project management. Being an apprentice for media design, I therefore was also responsible for the UI/UX design at that time.",
+      "Due to the agency's size, the entire team used to work on one or two projects at a time together in a cross-functional setup consisting of web and mobile developer, tester, and project management. As an apprentice for media design, I was also responsible for the UI/UX design at that time.",
     ],
     list: [
       'Improving my existing skills in building static websites using HTML and CSS, with focus on responsiveness and browser compatibility',
