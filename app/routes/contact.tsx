@@ -178,7 +178,7 @@ const Contact: FC = () => {
                 fill the form.
               </Typo.p>
 
-              <Typo.p className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+              <Typo.h3 className="flex flex-col sm:flex-row gap-2 sm:gap-4">
                 <Typo.linkInternal
                   to="/contact/job-opportunity"
                   replace
@@ -214,7 +214,7 @@ const Contact: FC = () => {
                 >
                   {contactReasonLang[ContactReason.HELLO]}
                 </Typo.linkInternal>
-              </Typo.p>
+              </Typo.h3>
 
               <Outlet />
               {location.pathname !== '/contact' && (

@@ -51,8 +51,8 @@ const CV = () => {
               key={key}
               className="print:text-right md:text-right md:self-end pl-0 lg:pl-5 xl:pl-16 max-w-fit print:max-w-[200px]"
             >
-              <Typo.h3>{education.to}</Typo.h3>
-              <Typo.h4 className="">{education.from}</Typo.h4>
+              <Typo.h4>{education.to}</Typo.h4>
+              <Typo.h5>{education.from}</Typo.h5>
               <Typo.h2 className="leading-tight my-3 sm:mb-0">{education.title}</Typo.h2>
               <Typo.p dense className="print:text-right md:text-right sm:pt-2">
                 {education.footer}
@@ -75,8 +75,8 @@ const CV = () => {
             <div key={key} /* className="flex flex-col gap-6" */>
               <div className="flex flex-col sm:flex-row w-full">
                 <div className="flex flex-col sm:block sm:float-left " style={{whiteSpace: 'nowrap'}}>
-                  <Typo.h3>{experience.to}</Typo.h3>
-                  <Typo.h4 className="">{experience.from}</Typo.h4>
+                  <Typo.h4>{experience.to}</Typo.h4>
+                  <Typo.h5>{experience.from}</Typo.h5>
                 </div>
                 <div className="flex-auto pt-2 sm:pl-6 mb-3 sm:mb-0 lg:-mt-1">
                   <Typo.h2 className="leading-tight">{experience.title}</Typo.h2>
@@ -90,7 +90,7 @@ const CV = () => {
               >
                 {experience.company && (
                   <section className="mt-4">
-                    <Typo.p className="font-medium mb-2">About {experience.name}</Typo.p>
+                    <Typo.h3 className="mb-2">About {experience.name}</Typo.h3>
                     <section className="flex flex-col gap-2">
                       {experience.company.map((text, idx) => (
                         <Typo.p key={text}>
@@ -111,7 +111,7 @@ const CV = () => {
 
                 {experience.team && (
                   <section>
-                    <Typo.p className="font-medium mb-2">Team setup</Typo.p>
+                    <Typo.h3 className="mb-2">Team setup</Typo.h3>
                     <section className="flex flex-col gap-2">
                       {experience.team.map((text) => (
                         <Typo.p key={text}>{text}</Typo.p>
@@ -132,7 +132,7 @@ const CV = () => {
 
                 {experience.list && (
                   <section>
-                    <Typo.p className="font-medium mb-2">Tasks</Typo.p>
+                    <Typo.h3 className="mb-2">Tasks</Typo.h3>
                     <ul className="list-disc list-outside ml-6 resonsive-columns ">
                       {experience.list.map((text) => (
                         <li key={text} className="mb-4">
@@ -145,7 +145,7 @@ const CV = () => {
 
                 {experience.reflection && (
                   <section>
-                    <Typo.p className="font-medium mb-2">Reflection</Typo.p>
+                    <Typo.h3 className="mb-2">Reflection</Typo.h3>
                     <section className="flex flex-col gap-2">
                       {experience.reflection.map((text) => (
                         <Typo.p key={text}>{text}</Typo.p>
