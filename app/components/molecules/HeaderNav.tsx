@@ -11,6 +11,7 @@ export const HeaderNav: FC = () => {
   const links = [
     ['home', '/'],
     ['cv', '/cv'],
+    ['work', '/work'],
     ['contact', '/contact'],
   ];
   return (
@@ -21,7 +22,7 @@ export const HeaderNav: FC = () => {
           return (
             <li key={routeName}>
               <Typo.h2>
-                <Typo.linkInternal block isActive={isActive} to={to}>
+                <Typo.linkInternal block isActive={isActive} to={to} className="font-thin">
                   {routeName}
                 </Typo.linkInternal>
               </Typo.h2>
