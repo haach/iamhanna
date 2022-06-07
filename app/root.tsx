@@ -62,6 +62,12 @@ const Document: ComponentWithChildren = ({children}) => {
     <html lang="en" className={className}>
       <head>
         <Meta />
+        <meta property="og:title" content="i am hanna - portfolio of Hanna Achenbach" />
+        <meta property="og:image" content="https://iamhanna.de/work/iamhanna_dark_light.gif" />
+        <meta
+          property="og:description"
+          content="I am a frontend engineer and artist coming from a design driven background."
+        />
         <link rel="icon" href={systemDarkMode ? '/dog_light.svg' : '/dog.svg'} />
         <link
           href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"

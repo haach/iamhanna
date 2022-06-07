@@ -20,7 +20,7 @@ const MobileLayout: ComponentWithChildren<PageLayoutProps> = ({children, title, 
   return (
     <div className="relative py-8 print:py-5">
       <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
-      <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 ">
+      <div className="container mx-auto border-box pl-5 pr-5 ">
         <div className="flex flex-col justify-between gap-10">
           <div className="flex flex-col justify-between gap-4">
             <div
@@ -29,7 +29,7 @@ const MobileLayout: ComponentWithChildren<PageLayoutProps> = ({children, title, 
             >
               <img src="/portrait.jpg" className="rounded-full " />
             </div>
-            <Typo.h1>{title}</Typo.h1>
+            <Typo.h1 style={{whiteSpace: 'nowrap'}}>{title}</Typo.h1>
             {subTitle && (
               <Typo.h2 className="-mt-4">
                 {'// '}
@@ -53,7 +53,7 @@ const TabletLayout: ComponentWithChildren<PageLayoutProps> = ({children, title, 
   return (
     <div className="relative py-8 print:py-5">
       <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
-      <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 sm:pl-8 sm:pr-8">
+      <div className="container mx-auto border-box pl-5 pr-5 sm:pl-8 sm:pr-8">
         <div className="flex flex-col justify-between gap-10 sm:gap-10">
           {/* TOP */}
           <div className="sm:flex sm:flex-row justify-between gap-10 sm:gap-10 ">
@@ -68,7 +68,9 @@ const TabletLayout: ComponentWithChildren<PageLayoutProps> = ({children, title, 
             <div className="flex flex-1 flex-col">
               <div className="flex items-end justify-between pb-4" style={{height: halfImgCSS}}>
                 <div>
-                  <Typo.h1 className="mb-2">{title}</Typo.h1>
+                  <Typo.h1 className="mb-2" style={{whiteSpace: 'nowrap'}}>
+                    {title}
+                  </Typo.h1>
                   {subTitle && (
                     <Typo.h2>
                       {'// '}
@@ -115,7 +117,9 @@ const Layout: ComponentWithChildren<PageLayoutProps> = ({children, title, subTit
           <div className="flex flex-1 flex-col">
             <div className="flex items-end justify-between pb-4" style={{height: halfImgCSS}}>
               <div>
-                <Typo.h1 className="mb-2">{title}</Typo.h1>
+                <Typo.h1 className="mb-2" style={{whiteSpace: 'nowrap'}}>
+                  {title}
+                </Typo.h1>
                 {subTitle && (
                   <Typo.h2>
                     {'// '}
