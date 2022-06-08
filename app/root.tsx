@@ -63,7 +63,7 @@ const Document: ComponentWithChildren = ({children}) => {
       <head>
         <Meta />
         <meta property="og:title" content="i am hanna - portfolio of Hanna Achenbach" />
-        <meta property="og:image" content="https://iamhanna.de/work/iamhanna_dark_light.gif" />
+        <meta property="og:image" content="https://www.iamhanna.de/work_samples/iamhanna_dark_light.gif" />
         <meta
           property="og:description"
           content="I am a frontend engineer and artist coming from a design driven background."
