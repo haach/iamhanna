@@ -113,7 +113,6 @@ const contactReasonFromURL = () => {
 };
 
 const Contact: FC = () => {
-  const windowContext = useWindow();
   const location = useLocation();
   const [contactReason, setContactReason] = useState<ContactReason>(contactReasonFromURL());
   const formRef = useRef<HTMLFormElement>(null);
@@ -134,151 +133,111 @@ const Contact: FC = () => {
       title="Hanna Achenbach"
       subTitle="Frontend engineer"
       sideBar={
-        windowContext &&
-        windowContext.width &&
-        windowContext?.width >= 768 && (
-          <ContainerInner className="md:text-right">
-            <HeadlineWithDivider title="Find me on" className="md:text-right" />
-            <div className="flex flex-row gap-4 md:justify-end w-full">
-              <a
-                className={classNames(link, hideLineOverflow)}
-                href="https://github.com/haach"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Github"
-              >
-                <DiGithubFull className="h-12 w-12" />
-              </a>
-              <a
-                className={classNames(link, hideLineOverflow)}
-                href="https://www.linkedin.com/in/hanna-achenbach/"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="LinkedIn"
-              >
-                <RiLinkedinBoxFill className="h-6 w-6" />
-              </a>
-              <a
-                className={classNames(link, hideLineOverflow)}
-                href="https://www.codewars.com/users/haach"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Codewars"
-              >
-                <SiCodewars className="h-5 w-5" />
-              </a>
-            </div>
-          </ContainerInner>
-        )
+        <ContainerInner className="md:text-right">
+          <HeadlineWithDivider title="Find me on" className="md:text-right" />
+          <div className="flex flex-row gap-4 md:justify-end w-full">
+            <a
+              className={classNames(link, hideLineOverflow)}
+              href="https://github.com/haach"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Github"
+            >
+              <DiGithubFull className="h-12 w-12" />
+            </a>
+            <a
+              className={classNames(link, hideLineOverflow)}
+              href="https://www.linkedin.com/in/hanna-achenbach/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="LinkedIn"
+            >
+              <RiLinkedinBoxFill className="h-6 w-6" />
+            </a>
+            <a
+              className={classNames(link, hideLineOverflow)}
+              href="https://www.codewars.com/users/haach"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Codewars"
+            >
+              <SiCodewars className="h-5 w-5" />
+            </a>
+          </div>
+        </ContainerInner>
       }
     >
-      <>
-        {windowContext && windowContext.width && windowContext?.width < 768 && (
-          <ContainerInner className="md:text-right">
-            <HeadlineWithDivider title="Find me on" className="md:text-right" />
-            <div className="flex flex-row gap-4 md:justify-end w-full">
-              <a
-                className={classNames(link, hideLineOverflow)}
-                href="https://github.com/haach"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Github"
-              >
-                <DiGithubFull className="h-12 w-12" />
-              </a>
-              <a
-                className={classNames(link, hideLineOverflow)}
-                href="https://www.linkedin.com/in/hanna-achenbach/"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="LinkedIn"
-              >
-                <RiLinkedinBoxFill className="h-6 w-6" />
-              </a>
-              <a
-                className={classNames(link, hideLineOverflow)}
-                href="https://www.codewars.com/users/haach"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Codewars"
-              >
-                <SiCodewars className="h-5 w-5" />
-              </a>
+      <ContainerInner>
+        <HeadlineWithDivider title="Get in touch" />
+        <form action="/contact" method="post" ref={formRef}>
+          <div className="flex flex-col gap-20">
+            <Input type="hidden" name="contactReason" value={contactReason} />
+
+            <div className="flex flex-col gap-8">
+              <Typo.p>
+                You are interested in working with me or just want to say hi? Please select a subject below and then
+                fill the form.
+              </Typo.p>
+
+              <Typo.h3 className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+                <Typo.linkInternal
+                  to="/contact/job-opportunity"
+                  replace
+                  onClick={() => {
+                    setContactReason(ContactReason.JOB);
+                  }}
+                  block
+                  isActive={location.pathname === '/contact/job-opportunity'}
+                >
+                  {contactReasonLang[ContactReason.JOB]}
+                </Typo.linkInternal>
+                <span className="hidden sm:inline-block">|</span>
+                <Typo.linkInternal
+                  to="/contact/freelance"
+                  replace
+                  onClick={() => {
+                    setContactReason(ContactReason.FREELANCE);
+                  }}
+                  block
+                  isActive={location.pathname === '/contact/freelance'}
+                >
+                  {contactReasonLang[ContactReason.FREELANCE]}
+                </Typo.linkInternal>
+                <span className="hidden sm:inline-block">|</span>
+                <Typo.linkInternal
+                  to="/contact/hello"
+                  replace
+                  onClick={() => {
+                    setContactReason(ContactReason.HELLO);
+                  }}
+                  block
+                  isActive={location.pathname === '/contact/hello'}
+                >
+                  {contactReasonLang[ContactReason.HELLO]}
+                </Typo.linkInternal>
+              </Typo.h3>
+
+              <Outlet />
+              {location.pathname !== '/contact' && (
+                <div className="flex flex-row justify-end">
+                  <button
+                    type="submit"
+                    className={classNames(btn, btn_primary, 'flex flex-row items-center justify-center')}
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <AiOutlineLoading3Quarters className="animate-spin h-5 w-5 self-center" />
+                    ) : (
+                      <span>send</span>
+                    )}
+                  </button>
+                </div>
+              )}
             </div>
-          </ContainerInner>
-        )}
-        <ContainerInner>
-          <HeadlineWithDivider title="Get in touch" />
-          <form action="/contact" method="post" ref={formRef}>
-            <div className="flex flex-col gap-20">
-              <Input type="hidden" name="contactReason" value={contactReason} />
-
-              <div className="flex flex-col gap-8">
-                <Typo.p>
-                  You are interested in working with me or just want to say hi? Please select a subject below and then
-                  fill the form.
-                </Typo.p>
-
-                <Typo.h3 className="flex flex-col sm:flex-row gap-2 sm:gap-4">
-                  <Typo.linkInternal
-                    to="/contact/job-opportunity"
-                    replace
-                    onClick={() => {
-                      setContactReason(ContactReason.JOB);
-                    }}
-                    block
-                    isActive={location.pathname === '/contact/job-opportunity'}
-                  >
-                    {contactReasonLang[ContactReason.JOB]}
-                  </Typo.linkInternal>
-                  <span className="hidden sm:inline-block">|</span>
-                  <Typo.linkInternal
-                    to="/contact/freelance"
-                    replace
-                    onClick={() => {
-                      setContactReason(ContactReason.FREELANCE);
-                    }}
-                    block
-                    isActive={location.pathname === '/contact/freelance'}
-                  >
-                    {contactReasonLang[ContactReason.FREELANCE]}
-                  </Typo.linkInternal>
-                  <span className="hidden sm:inline-block">|</span>
-                  <Typo.linkInternal
-                    to="/contact/hello"
-                    replace
-                    onClick={() => {
-                      setContactReason(ContactReason.HELLO);
-                    }}
-                    block
-                    isActive={location.pathname === '/contact/hello'}
-                  >
-                    {contactReasonLang[ContactReason.HELLO]}
-                  </Typo.linkInternal>
-                </Typo.h3>
-
-                <Outlet />
-                {location.pathname !== '/contact' && (
-                  <div className="flex flex-row justify-end">
-                    <button
-                      type="submit"
-                      className={classNames(btn, btn_primary, 'flex flex-row items-center justify-center')}
-                      onClick={handleSubmit}
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? (
-                        <AiOutlineLoading3Quarters className="animate-spin h-5 w-5 self-center" />
-                      ) : (
-                        <span>send</span>
-                      )}
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-          </form>
-        </ContainerInner>
-      </>
+          </div>
+        </form>
+      </ContainerInner>
     </PageLayout>
   );
 };

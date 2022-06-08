@@ -23,11 +23,11 @@ const QTB: FC = () => {
           >
             <Typo.p>
               The institute for Quantitative and Theoretical Biology at the University of Heinrich-Heine-Universität
-              Düsseldorf launched a design competition for the redesign of their corporate design including a logo, a
-              business card and business paper based on the universities general template.
+              Düsseldorf launched a design competition for the redesign of their existing corporate design, including a
+              logo, a business card and business paper, based on the university's general template.
             </Typo.p>
             <Typo.p>
-              My proposal didn't win, but I still believe that it was a good idea and well worth having a mention on my
+              Though my proposal didn't win, I still believe that it was a good idea and worth the mention on my
               portfolio.
             </Typo.p>
             <Typo.p>
@@ -58,20 +58,21 @@ const QTB: FC = () => {
               therefore abstracted the double helix shape into a geometric symbol.
             </Typo.p>
             <Typo.p>
-              Because of the interdisciplinary role of the institute between biology and mathematics, I picked two
-              colors that in my opinion are generally associated with both subjects, green and blue. Through mixing
-              those two together, I created the dark turquoise tone.
+              Due to the interdisciplinary nature of the institute between biology and mathematics, I picked two colors
+              that, in my opinion, are generally associated with both subjects: green and blue. By mixing those two
+              together, I created the dark turquoise tone that features throughout my rendition of their corporate
+              design.
             </Typo.p>
             <Typo.p>
-              In terms of typography I felt a minimalistic, geometric font was the best fit and I thus chose 'Bebas
-              Neue' (FYI: Now also the Netflix brand font).
+              In terms of typography, I felt that a minimalistic, geometric font was the best fit; thus I chose 'Bebas
+              Neue' (FYI: now also the Netflix font).
             </Typo.p>
           </div>
           <div className="flex flex-col gap-6">
             <Typo.h3>Business card</Typo.h3>
             <img src="/work_samples/qtb/visi_mockup.jpg" />
             <Typo.p>
-              For the businesscard I placed the new logo on a light, geometric background in grayscale colors.
+              For the business card I placed the new logo on a light, geometric background in grayscale colors.
             </Typo.p>
           </div>
           <div className="flex flex-col gap-6">
@@ -86,4 +87,5 @@ const QTB: FC = () => {
     </PageLayout>
   );
 };
+
 export default QTB;

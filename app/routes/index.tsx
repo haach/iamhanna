@@ -21,24 +21,21 @@ const Index: FC = () => {
       title="Hanna Achenbach"
       subTitle="Frontend engineer"
       sideBar={
-        windowContext?.width &&
-        windowContext?.width >= 768 && (
-          <ContainerInner>
-            <HeadlineWithDivider title="The tech stack" className="md:text-right" />
-            <SpacedCols>
-              <div
-                className="flex flex-row flex-wrap md:justify-end gap-2 pl-0 lg:pl-5 xl:pl-10"
-                style={{maxWidth: 'fit-content'}}
-              >
-                {tags.map((tag) => (
-                  <Typo.caption className={classNames(pill, 'text-xs')} key={tag}>
-                    {tag}
-                  </Typo.caption>
-                ))}
-              </div>
-            </SpacedCols>
-          </ContainerInner>
-        )
+        <ContainerInner>
+          <HeadlineWithDivider title="The tech stack" className="md:text-right" />
+          <SpacedCols>
+            <div
+              className="flex flex-row flex-wrap md:justify-end gap-2 pl-0 lg:pl-5 xl:pl-10"
+              style={{maxWidth: 'fit-content'}}
+            >
+              {tags.map((tag) => (
+                <Typo.caption className={classNames(pill, 'text-xs')} key={tag}>
+                  {tag}
+                </Typo.caption>
+              ))}
+            </div>
+          </SpacedCols>
+        </ContainerInner>
       }
     >
       <ContainerInner>
@@ -73,21 +70,6 @@ const Index: FC = () => {
           </TwoColumnText>
         </SpacedCols>
       </ContainerInner>
-      {windowContext?.width && windowContext?.width < 768 && (
-        <ContainerInner>
-          <HeadlineWithDivider title="The tech stack" className="md:text-right" />
-          <div
-            className="flex flex-row flex-wrap md:justify-end gap-2 pl-0 lg:pl-5 xl:pl-10"
-            style={{maxWidth: 'fit-content'}}
-          >
-            {tags.map((tag) => (
-              <Typo.caption className={classNames(pill)} key={tag}>
-                {tag}
-              </Typo.caption>
-            ))}
-          </div>
-        </ContainerInner>
-      )}
       <ContainerInner>
         <HeadlineWithDivider
           title={
