@@ -13,7 +13,7 @@ export const meta: MetaFunction = () => ({
 });
 
 const ImageContainer: FC<{src: string}> = ({src}) => (
-  <img src={`/work/${src}`} className="max-w-full border border-solid border-gl dark:border-gd" />
+  <img src={`/work_samples/${src}`} className="max-w-full border border-solid border-gl dark:border-gd" />
 );
 
 const Work: FC = () => {
