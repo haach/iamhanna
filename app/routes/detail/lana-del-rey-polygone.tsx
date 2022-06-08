@@ -1,7 +1,7 @@
 import {MetaFunction} from '@remix-run/node';
 import {FC} from 'react';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
-import {ContainerInner} from '~/components/molecules/Layout';
+import {ContainerInner, SpacedCols} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {Typo} from '~/components/primitives/typography';
 
@@ -34,11 +34,8 @@ const Lana: FC = () => {
       }
     >
       <ContainerInner>
-        <>
-          <HeadlineWithDivider title="Process" />
-          <Typo.p style={{whiteSpace: 'nowrap'}}>
-            <span className="text-xs">← </span> <Typo.linkInternal to="/work">Back to the overview</Typo.linkInternal>
-          </Typo.p>
+        <HeadlineWithDivider title="Process" />
+        <SpacedCols>
           <div className="flex flex-col gap-4">
             <Typo.h3>Original image</Typo.h3>
             <img src="/work/lana/album_cover.jpg" />
@@ -57,7 +54,10 @@ const Lana: FC = () => {
               with it.
             </Typo.p>
           </div>
-        </>
+          <Typo.p style={{whiteSpace: 'nowrap'}}>
+            <span className="text-xs">← </span> <Typo.linkInternal to="/work">Back to the overview</Typo.linkInternal>
+          </Typo.p>
+        </SpacedCols>
       </ContainerInner>
     </PageLayout>
   );

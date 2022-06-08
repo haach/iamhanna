@@ -15,7 +15,10 @@ export const ContainerOuter: ComponentWithChildren = ({children, className}) => 
 };
 
 export const ContainerInner: ComponentWithChildren = ({children, className}) => {
-  return <div className={classNames('flex flex-col gap-3 sm:gap-5 md:gap-8 lg:gap-10', className)}>{children}</div>;
+  return <div className={classNames('', className)}>{children}</div>;
+};
+export const SpacedCols: ComponentWithChildren = ({children, className}) => {
+  return <div className={classNames('flex flex-col gap-8 md:gap-10 lg:gap-14', className)}>{children}</div>;
 };
 
 export const TwoColumnText: ComponentWithChildren = ({children, className}) => {

@@ -2,7 +2,7 @@ import {MetaFunction} from '@remix-run/node';
 import classNames from 'classnames';
 import {FC} from 'react';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
-import {ContainerInner} from '~/components/molecules/Layout';
+import {ContainerInner, SpacedCols} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {pill} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
@@ -24,21 +24,23 @@ const Work: FC = () => {
       sideBar={
         <ContainerInner>
           <HeadlineWithDivider title="On the side" className="md:text-right" />
-          <div
-            className="flex flex-row flex-wrap md:justify-end gap-2 pl-0 lg:pl-5 xl:pl-10"
-            style={{maxWidth: 'fit-content'}}
-          >
-            <Typo.p>
-              Because of my background not all of my work is not stritly limited to frontend coding. In this section
-              you'll find some of my creation from all sectors of work and life.
-            </Typo.p>
-          </div>
+          <SpacedCols>
+            <div
+              className="flex flex-row flex-wrap md:justify-end gap-2 pl-0 lg:pl-5 xl:pl-10"
+              style={{maxWidth: 'fit-content'}}
+            >
+              <Typo.p>
+                Because of my background not all of my work is not stritly limited to frontend coding. In this section
+                you'll find some of my creation from all sectors of work and life.
+              </Typo.p>
+            </div>
+          </SpacedCols>
         </ContainerInner>
       }
     >
       <ContainerInner>
         <HeadlineWithDivider title="Work samples" />
-        <div className="flex flex-col gap-16">
+        <SpacedCols>
           {workItems.map((item) => (
             <div className="flex flex-col gap-4" key={item.id}>
               <Typo.h3>{item.title}</Typo.h3>
@@ -80,7 +82,7 @@ const Work: FC = () => {
               )}
             </div>
           ))}
-        </div>
+        </SpacedCols>
       </ContainerInner>
     </PageLayout>
   );

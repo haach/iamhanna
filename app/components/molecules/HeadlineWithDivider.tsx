@@ -11,7 +11,7 @@ import {Typo} from '~/components/primitives/typography';
  */
 export const HeadlineWithDivider: FC<{title: ReactNode} & ReactProps> = ({title, className, style, key}) => {
   return (
-    <div key={key} className="flex flex-col gap-1 sm:gap-2">
+    <div key={key} className="flex flex-col gap-1 sm:gap-2 mb-6 md:mb-8">
       <Typo.h2 yellow className={classNames('gap-1 sm:gap-2 w-full', className)} style={style}>
         {title}
       </Typo.h2>
