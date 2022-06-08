@@ -85,7 +85,7 @@ const Work: FC = () => {
                           ? 'Check the code on Github'
                           : link.type === LinkType.DEMO
                           ? 'Go to live demo'
-                          : 'See detal page';
+                          : 'See detail page';
                       return (
                         <span key={`link-${item.id}-${idx}`} style={{whiteSpace: 'nowrap'}}>
                           <span className="text-xs">🔗</span>
