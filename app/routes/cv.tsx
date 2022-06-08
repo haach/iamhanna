@@ -5,22 +5,25 @@ import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {ContainerInner, SpacedCols} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {Typo} from '~/components/primitives/typography';
+import {useWindow} from '~/contexts/WindowContext';
 import {educations, experiences} from '~/cv-data';
 import {STORAGE_ITEMS} from '~/utils/constants';
 
 export const meta: MetaFunction = () => ({
   title: 'i am hanna - cv',
 });
-
-const defaultState = new Map([
-  ['back', true],
-  ['neugelb', false],
-  ['autentek_2', false],
-  ['autentek_1', false],
-]);
 type ExperienceId = keyof typeof experiences;
 
 const CV = () => {
+  const windowContext = useWindow();
+
+  const defaultState = new Map([
+    ['back', windowContext && windowContext.width && windowContext?.width < 768 ? false : true],
+    ['neugelb', false],
+    ['autentek_2', false],
+    ['autentek_1', false],
+  ]);
+
   const [openSections, setOpenSections] = useState<Map<ExperienceId, boolean> | undefined>();
 
   useEffect(() => {

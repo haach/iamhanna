@@ -25,7 +25,7 @@ const Work: FC = () => {
       subTitle="Frontend engineer"
       sideBar={
         windowContext &&
-        windowContext?.width &&
+        windowContext.width &&
         windowContext?.width >= 768 && (
           <ContainerInner>
             <HeadlineWithDivider title="On the side" className="md:text-right" />
@@ -45,7 +45,7 @@ const Work: FC = () => {
       }
     >
       <>
-        {windowContext && windowContext?.width && windowContext?.width < 768 && (
+        {windowContext && windowContext.width && windowContext?.width < 768 && (
           <ContainerInner>
             <HeadlineWithDivider title="On the side" className="md:text-right" />
             <SpacedCols>
