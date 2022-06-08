@@ -4,6 +4,7 @@ import {FC} from 'react';
 import {btn_primary, btn_secondary, btn_small} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 import {useCookieConsent} from '~/contexts/CookieContext';
+import {useNavigate} from '@remix-run/react';
 
 interface CookieBanner {
   onAccept(): void;
@@ -12,6 +13,7 @@ interface CookieBanner {
 
 export const CookieBanner: FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const {consent, setConsent} = useCookieConsent();
   if (consent !== null) return null;
 
@@ -38,6 +40,7 @@ export const CookieBanner: FC = () => {
                 className={classNames(btn_small, btn_secondary)}
                 onClick={() => {
                   setConsent(false);
+                  location.pathname === '/cookie-consent' && navigate('/');
                 }}
               >
                 Reject
@@ -46,6 +49,7 @@ export const CookieBanner: FC = () => {
                 className={classNames(btn_small, btn_primary)}
                 onClick={() => {
                   setConsent(true);
+                  location.pathname === '/cookie-consent' && navigate('/');
                 }}
               >
                 Accept
