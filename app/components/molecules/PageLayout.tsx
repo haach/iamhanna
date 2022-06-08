@@ -1,4 +1,5 @@
-import {FC, ReactNode} from 'react';
+import {ReactNode} from 'react';
+import {ComponentWithChildren} from '~/components';
 import {DarkModeSwitch} from '~/components/molecules/DarkModeSwitch';
 import {HeaderNav} from '~/components/molecules/HeaderNav';
 import {ContainerOuter} from '~/components/molecules/Layout';
@@ -15,11 +16,11 @@ interface PageLayoutProps {
   sideBar?: ReactNode;
 }
 
-const MobileLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
+const MobileLayout: ComponentWithChildren<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
   return (
     <div className="relative py-8 print:py-5">
       <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
-      <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 ">
+      <div className="container mx-auto border-box pl-5 pr-5 ">
         <div className="flex flex-col justify-between gap-10">
           <div className="flex flex-col justify-between gap-4">
             <div
@@ -28,7 +29,7 @@ const MobileLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar})
             >
               <img src="/portrait.jpg" className="rounded-full " />
             </div>
-            <Typo.h1>{title}</Typo.h1>
+            <Typo.h1 style={{whiteSpace: 'nowrap'}}>{title}</Typo.h1>
             {subTitle && (
               <Typo.h2 className="-mt-4">
                 {'// '}
@@ -48,11 +49,11 @@ const MobileLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar})
   );
 };
 
-const TabletLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
+const TabletLayout: ComponentWithChildren<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
   return (
     <div className="relative py-8 print:py-5">
       <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
-      <div className="container mx-auto max-w-screen-xl border-box pl-5 pr-5 sm:pl-8 sm:pr-8">
+      <div className="container mx-auto border-box pl-5 pr-5 sm:pl-8 sm:pr-8">
         <div className="flex flex-col justify-between gap-10 sm:gap-10">
           {/* TOP */}
           <div className="sm:flex sm:flex-row justify-between gap-10 sm:gap-10 ">
@@ -67,7 +68,9 @@ const TabletLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar})
             <div className="flex flex-1 flex-col">
               <div className="flex items-end justify-between pb-4" style={{height: halfImgCSS}}>
                 <div>
-                  <Typo.h1 className="mb-2">{title}</Typo.h1>
+                  <Typo.h1 className="mb-2" style={{whiteSpace: 'nowrap'}}>
+                    {title}
+                  </Typo.h1>
                   {subTitle && (
                     <Typo.h2>
                       {'// '}
@@ -92,7 +95,7 @@ const TabletLayout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar})
   );
 };
 
-const Layout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
+const Layout: ComponentWithChildren<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
   return (
     <div className="relative py-8 lg:py-10 print:py-5">
       <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
@@ -114,7 +117,9 @@ const Layout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
           <div className="flex flex-1 flex-col">
             <div className="flex items-end justify-between pb-4" style={{height: halfImgCSS}}>
               <div>
-                <Typo.h1 className="mb-2">{title}</Typo.h1>
+                <Typo.h1 className="mb-2" style={{whiteSpace: 'nowrap'}}>
+                  {title}
+                </Typo.h1>
                 {subTitle && (
                   <Typo.h2>
                     {'// '}
@@ -137,7 +142,7 @@ const Layout: FC<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
   );
 };
 
-export const PageLayout: FC<PageLayoutProps> = ({title, subTitle, sideBar, children}) => {
+export const PageLayout: ComponentWithChildren<PageLayoutProps> = ({title, subTitle, sideBar, children}) => {
   const windowContext = useWindow();
   return (
     <>

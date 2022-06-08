@@ -9,12 +9,13 @@ export const meta: MetaFunction = () => ({
 
 export default function DesignSystem() {
   return (
-    <PageLayout title="For the design geeks">
+    <PageLayout title="Design system" subTitle="Typography">
       <ContainerInner>
         <Typo.h1>Typo.headline 1 - Roboto Condensed, sans-serif</Typo.h1>
         <Typo.h2>Typo.headline 2 - Roboto Condensed, sans-serif</Typo.h2>
-        <Typo.h3>Typo.headline 3 - Cormorant Infant, serif</Typo.h3>
+        <Typo.h3>Typo.headline 3 - Roboto Condensed, sans-serif</Typo.h3>
         <Typo.h4>Typo.headline 4 - Cormorant Infant, serif</Typo.h4>
+        <Typo.h5>Typo.headline 5 - Cormorant Infant, serif</Typo.h5>
         <Typo.p>
           Typo.p - Roboto Condensed, sans-serif
           <br />I am a filler text Bacon ipsum dolor amet bresaola salami drumstick pancetta jowl andouille alcatra

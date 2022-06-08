@@ -1,9 +1,9 @@
 import {Link} from '@remix-run/react';
 import classNames from 'classnames';
 import {FC} from 'react';
-import {ReactProps} from '~/components';
+import {ReactPropsWithchildren} from '~/components';
 
-interface BaseTypoProps extends ReactProps {
+interface BaseTypoProps extends ReactPropsWithchildren {
   dense?: boolean;
 }
 interface TypoProps extends BaseTypoProps {
@@ -64,7 +64,20 @@ const H2: FC<BaseTypoProps & Pick<TypoColorProps, 'yellow'>> = ({children, ...ty
     </h2>
   );
 };
-const H3: FC<BaseTypoProps> = ({children, ...typoProps}) => {
+const H3: FC<BaseTypoProps & Pick<TypoColorProps, 'yellow'>> = ({children, ...typoProps}) => {
+  const className = classNames(
+    'uppercase lg:text-1xl leading-none font-medium',
+    commonClasssNames(typoProps),
+    colorClasses({blackLight: true, ...typoProps}),
+    typoProps.className
+  );
+  return (
+    <h2 className={className} style={typoProps.style}>
+      {children}
+    </h2>
+  );
+};
+const H4: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
     'font-serif text-3xl font-bold italic',
     colorClasses({orange: true}),
@@ -77,7 +90,7 @@ const H3: FC<BaseTypoProps> = ({children, ...typoProps}) => {
     </h3>
   );
 };
-const H4: FC<BaseTypoProps> = ({children, ...typoProps}) => {
+const H5: FC<BaseTypoProps> = ({children, ...typoProps}) => {
   const className = classNames(
     'font-serif text-1xl leading-none italic',
     commonClasssNames(typoProps),
@@ -112,7 +125,7 @@ const LINK_INTERNAL: FC<
   BaseTypoProps & {to: string; replace?: boolean; block?: boolean; isActive?: boolean; onClick?(): void}
 > = ({children, to, replace, block, isActive, onClick, ...typoProps}) => {
   const className = classNames(
-    'font-thin ',
+    'font-size-inherit font-weight-inherit',
     {
       'cursor-default text-y': isActive,
       'hover:text-gd dark:hover:text-gd transition-colors cursor-pointer ': !isActive,
@@ -159,6 +172,7 @@ export const Typo = {
   h2: H2,
   h3: H3,
   h4: H4,
+  h5: H5,
   p: P,
   span: SPAN,
   linkInternal: LINK_INTERNAL,

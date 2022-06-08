@@ -13,6 +13,7 @@ import styles from './styles/app.css';
 
 import * as gtag from '~/utils/gtags.client';
 import {appendGtmScripts} from '~/utils/appendGtmScripts';
+import {ComponentWithChildren} from '~/components';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -28,7 +29,7 @@ export const loader = () => {
   return process?.env.TRACKING_ID;
 };
 
-const Layout: FC = ({children}) => {
+const Layout: ComponentWithChildren = ({children}) => {
   const {darkMode} = useTheme();
   const {consent} = useCookieConsent();
   const location = useLocation();
@@ -52,7 +53,7 @@ const Layout: FC = ({children}) => {
   );
 };
 
-const Document: FC = ({children}) => {
+const Document: ComponentWithChildren = ({children}) => {
   const {darkMode, systemDarkMode} = useTheme();
   const className = classNames('min-h-full', {
     dark: darkMode,
@@ -61,6 +62,12 @@ const Document: FC = ({children}) => {
     <html lang="en" className={className}>
       <head>
         <Meta />
+        <meta property="og:title" content="i am hanna - portfolio of Hanna Achenbach" />
+        <meta property="og:image" content="https://iamhanna.de/work/iamhanna_dark_light.gif" />
+        <meta
+          property="og:description"
+          content="I am a frontend engineer and artist coming from a design driven background."
+        />
         <link rel="icon" href={systemDarkMode ? '/dog_light.svg' : '/dog.svg'} />
         <link
           href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
@@ -79,7 +86,7 @@ const Document: FC = ({children}) => {
   );
 };
 
-const Wrapper: FC = ({children}) => {
+const Wrapper: ComponentWithChildren = ({children}) => {
   return (
     <WindowContextProvider>
       <ThemeContextProvider>

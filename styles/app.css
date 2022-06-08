@@ -2,5 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-    .resonsive-columns { column-width: 280px; column-gap: 2rem; } 
-    .resonsive-columns > p + p { margin-top: 1em;} 
+.resonsive-columns { column-width: 280px; column-gap: 2rem; } 
+/* .resonsive-columns > p + p:after {
+    content: "HELLO"
+} */ 

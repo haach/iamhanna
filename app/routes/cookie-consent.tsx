@@ -11,7 +11,7 @@ const CookieConsent: FC = () => {
           single user.
         </Typo.p>
         <Typo.p>
-          You can find more info on how Google uses yor cookies here:{' '}
+          You can find more info on how Google uses your cookies here:{' '}
           <Typo.linkExternal href="https://support.google.com/analytics/answer/11397207?hl=en">
             support.google.com/analytics/
           </Typo.linkExternal>

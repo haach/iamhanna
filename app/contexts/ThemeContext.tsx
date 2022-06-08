@@ -1,5 +1,7 @@
 import {createContext, FC, useContext, useEffect, useState} from 'react';
+import {ComponentWithChildren} from '~/components';
 import {useWindow} from '~/contexts/WindowContext';
+import {STORAGE_ITEMS} from '~/utils/constants';
 
 interface ThemeContext {
   darkMode: boolean | null;
@@ -22,7 +24,7 @@ export const useTheme = () => {
   return context;
 };
 
-export const ThemeContextProvider: FC = ({children}) => {
+export const ThemeContextProvider: ComponentWithChildren = ({children}) => {
   const [darkMode, setDarkMode] = useState<ThemeContext['darkMode']>(null);
   const [systemDarkMode, setSystemDarkMode] = useState<ThemeContext['systemDarkMode']>(null);
   const windowContext = useWindow();
@@ -33,9 +35,10 @@ export const ThemeContextProvider: FC = ({children}) => {
       const system = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setSystemDarkMode(system);
       let isDarkMode = false;
-      if (!!window.localStorage.getItem('darkMode')) {
+      const stored = window.localStorage.getItem(STORAGE_ITEMS.DARK_MODE);
+      if (!!stored) {
         // setting previously saved in localStorage
-        isDarkMode = JSON.parse(window.localStorage.getItem('darkMode') ?? 'false');
+        isDarkMode = JSON.parse(stored ?? 'false');
       } else {
         // check system preference
         isDarkMode = system;
@@ -46,7 +49,7 @@ export const ThemeContextProvider: FC = ({children}) => {
 
   const persistSetting = (isDarkMode: boolean) => {
     setDarkMode(isDarkMode);
-    window.localStorage.setItem('darkMode', String(isDarkMode));
+    window.localStorage.setItem(STORAGE_ITEMS.DARK_MODE, String(isDarkMode));
   };
 
   return (
