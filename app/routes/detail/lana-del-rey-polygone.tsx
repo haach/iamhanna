@@ -38,16 +38,16 @@ const Lana: FC = () => {
         <SpacedCols>
           <div className="flex flex-col gap-4">
             <Typo.h3>Original image</Typo.h3>
-            <img src="/work/lana/album_cover.jpg" />
+            <img src="/work_samples/lana/album_cover.jpg" />
           </div>
           <div className="flex flex-col gap-6">
             <Typo.h3>Creating polygone shapes - Illustrator</Typo.h3>
-            <img src="/work/lana/lines.jpg" />
+            <img src="/work_samples/lana/lines.jpg" />
             <Typo.p>In many hours of work I hand drew 2680 shapes along the edges of the original image.</Typo.p>
           </div>
           <div className="flex flex-col gap-6">
             <Typo.h3>Filling the shapes - Photohop</Typo.h3>
-            <img src="/work/lana/poly_lana.jpg" />
+            <img src="/work_samples/lana/poly_lana.jpg" />
             <Typo.p>
               Afterwards I placed both the orginal image and the shapes on two Photoshop layers and wrote a small
               automation, that based on the shape calculates the midtone of the image in that area and fills the shape

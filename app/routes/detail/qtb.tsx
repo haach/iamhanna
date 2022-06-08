@@ -51,7 +51,7 @@ const QTB: FC = () => {
         <SpacedCols>
           <div className="flex flex-col gap-4">
             <Typo.h3>The new logo</Typo.h3>
-            <img src="/work/qtb/qtb_logo.jpg" />
+            <img src="/work_samples/qtb/qtb_logo.jpg" />
             <Typo.p>
               The main research focus of the QTB institute is to find mathematical models for biological processes.
               Within this focus, much of their research happens around DNA. For the primary graphic of the new logo I
@@ -69,14 +69,14 @@ const QTB: FC = () => {
           </div>
           <div className="flex flex-col gap-6">
             <Typo.h3>Business card</Typo.h3>
-            <img src="/work/qtb/visi_mockup.jpg" />
+            <img src="/work_samples/qtb/visi_mockup.jpg" />
             <Typo.p>
               For the businesscard I placed the new logo on a light, geometric background in grayscale colors.
             </Typo.p>
           </div>
           <div className="flex flex-col gap-6">
             <Typo.h3>Business paper</Typo.h3>
-            <img src="/work/qtb/geschaeftspapier_mockup.jpg" />
+            <img src="/work_samples/qtb/geschaeftspapier_mockup.jpg" />
           </div>
           <Typo.p style={{whiteSpace: 'nowrap'}}>
             <span className="text-xs">← </span> <Typo.linkInternal to="/work">Back to the overview</Typo.linkInternal>
