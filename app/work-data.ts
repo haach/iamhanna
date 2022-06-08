@@ -45,6 +45,14 @@ export const workItems: Array<WorkItem> = [
     tags: ['Wood working'],
   }, */
   {
+    id: 'CSV parser',
+    img: 'watermaze.jpg',
+    title: 'Water maze PDF to CSV parser',
+    text: 'This project was initiated by watching my partner hand transfer data from hundreds of PDFs into a spreadsheet. The PDFs are created by a software solution, which records experiments and then auto generates the PDF file based on some input parameters. Using the pdf2json and csv-writer packages, I managed to write a small node script that parses the data from the PDFs into JSON and writes the data for all experiments into a CSV output file, that eventually can be imported into Excel. This tool is now used by employees of the Department of Experimental Neurology at Charité Berlin to process data from this specific experiment setup, which was done by hand before.',
+    links: [{type: LinkType.GITHUB, href: 'https://github.com/haach/watermaze-pdf-parser'}],
+    tags: ['Node', 'Parser'],
+  },
+  {
     id: 'lana',
     img: 'lana/poly_lana.jpg',
     title: 'Lana del Rey polygone art',
