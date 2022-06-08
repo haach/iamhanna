@@ -22,8 +22,8 @@ export const CookieBanner: FC = () => {
       })}
     >
       <div className="flex flex-col min-h-full justify-end">
-        <div className="bg-white text-black ">
-          <div className="flex flex-col gap-2 min-h-100 max-w-2xl mx-auto px-10 py-5 bg-white">
+        <div className="bg-white text-black dark:bg-black dark:text-white">
+          <div className="flex flex-col gap-2 min-h-100 max-w-2xl mx-auto px-10 py-5">
             <Typo.p>
               🍪 We use tasty cookies and Google Analytics on this site for statistical purposes
               {location.pathname !== '/cookie-consent' && (
@@ -35,7 +35,7 @@ export const CookieBanner: FC = () => {
             </Typo.p>
             <div className="flex flex-row gap-3">
               <button
-                className={classNames(btn_small, btn_secondary, 'bg-gd')}
+                className={classNames(btn_small, btn_secondary)}
                 onClick={() => {
                   setConsent(false);
                 }}
