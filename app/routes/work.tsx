@@ -30,8 +30,8 @@ const Work: FC = () => {
               style={{maxWidth: 'fit-content'}}
             >
               <Typo.p>
-                Because of my background not all of my work is not stritly limited to frontend coding. In this section
-                you'll find some of my creation from all sectors of work and life.
+                Because of my background not all of my work is not strictly limited to coding. In this section you'll
+                find some of my creations from all sectors of work and life.
               </Typo.p>
             </div>
           </SpacedCols>
