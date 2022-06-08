@@ -843,6 +843,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 1.5rem;
 }
 
+.gap-12 {
+  gap: 3rem;
+}
+
 .self-center {
   align-self: center;
 }
@@ -1423,6 +1427,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     gap: 3.5rem;
   }
 
+  .md\:gap-12 {
+    gap: 3rem;
+  }
+
   .md\:self-end {
     align-self: flex-end;
   }
@@ -1465,6 +1473,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:gap-14 {
     gap: 3.5rem;
+  }
+
+  .lg\:gap-16 {
+    gap: 4rem;
   }
 
   .lg\:py-10 {
