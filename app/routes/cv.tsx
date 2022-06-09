@@ -57,10 +57,23 @@ const CV = () => {
     }
   }, []);
 
-  const persistSection = (section: ExperienceId) => {
+  const persistSection = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, section: ExperienceId) => {
+    const isClose = !openSections?.get(section) == false;
+
     const updatedMap = new Map(openSections?.set(section, !openSections.get(section)));
     setOpenSections(updatedMap);
     window.localStorage.setItem(STORAGE_ITEMS.CV_SECTIONS, JSON.stringify(Array.from(updatedMap.entries())));
+
+    const el = document.getElementById(section as string);
+    if (isClose && el) {
+      // scroll up to closed section
+      setTimeout(() => {
+        window.scroll({
+          top: el.offsetTop - 30,
+          behavior: 'smooth',
+        });
+      }, 0);
+    }
   };
 
   return (
@@ -80,7 +93,7 @@ const CV = () => {
           </Typo.p>
           {openSections &&
             Object.entries(experiences).map(([key, experience]) => (
-              <div key={key}>
+              <div key={key} id={key}>
                 <div className="flex flex-col sm:flex-row w-full">
                   <div className="flex flex-col sm:block sm:float-left " style={{whiteSpace: 'nowrap'}}>
                     <Typo.h4>{experience.to}</Typo.h4>
@@ -91,9 +104,9 @@ const CV = () => {
                   </div>
                 </div>
                 <div
-                  className={classNames('flex flex-col gap-6 transition-[max-height] ease-out', {
+                  className={classNames('flex flex-col gap-6 transition-[max-height] duration-900 overflow-hidden', {
                     'max-h-[3000px]': openSections.get(key),
-                    'max-h-0 overflow-hidden': !openSections.get(key),
+                    'max-h-0': !openSections.get(key),
                   })}
                 >
                   {experience.company && (
@@ -164,7 +177,7 @@ const CV = () => {
                 </div>
                 <div
                   className="flex flex-row justify-center md:justify-start items-center cursor-pointer mt-4"
-                  onClick={() => persistSection(key)}
+                  onClick={(e) => persistSection(e, key)}
                 >
                   <Typo.p className="text-g hover:underline">Show {openSections.get(key) ? 'less' : 'more'}</Typo.p>
                 </div>
