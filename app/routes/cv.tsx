@@ -10,7 +10,7 @@ import {educations, experiences} from 'public/data/cv-data';
 import {STORAGE_ITEMS} from '~/utils/constants';
 
 export const meta: MetaFunction = () => ({
-  title: 'i am hanna - cv',
+  title: 'CV, experiences and education',
 });
 type ExperienceId = keyof typeof experiences;
 

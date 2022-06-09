@@ -11,7 +11,7 @@ import {Typo} from '~/components/primitives/typography';
 import {useWindow} from '~/contexts/WindowContext';
 
 export const meta: MetaFunction = () => ({
-  title: 'i am hanna',
+  title: 'About me and things I currently love',
 });
 
 const Index: FC = () => {

@@ -1,16 +1,15 @@
 import {MetaFunction} from '@remix-run/node';
 import classNames from 'classnames';
-import {FC, ReactNode} from 'react';
+import {LinkType, workItems} from 'public/data/work-data';
+import {FC} from 'react';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {ContainerInner, SpacedCols} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {pill} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
-import {useWindow} from '~/contexts/WindowContext';
-import {LinkType, workItems} from 'public/data/work-data';
 
 export const meta: MetaFunction = () => ({
-  title: 'i am hanna - my work',
+  title: 'Take a look at my coding projects and artwork',
 });
 
 const ImageContainer: FC<{src: string}> = ({src}) => (

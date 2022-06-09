@@ -6,7 +6,7 @@ import {PageLayout} from '~/components/molecules/PageLayout';
 import {Typo} from '~/components/primitives/typography';
 
 export const meta: MetaFunction = () => ({
-  title: 'i am hanna - QTB corporate design',
+  title: 'Corporate design of the QTB institute HH University Düsseldorf',
 });
 
 const QTB: FC = () => {
@@ -22,9 +22,9 @@ const QTB: FC = () => {
             style={{maxWidth: 'fit-content'}}
           >
             <Typo.p>
-              The institute for Quantitative and Theoretical Biology at the University of Heinrich-Heine-Universität
-              Düsseldorf launched a design competition for the redesign of their existing corporate design, including a
-              logo, a business card and business paper, based on the university's general template.
+              The institute for Quantitative and Theoretical Biology at the Heinrich-Heine-University of Düsseldorf
+              launched a design competition for the redesign of their existing corporate design, including a logo, a
+              business card and business paper, based on the university's general template.
             </Typo.p>
             <Typo.p>
               Though my proposal didn't win, I still believe that it was a good idea and worth the mention on my

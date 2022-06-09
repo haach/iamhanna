@@ -15,9 +15,16 @@ import * as gtag from '~/utils/gtags.client';
 import {appendGtmScripts} from '~/utils/appendGtmScripts';
 import {ComponentWithChildren} from '~/components';
 
+const description =
+  'I am a Berlin based frontend engineer and artist coming from a design driven background. On this portfolio you can find my cv and career path, a collection of things I currently love, some of my work and a way to contact me for job offers.';
+
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
   viewport: 'width=device-width,initial-scale=1',
+  title: 'i am hanna - portfolio of Hanna Achenbach',
+  description: description,
+  keywords:
+    'Hanna Achenbach software frontend full-stack fullstack engineer developer web technology web-apps apps application website PWA progressivve web app design artist',
 });
 
 export const links: LinksFunction = () => {
@@ -64,10 +71,7 @@ const Document: ComponentWithChildren = ({children}) => {
         <Meta />
         <meta property="og:title" content="i am hanna - portfolio of Hanna Achenbach" />
         <meta property="og:image" content="https://www.iamhanna.de/work_samples/iamhanna_dark_light.gif" />
-        <meta
-          property="og:description"
-          content="I am a frontend engineer and artist coming from a design driven background."
-        />
+        <meta property="og:description" content={description} />
         <link rel="icon" href={systemDarkMode ? '/dog_light.svg' : '/dog.svg'} />
         <link
           href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
