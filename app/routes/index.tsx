@@ -1,5 +1,6 @@
 import {MetaFunction} from '@remix-run/node';
 import classNames from 'classnames';
+import {loves, tags} from 'public/data/intro-data';
 import {FC} from 'react';
 import {HiHeart} from 'react-icons/hi';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
@@ -8,7 +9,6 @@ import {PageLayout} from '~/components/molecules/PageLayout';
 import {pill} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 import {useWindow} from '~/contexts/WindowContext';
-import {loves, tags} from '~/intro-data';
 
 export const meta: MetaFunction = () => ({
   title: 'i am hanna',

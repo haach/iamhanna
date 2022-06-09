@@ -21,7 +21,7 @@ export const useCookieConsent = () => {
 };
 
 export const CookieContextProvider: ComponentWithChildren = ({children}) => {
-  const [consent, setConsent] = useState<CookieContext['consent']>(true);
+  const [consent, setConsent] = useState<CookieContext['consent']>(null);
 
   const getCookie = (name: string): string | null => {
     if (document.cookie.length < 1) return null;

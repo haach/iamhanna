@@ -6,7 +6,7 @@ import {ContainerInner, SpacedCols} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {Typo} from '~/components/primitives/typography';
 import {useWindow} from '~/contexts/WindowContext';
-import {educations, experiences} from '~/cv-data';
+import {educations, experiences} from 'public/data/cv-data';
 import {STORAGE_ITEMS} from '~/utils/constants';
 
 export const meta: MetaFunction = () => ({
