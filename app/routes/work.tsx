@@ -7,7 +7,7 @@ import {PageLayout} from '~/components/molecules/PageLayout';
 import {pill} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 import {useWindow} from '~/contexts/WindowContext';
-import {LinkType, workItems} from '~/work-data';
+import {LinkType, workItems} from 'public/data/work-data';
 
 export const meta: MetaFunction = () => ({
   title: 'i am hanna - my work',
