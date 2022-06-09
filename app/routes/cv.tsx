@@ -14,6 +14,27 @@ export const meta: MetaFunction = () => ({
 });
 type ExperienceId = keyof typeof experiences;
 
+const sideBar = (
+  <ContainerInner className="">
+    <HeadlineWithDivider title="Education" className="print:text-right md:text-right" />
+    <SpacedCols>
+      {Object.entries(educations).map(([key, education]) => (
+        <div
+          key={key}
+          className="print:text-right md:text-right md:self-end pl-0 lg:pl-5 xl:pl-16 max-w-fit print:max-w-[200px]"
+        >
+          <Typo.h4>{education.to}</Typo.h4>
+          <Typo.h5>{education.from}</Typo.h5>
+          <Typo.h2 className="leading-tight my-3 sm:mb-0">{education.title}</Typo.h2>
+          <Typo.p dense className="print:text-right md:text-right sm:pt-2">
+            {education.footer}
+          </Typo.p>
+        </div>
+      ))}
+    </SpacedCols>
+  </ContainerInner>
+);
+
 const CV = () => {
   const windowContext = useWindow();
 
@@ -36,36 +57,30 @@ const CV = () => {
     }
   }, []);
 
-  const persistSection = (section: ExperienceId) => {
+  const persistSection = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, section: ExperienceId) => {
+    const isClose = !openSections?.get(section) == false;
+
     const updatedMap = new Map(openSections?.set(section, !openSections.get(section)));
     setOpenSections(updatedMap);
     window.localStorage.setItem(STORAGE_ITEMS.CV_SECTIONS, JSON.stringify(Array.from(updatedMap.entries())));
+
+    const el = document.getElementById(section as string);
+    if (isClose && el) {
+      // scroll up to closed section
+      setTimeout(() => {
+        window.scroll({
+          top: el.offsetTop - 30,
+          behavior: 'smooth',
+        });
+      }, 0);
+    }
   };
 
   return (
     <PageLayout
       title="Hanna Achenbach"
       subTitle="Frontend engineer"
-      sideBar={
-        <ContainerInner className="">
-          <HeadlineWithDivider title="Education" className="print:text-right md:text-right" />
-          <SpacedCols>
-            {Object.entries(educations).map(([key, education]) => (
-              <div
-                key={key}
-                className="print:text-right md:text-right md:self-end pl-0 lg:pl-5 xl:pl-16 max-w-fit print:max-w-[200px]"
-              >
-                <Typo.h4>{education.to}</Typo.h4>
-                <Typo.h5>{education.from}</Typo.h5>
-                <Typo.h2 className="leading-tight my-3 sm:mb-0">{education.title}</Typo.h2>
-                <Typo.p dense className="print:text-right md:text-right sm:pt-2">
-                  {education.footer}
-                </Typo.p>
-              </div>
-            ))}
-          </SpacedCols>
-        </ContainerInner>
-      }
+      sideBar={windowContext && windowContext.width && windowContext?.width >= 768 && sideBar}
     >
       <ContainerInner>
         <HeadlineWithDivider title="Experience" />
@@ -78,7 +93,7 @@ const CV = () => {
           </Typo.p>
           {openSections &&
             Object.entries(experiences).map(([key, experience]) => (
-              <div key={key}>
+              <div key={key} id={key}>
                 <div className="flex flex-col sm:flex-row w-full">
                   <div className="flex flex-col sm:block sm:float-left " style={{whiteSpace: 'nowrap'}}>
                     <Typo.h4>{experience.to}</Typo.h4>
@@ -89,9 +104,9 @@ const CV = () => {
                   </div>
                 </div>
                 <div
-                  className={classNames('flex flex-col gap-6 transition-[max-height] ease-out', {
+                  className={classNames('flex flex-col gap-6 transition-[max-height] duration-900 overflow-hidden', {
                     'max-h-[3000px]': openSections.get(key),
-                    'max-h-0 overflow-hidden': !openSections.get(key),
+                    'max-h-0': !openSections.get(key),
                   })}
                 >
                   {experience.company && (
@@ -162,7 +177,7 @@ const CV = () => {
                 </div>
                 <div
                   className="flex flex-row justify-center md:justify-start items-center cursor-pointer mt-4"
-                  onClick={() => persistSection(key)}
+                  onClick={(e) => persistSection(e, key)}
                 >
                   <Typo.p className="text-g hover:underline">Show {openSections.get(key) ? 'less' : 'more'}</Typo.p>
                 </div>
@@ -170,6 +185,7 @@ const CV = () => {
             ))}
         </SpacedCols>
       </ContainerInner>
+      {windowContext && windowContext.width && windowContext?.width < 768 && sideBar}
     </PageLayout>
   );
 };

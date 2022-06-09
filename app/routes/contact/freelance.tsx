@@ -13,7 +13,7 @@ const FreelanceOpportunity: FC = () => {
         <Input label="Company name" name="employer" required placeholder="Monster Corp" />
       </li>
       <li className="flex flex-col">
-        <Input label="Compensation / rate" name="compensation" required placeholder="Enter fixed or range" />
+        <Input label="Compensation / rate" name="compensation" required placeholder="Enter fixed value or range" />
       </li>
       <li className="flex flex-col">
         <Input label="Your name" name="name" required placeholder="Jane Doe" />

@@ -8,31 +8,29 @@ import {Typo} from '~/components/primitives/typography';
 export const meta: MetaFunction = () => ({
   title: 'i am hanna - Lana Del Rey polygone art',
 });
+const sideBar = (
+  <ContainerInner>
+    <HeadlineWithDivider title="About this work" className="md:text-right" />
+    <div
+      className="flex flex-row flex-wrap md:justify-end gap-2 pl-0 lg:pl-5 xl:pl-10"
+      style={{maxWidth: 'fit-content'}}
+    >
+      <Typo.p>
+        I absolutely adored the early Lana Del Rey albums; in particular, I was obsessed with 'Born to Die'. The album
+        cover art is really amazing, so I wanted to create my own artistic rendition of it, and have it nicely displayed
+        in my home as a physical print.
+      </Typo.p>
+      <Typo.p>
+        In total I spent around 10 hours on its creation, but I am really pleased with the way it turned out, and love
+        seeing it hanging in my kitchen.
+      </Typo.p>
+    </div>
+  </ContainerInner>
+);
 
 const Lana: FC = () => {
   return (
-    <PageLayout
-      title="Hanna Achenbach"
-      subTitle="Frontend engineer"
-      sideBar={
-        <ContainerInner>
-          <HeadlineWithDivider title="About this work" className="md:text-right" />
-          <div
-            className="flex flex-row flex-wrap md:justify-end gap-2 pl-0 lg:pl-5 xl:pl-10"
-            style={{maxWidth: 'fit-content'}}
-          >
-            <Typo.p>
-              It is probably fair to say that I absolutely love the early Lana Del Rey albums and that I was
-              particularly obsessed with 'Born to Die'. The album cover art is really amazing and therefore wanted to
-              hang up some nice artwork of it.
-            </Typo.p>
-            <Typo.p>
-              In total I probably spent around 10 hours on this, but now I have a unique print hanging in my kitchen.
-            </Typo.p>
-          </div>
-        </ContainerInner>
-      }
-    >
+    <PageLayout title="Hanna Achenbach" subTitle="Frontend engineer" sideBar={sideBar}>
       <ContainerInner>
         <HeadlineWithDivider title="Process" />
         <SpacedCols>
@@ -43,15 +41,15 @@ const Lana: FC = () => {
           <div className="flex flex-col gap-6">
             <Typo.h3>Creating polygone shapes - Illustrator</Typo.h3>
             <img src="/work_samples/lana/lines.jpg" />
-            <Typo.p>In many hours of work I hand drew 2680 shapes along the edges of the original image.</Typo.p>
+            <Typo.p>I first hand drew 2680 shapes along the edges of the original image.</Typo.p>
           </div>
           <div className="flex flex-col gap-6">
             <Typo.h3>Filling the shapes - Photohop</Typo.h3>
             <img src="/work_samples/lana/poly_lana.jpg" />
             <Typo.p>
-              Afterwards I placed both the orginal image and the shapes on two Photoshop layers and wrote a small
-              automation, that based on the shape calculates the midtone of the image in that area and fills the shape
-              with it.
+              Then I placed both the orginal image and the shapes on two Photoshop layers, and wrote a small automation
+              that calculates the midtone of the image in an area based on the shape, then fills the shape with said
+              tone.
             </Typo.p>
           </div>
           <Typo.p style={{whiteSpace: 'nowrap'}}>

@@ -40,9 +40,8 @@ const MobileLayout: ComponentWithChildren<PageLayoutProps> = ({children, title, 
             <HeaderNav />
           </div>
 
-          {/* BOTTOM */}
+          {sideBar && <ContainerOuter className="flex-1">{sideBar}</ContainerOuter>}
           <ContainerOuter>{children}</ContainerOuter>
-          <ContainerOuter className="flex-1">{sideBar}</ContainerOuter>
         </div>
       </div>
     </div>
@@ -51,7 +50,7 @@ const MobileLayout: ComponentWithChildren<PageLayoutProps> = ({children, title, 
 
 const TabletLayout: ComponentWithChildren<PageLayoutProps> = ({children, title, subTitle, sideBar}) => {
   return (
-    <div className="relative py-8 print:py-5">
+    <div className="relative py-8 print:py-5 ">
       <HR className="-z-10" style={{transform: `translate3d(0px, ${halfImgCSS}, 0px)`}} />
       <div className="container mx-auto border-box pl-5 pr-5 sm:pl-8 sm:pr-8">
         <div className="flex flex-col justify-between gap-10 sm:gap-10">
@@ -85,10 +84,8 @@ const TabletLayout: ComponentWithChildren<PageLayoutProps> = ({children, title, 
               </div>
             </div>
           </div>
-
-          {/* BOTTOM */}
+          {sideBar && <ContainerOuter className="flex-1">{sideBar}</ContainerOuter>}
           <ContainerOuter>{children}</ContainerOuter>
-          <ContainerOuter className="flex-1">{sideBar}</ContainerOuter>
         </div>
       </div>
     </div>
@@ -110,7 +107,7 @@ const Layout: ComponentWithChildren<PageLayoutProps> = ({children, title, subTit
             >
               <img src="/portrait.jpg" className="rounded-full" />
             </div>
-            <ContainerOuter className="flex-1 max-w-100">{sideBar}</ContainerOuter>
+            {sideBar && <ContainerOuter className="flex-1 max-w-100">{sideBar}</ContainerOuter>}
           </div>
 
           {/* RIGHT */}

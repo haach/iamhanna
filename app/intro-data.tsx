@@ -30,9 +30,10 @@ export const loves: Array<{
     title: 'Remix + Vercel',
     text: (
       <>
-        Honestly, how amazing is it to be able to write a whole full stack app all in JS with serverless functions and
-        continuous deployment in a one click setup? Web technology has come a long way and I like where this is going.
-        (Full disclaimer: I also was over configuring webpack) This is the perfect setup for small projects right now.
+        Honestly, how great is it to be able to write a whole full stack app, all in JS, with serverless functions, and
+        continuous deployment in a one click setup? Web technology has come a long way and I like where it is going
+        (full disclosure: I'd had enough of configuring webpack). This is definitely the setup I will be using for small
+        projects from here on out.
       </>
     ),
     links: [
@@ -44,9 +45,9 @@ export const loves: Array<{
     title: 'Warp Terminal',
     text: (
       <>
-        It seems most command line applications still look and feel like Vim. Because I am a strong proponent for
-        usability and pleasing visuals, Warp filled a niche in my work setup, I never really knew existed — and I am so
-        happy about it. (It also comes with loads of options for customization!)
+        It seems most command line applications still look and feel like Vim. I am a strong proponent for usability and
+        pleasing visuals, so Warp filled a niche in my work setup I never really knew was there. It has transformed my
+        working experience; plus, Warp also comes with loads of options for customization!
       </>
     ),
     links: [{text: 'Warp terminal', href: 'https://www.warp.dev/'}],
@@ -55,11 +56,10 @@ export const loves: Array<{
     title: 'Syntax Podcast',
     text: (
       <>
-        For a long time, I had a really hard time keeping up with the current web development trends while working a 9
-        to 5 as well. Then I noticed that I probably spend around 15h every week just walking. With the body motor
-        functions occupied, my mind is a lot sharper, and so I gave web dev podcasts a try. I eventually landed on
-        Syntax, because the two hosts have just such a great way of presenting complex topics digestible and always keep
-        it light and fun — I highly recommend!
+        For a long time, I found it hard to keep up with current trends in web development while working a 9 to 5. I
+        spend around 15h every week just walking, and having my motor functions occupied actually makes my mind a lot
+        sharper. So, I gave web dev podcasts a try and eventually landed on Syntax. The two hosts have such a great way
+        of presenting complex topics in a digestible way, and always keep it light and fun. I highly recommend!
       </>
     ),
     links: [{text: 'Syntax.fm', href: 'https://syntax.fm/'}],
@@ -68,8 +68,8 @@ export const loves: Array<{
     title: 'Just functions',
     text: (
       <>
-        A set of hyper lightweight, fully tested, fully typed JS utility functions that possibly should be part of ES
-        already. You can install the full set or just the ones you need. Bye bye Lodash!
+        A set of hyper lightweight, fully tested, fully typed JS utility functions that should really already be part of
+        ES. You can install the full set, or just the ones you need - bye bye Lodash!
       </>
     ),
     links: [
@@ -83,10 +83,10 @@ export const loves: Array<{
     title: 'My portafilter machine',
     text: (
       <>
-        I can't even say this enough, how happy I am to have moved away from my good old espresso maker to a
-        portafilter. After a small research, I went for the BEEM ESPRESSO GRIND PROFESSION with integrated grinder and
-        milk frother. It took me a couple of days to figure the perfect settings out, but now my favorite oat milk flat
-        white is served here at home, and it makes my day.
+        I can't stress enough how happy I am to have retired my old espresso maker in exchange for a portafilter
+        machine. After some research, I got the BEEM espresso machine that comes with an integrated grinder and a milk
+        frother. It took me a couple of days to get the settings just right, but now my favorite oat milk flat white is
+        served from right here at home.
       </>
     ),
     links: [
@@ -100,9 +100,9 @@ export const loves: Array<{
     title: 'A soft murmur',
     text: (
       <>
-        Working can be pretty hard when there is a lot of ambient noise distracting you, but I don't always want to play
-        music on my headphones to exclude the noise. Asoftmurmur is a simple page that let's you mix ambient sounds like
-        rain or waves together for that soothing focus zone soundtrack.
+        Working in a noisy environment, whether at home or in the office, is challanging. However, I don't always want
+        to play music on my headphones to exclude the noise. Asoftmurmur offers a simple sulution: a webpage that allows
+        you to mix ambient sounds, like rain or ocean waves, in order to create your ideal focus-zone soundtrack.
       </>
     ),
     links: [
