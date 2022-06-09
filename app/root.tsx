@@ -23,6 +23,8 @@ export const meta: MetaFunction = () => ({
   viewport: 'width=device-width,initial-scale=1',
   title: 'i am hanna - portfolio of Hanna Achenbach',
   description: description,
+  keywords:
+    'Hanna Achenbach software frontend full-stack fullstack engineer developer web technology web-apps apps application website PWA progressivve web app design artist',
 });
 
 export const links: LinksFunction = () => {
