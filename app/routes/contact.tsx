@@ -14,10 +14,9 @@ import {ContainerInner} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {btn, btn_primary, hideLineOverflow, link} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
-import {useWindow} from '~/contexts/WindowContext';
 
 export const meta: MetaFunction = () => ({
-  title: 'i am hanna - contact',
+  title: 'Drop me a message or send me an offer',
 });
 
 enum ContactReason {

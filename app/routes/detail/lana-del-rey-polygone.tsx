@@ -6,7 +6,7 @@ import {PageLayout} from '~/components/molecules/PageLayout';
 import {Typo} from '~/components/primitives/typography';
 
 export const meta: MetaFunction = () => ({
-  title: 'i am hanna - Lana Del Rey polygone art',
+  title: 'A Lana Del Rey polygone art',
 });
 const sideBar = (
   <ContainerInner>
