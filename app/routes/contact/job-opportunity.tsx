@@ -27,7 +27,7 @@ const JobOpportunity: FC = () => {
         <Input label="Employer" name="employer" required placeholder="Monster Corp" />
       </li>
       <li className="flex flex-col">
-        <Input label="Compensation" name="compensation" required placeholder="Enter fixed or range" />
+        <Input label="Compensation" name="compensation" required placeholder="Enter fixed value or range" />
       </li>
       <li className="flex flex-col">
         <label htmlFor="workingModel" className="mb-2">
