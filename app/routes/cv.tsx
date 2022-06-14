@@ -88,7 +88,7 @@ const CV = () => {
           <Typo.p>
             You can also{' '}
             <Typo.linkExternal href="/hanna_achenbach_short_cv.pdf" download>
-              download the PDF version
+              download the short version as PDF
             </Typo.linkExternal>
           </Typo.p>
           {openSections &&

@@ -8,14 +8,12 @@ import {ContainerInner, SpacedCols, TwoColumnText} from '~/components/molecules/
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {pill} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
-import {useWindow} from '~/contexts/WindowContext';
 
 export const meta: MetaFunction = () => ({
   title: 'About me and things I currently love',
 });
 
 const Index: FC = () => {
-  const windowContext = useWindow();
   return (
     <PageLayout
       title="Hanna Achenbach"

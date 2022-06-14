@@ -37,9 +37,6 @@ export const experiences: Experiences = {
     team: [
       'The product team setup was cross-functional, and consisted of a total of six frontend and backend engineers, a product designer, and a product owner.',
     ],
-    /*  header: [
-      'After working exclusively at agencies up until 2020 I stepped first into product development at Back Technologies.',
-    ], */
     list: [
       'Translating features from Figma designs into the frontend using React, TypeScript, Emotion CSS and CSX',
       'Connecting frontend functionality to the GRPC API using Apollo GraphQL and Protobuf',
