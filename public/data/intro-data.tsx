@@ -13,6 +13,7 @@ export const tags = [
   'Gatsby',
   'Next',
   'Anime',
+  'React Testing library',
   'Node',
   'Python',
   'yarn 🧶',

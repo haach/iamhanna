@@ -35,7 +35,7 @@ export const workItems: Array<WorkItem> = [
       {type: LinkType.GITHUB, href: 'https://github.com/haach/pizza'},
       {type: LinkType.DEMO, href: 'https://pizza-haach.vercel.app/'},
     ],
-    tags: ['React', 'CRA', 'Styled Components', 'Anime.js'],
+    tags: ['React', 'CRA', 'Styled Components', 'CSS animations'],
   },
   /* {
     id: 'chair',
