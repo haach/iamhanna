@@ -37,13 +37,14 @@ export const workItems: Array<WorkItem> = [
     ],
     tags: ['React', 'CRA', 'Styled Components', 'CSS animations'],
   },
-  /* {
+  {
     id: 'chair',
-    img: 'tiny_chair.jpg',
-    title: 'Miniature chair',
-    text: 'Bacon ipsum dolor amet drumstick kielbasa pastrami venison kevin shoulder bacon pig biltong bresaola. Spare ribs shankle shoulder, jowl frankfurter meatball swine pastrami ball tip flank andouille. Ham chicken shank, picanha chislic biltong pork loin sausage pig. Salami beef ribs boudin tri-tip shank ham hock jowl buffalo flank short loin cow t-bone porchetta bresaola bacon. ',
-    tags: ['Wood working'],
-  }, */
+    img: 'chair/tiny-chair-cover.jpg',
+    title: 'The tiny chair',
+    text: 'As a child, I grew up with wood working and still enjoy the endless possibilities that wood offers as a material. The ability to create something out of nothing with your own hands is a welcome change from my daily work on the computer.',
+    links: [{type: LinkType.DETAIL, href: '/detail/tiny-chair'}],
+    tags: ['Wood working', 'Model making', 'Miniature furniture'],
+  },
   {
     id: 'CSV parser',
     img: 'watermaze.jpg',
@@ -58,7 +59,7 @@ export const workItems: Array<WorkItem> = [
     title: 'Lana del Rey polygone art',
     text: "A polygone artwork based on the 'Born to Die' album cover in Adobe Photoshop and Illustrator composed of 10 hours of work, 2680 shapes drawn and a 24 Euro print.",
     links: [{type: LinkType.DETAIL, href: '/detail/lana-del-rey-polygone'}],
-    tags: ['Digital artwork'],
+    tags: ['Digital artwork', 'Polygone art'],
   },
   {
     id: 'qtb',
