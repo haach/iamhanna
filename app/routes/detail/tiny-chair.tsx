@@ -29,7 +29,7 @@ const TinyChair: FC = () => {
               I have to admit the miniature interlocks were pretty challenging after all, but building this very first
               tiny chair still kicked off the new hobby of building more miniature furniture.
             </Typo.p>
-            <Typo.p>The chair measures 10 cm height and weights about 65 grams.</Typo.p>
+            <Typo.p>The chair measures 10 cm in height and weights about 65 grams.</Typo.p>
           </div>
         </ContainerInner>
       }
@@ -38,21 +38,14 @@ const TinyChair: FC = () => {
         <HeadlineWithDivider title="The tiny chair" />
         <SpacedCols>
           <div className="flex flex-col gap-4">
-            <Typo.p>
-              I started off by building the skeleton using 10 mm by 10 mm wooden strips. The legs are connected to the
-              top frame using interlocks, the back rest ist covered in hemp string and the seat is covered in 15 mm wide
-              spruce wood plates.
-            </Typo.p>
+            <Typo.p>I started off by building the skeleton using 10 mm by 10 mm wooden strips.</Typo.p>
             <img src="/work_samples/chair/tiny-chair-01.jpg" />
-          </div>
-          <div className="flex flex-col gap-6">
             <Typo.p>
-              Finally, a coat of natural wood oil gives the chair the glossy look and protects the material from UV
-              light.
+              The legs are connected to the top frame using interlocks and the seat is covered in 15 mm wide spruce wood
+              plates. Finally, a coat of natural wood oil gives the chair the glossy look and protects the material from
+              UV light.
             </Typo.p>
             <img src="/work_samples/chair/tiny-chair-02.jpg" />
-          </div>
-          <div className="flex flex-col gap-6">
             <Typo.p>Here are some close-up shots from the seat and the interlocks.</Typo.p>
             <img src="/work_samples/chair/tiny-chair-03.jpg" />
           </div>
