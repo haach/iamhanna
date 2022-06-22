@@ -3,6 +3,7 @@ import {FC, ReactNode} from 'react';
 export interface ReactProps {
   className?: string;
   key?: string;
+  onClick?(): void;
   style?: Record<string, string>; // Don't abuse this overwrite backdoor
 }
 

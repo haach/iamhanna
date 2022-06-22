@@ -39,16 +39,21 @@ export const loader = () => {
 const Layout: ComponentWithChildren = ({children}) => {
   const {darkMode} = useTheme();
   const {consent} = useCookieConsent();
-  const location = useLocation();
+  const {pathname} = useLocation();
   const TRACKING_ID = useLoaderData();
 
   useEffect(() => {
     if (consent === true && TRACKING_ID?.length) {
       appendGtmScripts(TRACKING_ID);
       gtag.event({consent: 'TRUE'});
-      gtag.pageview(location.pathname, TRACKING_ID);
     }
-  }, [consent, location, TRACKING_ID]);
+  }, [consent]);
+
+  useEffect(() => {
+    if (consent === true && TRACKING_ID?.length) {
+      gtag.pageview(pathname, TRACKING_ID);
+    }
+  }, [pathname]);
 
   // prevent loading in wrong color schema before context is up
   if (darkMode === null) return null;
