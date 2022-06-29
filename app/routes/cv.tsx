@@ -1,15 +1,15 @@
+import {useGTMDispatch} from '@elgorditosalsero/react-gtm-hook';
 import {MetaFunction} from '@remix-run/node';
 import classNames from 'classnames';
+import {educations, experiences} from 'public/data/cv-data';
 import {useEffect, useState} from 'react';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {ContainerInner, SpacedCols} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {Typo} from '~/components/primitives/typography';
-import {useWindow} from '~/contexts/WindowContext';
-import {educations, experiences} from 'public/data/cv-data';
-import {STORAGE_ITEMS} from '~/utils/constants';
-import * as gtag from '~/utils/gtags.client';
 import {useCookieConsent} from '~/contexts/CookieContext';
+import {useWindow} from '~/contexts/WindowContext';
+import {STORAGE_ITEMS} from '~/utils/constants';
 
 export const meta: MetaFunction = () => ({
   title: 'CV, experiences and education',
@@ -40,6 +40,7 @@ const sideBar = (
 const CV = () => {
   const windowContext = useWindow();
   const {consent} = useCookieConsent();
+  const sendDataToGTM = useGTMDispatch();
 
   const defaultState = new Map([
     ['back', windowContext && windowContext.width && windowContext?.width < 768 ? false : true],
@@ -88,16 +89,16 @@ const CV = () => {
       <ContainerInner>
         <HeadlineWithDivider title="Experience" />
         <SpacedCols>
-          <Typo.p
-            onClick={() => {
-              if (consent === true) {
-                gtag.event({action: 'cvDownloaded'});
-                gtag.event({cvDownloaded: 'TRUE'});
-              }
-            }}
-          >
+          <Typo.p>
             You can also{' '}
-            <Typo.linkExternal href="/hanna_achenbach_short_cv.pdf" download>
+            <Typo.linkExternal
+              href="/hanna_achenbach_short_cv.pdf"
+              download
+              onClick={() => {
+                console.log('lulu');
+                sendDataToGTM({event: 'cvDownloaded'});
+              }}
+            >
               download the short version as PDF
             </Typo.linkExternal>
           </Typo.p>
