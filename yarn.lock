@@ -448,6 +448,11 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
+"@elgorditosalsero/react-gtm-hook@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@elgorditosalsero/react-gtm-hook/-/react-gtm-hook-2.4.0.tgz#0a54d249dc2bc6c26c25b1452c150be022aea607"
+  integrity sha512-ysKEg79MVk5bnrR6ZlhXNvTcPydsdKTfxdSgji9JdH1GYYyJ+muilNFqKlr0AnWmXbZfN0gzQRSB6oP6V+zuyQ==
+
 "@esbuild-plugins/node-modules-polyfill@^0.1.4":
   version "0.1.4"
   resolved "https://registry.npmjs.org/@esbuild-plugins/node-modules-polyfill/-/node-modules-polyfill-0.1.4.tgz"
