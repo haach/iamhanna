@@ -1,3 +1,4 @@
+import {useGTMDispatch} from '@elgorditosalsero/react-gtm-hook';
 import classNames from 'classnames';
 import {FC} from 'react';
 import {ReactProps} from '~/components';
@@ -6,10 +7,14 @@ import {useTheme} from '~/contexts/ThemeContext';
 
 export const DarkModeSwitch: FC<ReactProps> = ({className, style}) => {
   const {darkMode, switchDarkMode} = useTheme();
+  const sendDataToGTM = useGTMDispatch();
   return (
     <button
       style={style}
-      onClick={switchDarkMode}
+      onClick={() => {
+        sendDataToGTM({event: `toggle_darkmode`, value: !darkMode});
+        switchDarkMode();
+      }}
       className={classNames('flex flex-row content-center items-center text-xs print:hidden', className)}
     >
       <Typo.caption className="mt-0 mr-2">Dark mode</Typo.caption>

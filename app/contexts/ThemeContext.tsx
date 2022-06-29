@@ -1,4 +1,4 @@
-import {createContext, FC, useContext, useEffect, useState} from 'react';
+import {createContext, useContext, useEffect, useState} from 'react';
 import {ComponentWithChildren} from '~/components';
 import {useWindow} from '~/contexts/WindowContext';
 import {STORAGE_ITEMS} from '~/utils/constants';
