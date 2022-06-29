@@ -33,12 +33,14 @@ export const loader = () => {
   dotenv.config({path: `.env`});
   return process?.env.TRACKING_ID;
 };
-
+/**
+ *
+ * @returns A component that automatically track GTM navigation events if user consented
+ */
 const PageViewTracker: FC = () => {
   const {pathname} = useLocation();
   const sendDataToGTM = useGTMDispatch();
   useEffect(() => {
-    console.log('send pageview event: ', pathname);
     sendDataToGTM({event: 'navigate', value: pathname});
   }, [pathname]);
   return null;
@@ -56,7 +58,6 @@ const Layout: ComponentWithChildren = ({children}) => {
   // prevent loading in wrong color schema before context is up
   if (darkMode === null) return null;
   if (consent === true) {
-    console.log('consent', consent);
     return (
       <GTMProvider state={gtmParams}>
         <PageViewTracker />
@@ -65,10 +66,10 @@ const Layout: ComponentWithChildren = ({children}) => {
     );
   }
   return (
-    <>
+    <GTMProvider state={{id: ''}}>
       {children}
       <CookieBanner />
-    </>
+    </GTMProvider>
   );
 };
 

@@ -39,7 +39,6 @@ const sideBar = (
 
 const CV = () => {
   const windowContext = useWindow();
-  const {consent} = useCookieConsent();
   const sendDataToGTM = useGTMDispatch();
 
   const defaultState = new Map([
@@ -95,7 +94,6 @@ const CV = () => {
               href="/hanna_achenbach_short_cv.pdf"
               download
               onClick={() => {
-                console.log('lulu');
                 sendDataToGTM({event: 'cvDownloaded'});
               }}
             >
