@@ -3,7 +3,7 @@ import type {LinksFunction, MetaFunction} from '@remix-run/node';
 import {Links, LiveReload, Meta, Outlet, Scripts, useCatch, useLoaderData, useLocation} from '@remix-run/react';
 import classNames from 'classnames';
 import dotenv from 'dotenv';
-import {FC, useEffect} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {ComponentWithChildren} from '~/components';
 import {CookieBanner} from '~/components/molecules/CookieBanner';
 import {SrollPosition} from '~/components/molecules/SrollPosition';
@@ -38,10 +38,12 @@ export const loader = () => {
  * @returns A component that automatically track GTM navigation events if user consented
  */
 const PageViewTracker: FC = () => {
+  const [oldPathname, setOldPathname] = useState<string>('/');
   const {pathname} = useLocation();
   const sendDataToGTM = useGTMDispatch();
   useEffect(() => {
-    sendDataToGTM({event: 'navigate', value: pathname});
+    sendDataToGTM({event: 'navigate', 'gtm.oldUrl': oldPathname, 'gtm.newUrl': pathname});
+    setOldPathname(pathname);
   }, [pathname]);
   return null;
 };

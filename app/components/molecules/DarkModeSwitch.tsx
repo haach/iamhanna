@@ -12,7 +12,7 @@ export const DarkModeSwitch: FC<ReactProps> = ({className, style}) => {
     <button
       style={style}
       onClick={() => {
-        sendDataToGTM({event: `toggle_darkmode_${!darkMode ? 'ON' : 'OFF'}`});
+        sendDataToGTM({event: `toggle_darkmode`, value: !darkMode});
         switchDarkMode();
       }}
       className={classNames('flex flex-row content-center items-center text-xs print:hidden', className)}
