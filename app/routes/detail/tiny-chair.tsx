@@ -42,8 +42,9 @@ const TinyChair: FC = () => {
             <img src="/work_samples/chair/tiny-chair-01.jpg" />
             <Typo.p>
               The legs are connected to the top frame using interlocks and the seat is covered in 15 mm wide spruce wood
-              plates. Finally, a coat of natural wood oil gives the chair the glossy look and protects the material from
-              UV light.
+              plates. I rounded the ends of the backrest using sand paper and gave it a rattan look by wrapping it with
+              a hemp yarn. Finally, a coat of natural wood oil gives the chair the glossy look and protects the material
+              from UV light.
             </Typo.p>
             <img src="/work_samples/chair/tiny-chair-02.jpg" />
             <Typo.p>Here are some close-up shots from the seat and the interlocks.</Typo.p>
