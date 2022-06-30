@@ -4,6 +4,7 @@ import {Links, LiveReload, Meta, Outlet, Scripts, useCatch, useLoaderData, useLo
 import classNames from 'classnames';
 import dotenv from 'dotenv';
 import {FC, useEffect, useState} from 'react';
+import {Helmet} from 'react-helmet';
 import {ComponentWithChildren} from '~/components';
 import {CookieBanner} from '~/components/molecules/CookieBanner';
 import {SrollPosition} from '~/components/molecules/SrollPosition';
@@ -84,9 +85,11 @@ const Document: ComponentWithChildren = ({children}) => {
     <html lang="en" className={className}>
       <head>
         <Meta />
-        <meta property="og:title" content="i am hanna - portfolio of Hanna Achenbach" />
-        <meta property="og:image" content="https://www.iamhanna.de/work_samples/iamhanna_dark_light.gif" />
-        <meta property="og:description" content={description} />
+        <Helmet>
+          <meta property="og:title" content="i am hanna - portfolio of Hanna Achenbach" />
+          <meta property="og:image" content="/work_samples/iamhanna_dark_light.gif" />
+          <meta property="og:description" content={description} />
+        </Helmet>
         <link rel="icon" href={systemDarkMode ? '/dog_light.svg' : '/dog.svg'} />
         <link
           href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"

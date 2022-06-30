@@ -4,13 +4,17 @@ import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {ContainerInner, SpacedCols} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {Typo} from '~/components/primitives/typography';
+import {Helmet} from 'react-helmet';
 
 export const meta: MetaFunction = () => ({
   title: 'Corporate design of the QTB institute HH University Düsseldorf',
 });
 
-const QTB: FC = () => {
-  return (
+const QTB: FC = () => (
+  <>
+    <Helmet>
+      <meta property="og:image" content="/work_samples/qtb/qtb_logo.jpg" />
+    </Helmet>
     <PageLayout
       title="Hanna Achenbach"
       subTitle="Frontend engineer"
@@ -85,7 +89,7 @@ const QTB: FC = () => {
         </SpacedCols>
       </ContainerInner>
     </PageLayout>
-  );
-};
+  </>
+);
 
 export default QTB;
