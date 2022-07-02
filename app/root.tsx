@@ -56,22 +56,16 @@ const Layout: ComponentWithChildren = ({children}) => {
 
   const gtmParams = {
     id: TRACKING_ID,
+    injectScript: consent ?? false,
   };
 
   // prevent loading in wrong color schema before context is up
   if (darkMode === null) return null;
-  if (consent === true) {
-    return (
-      <GTMProvider state={gtmParams}>
-        <PageViewTracker />
-        {children}
-      </GTMProvider>
-    );
-  }
   return (
-    <GTMProvider state={{id: ''}}>
+    <GTMProvider state={gtmParams}>
+      <PageViewTracker />
       {children}
-      <CookieBanner />
+      {consent === null && <CookieBanner />}
     </GTMProvider>
   );
 };
