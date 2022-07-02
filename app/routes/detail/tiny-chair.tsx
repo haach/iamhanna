@@ -6,8 +6,9 @@ import {PageLayout} from '~/components/molecules/PageLayout';
 import {Typo} from '~/components/primitives/typography';
 import {Helmet} from 'react-helmet';
 
+const title = 'Building a wooden miniature chair';
 export const meta: MetaFunction = () => ({
-  title: 'Building a wooden miniature chair',
+  title,
 });
 
 const TinyChair: FC = () => {
@@ -15,6 +16,7 @@ const TinyChair: FC = () => {
     <>
       <Helmet>
         <meta property="og:image" content="/work_samples/chair/tiny-chair-cover.jpg" />
+        <meta property="og:title" content={title} />
       </Helmet>
       <PageLayout
         title="Hanna Achenbach"

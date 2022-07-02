@@ -6,8 +6,9 @@ import {ContainerInner, SpacedCols} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {Typo} from '~/components/primitives/typography';
 
+const title = 'A Lana Del Rey polygone art';
 export const meta: MetaFunction = () => ({
-  title: 'A Lana Del Rey polygone art',
+  title,
 });
 const sideBar = (
   <ContainerInner>
@@ -34,6 +35,7 @@ const Lana: FC = () => {
     <>
       <Helmet>
         <meta property="og:image" content="/work_samples/lana/poly_lana.jpg" />
+        <meta property="og:title" content={title} />
       </Helmet>
       <PageLayout title="Hanna Achenbach" subTitle="Frontend engineer" sideBar={sideBar}>
         <ContainerInner>
