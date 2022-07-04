@@ -36,7 +36,7 @@ const TinyChair: FC = () => {
                 I have to admit the miniature interlocks were pretty challenging after all, but building this very first
                 tiny chair still kicked off the new hobby of building more miniature furniture.
               </Typo.p>
-              <Typo.p>The chair measures 10 cm in height and weights about 65 grams.</Typo.p>
+              <Typo.p>The chair measures 10 cm in height and weights about 25 grams.</Typo.p>
             </div>
           </ContainerInner>
         }
