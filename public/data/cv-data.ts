@@ -26,7 +26,7 @@ interface Education {
 export const experiences: Experiences = {
   back: {
     name: 'Back',
-    from: 'January 2020',
+    from: 'February 2020',
     to: 'March 2022',
     title: 'Frontend engineer at Back Technologies',
     company: [
@@ -53,7 +53,7 @@ export const experiences: Experiences = {
   },
   neugelb: {
     name: 'Neugelb',
-    from: 'May 2018',
+    from: 'June 2018',
     to: 'December 2019',
     title: 'Frontend Developer at Neugelb Studios (Commerzbank)',
     company: [
@@ -78,7 +78,7 @@ export const experiences: Experiences = {
   },
   autentek_2: {
     name: 'Autentek',
-    from: 'March 2016',
+    from: 'April 2016',
     to: 'May 2018',
     title: 'Frontend Developer and UI/UX Designer at autentek',
     link: 'https://autentek.de',
@@ -100,7 +100,7 @@ export const experiences: Experiences = {
   },
   autentek_1: {
     name: 'Autentek',
-    from: '2014',
+    from: 'April 2014',
     to: 'March 2016',
     title: 'Apprentice for media design at autentek',
     link: 'https://autentek.de',
