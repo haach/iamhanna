@@ -28,16 +28,17 @@ export const loves: Array<{
   links?: Array<{text: string; href: string}>;
 }> = [
   {
-    title: 'Remix + Vercel',
+    title: 'Next / Remix + Vercel',
     text: (
       <>
-        Honestly, how great is it to be able to write a whole full stack app, all in JS, with serverless functions, and
-        continuous deployment in a one click setup? Web technology has come a long way and I like where it is going
+        Honestly, how great is it to be able to write a whole "full stack" app, all in JS, with serverless functions,
+        and continuous deployment in a one click setup? Web technology has come a long way and I like where it is going
         (full disclosure: I'd had enough of configuring webpack). This is definitely the setup I will be using for small
         projects from here on out.
       </>
     ),
     links: [
+      {text: 'Next.js', href: 'https://nextjs.org/'},
       {text: 'Remix.run', href: 'https://remix.run/'},
       {text: 'Vercel', href: 'https://vercel.com/'},
     ],
