@@ -3,6 +3,7 @@ import {ComponentWithChildren} from '~/components';
 import {DarkModeSwitch} from '~/components/molecules/DarkModeSwitch';
 import {HeaderNav} from '~/components/molecules/HeaderNav';
 import {ContainerOuter} from '~/components/molecules/Layout';
+import {SuspenseImage} from '~/components/molecules/SuspenseImage';
 import {blackBorder, HR} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 import {useWindow} from '~/contexts/WindowContext';
@@ -27,7 +28,7 @@ const MobileLayout: ComponentWithChildren<PageLayoutProps> = ({children, title, 
               className={`inline-block border-2 rounded-full bg-white dark:bg-black m-auto aspect-square z-10 ${blackBorder}`}
               style={{width: imgCSS}}
             >
-              <img src="/portrait.jpg" className="rounded-full " />
+              <SuspenseImage src="/portrait.jpg" className="rounded-full " width={imgCSS} height={imgCSS} />
             </div>
             <Typo.h1 style={{whiteSpace: 'nowrap'}}>{title}</Typo.h1>
             {subTitle && (
@@ -61,7 +62,7 @@ const TabletLayout: ComponentWithChildren<PageLayoutProps> = ({children, title, 
                 className={`inline-block border-2 rounded-full bg-white dark:bg-black m-auto sm:ml-8 p-1 aspect-square z-10 ${blackBorder}`}
                 style={{width: imgCSS}}
               >
-                <img src="/portrait.jpg" className="rounded-full " />
+                <SuspenseImage src="/portrait.jpg" className="rounded-full " width={imgCSS} height={imgCSS} />
               </div>
             </div>
             <div className="flex flex-1 flex-col">
@@ -105,7 +106,7 @@ const Layout: ComponentWithChildren<PageLayoutProps> = ({children, title, subTit
               className={`inline-block border-2 ml-auto rounded-full bg-white dark:bg-black p-1 aspect-square z-10 ${blackBorder}`}
               style={{width: imgCSS}}
             >
-              <img src="/portrait.jpg" className="rounded-full" />
+              <SuspenseImage src="/portrait.jpg" className="rounded-full " width={imgCSS} height={imgCSS} />
             </div>
             {sideBar && <ContainerOuter className="flex-1 max-w-100">{sideBar}</ContainerOuter>}
           </div>

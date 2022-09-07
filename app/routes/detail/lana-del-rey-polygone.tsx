@@ -4,6 +4,7 @@ import {Helmet} from 'react-helmet';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {ContainerInner, SpacedCols} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
+import {SuspenseImage} from '~/components/molecules/SuspenseImage';
 import {Typo} from '~/components/primitives/typography';
 
 const title = 'A Lana Del Rey polygone art';
@@ -43,16 +44,16 @@ const Lana: FC = () => {
           <SpacedCols>
             <div className="flex flex-col gap-4">
               <Typo.h3>Original image</Typo.h3>
-              <img src="/work_samples/lana/album_cover.jpg" />
+              <SuspenseImage src="/work_samples/lana/album_cover.jpg" height="500px" />
             </div>
             <div className="flex flex-col gap-6">
               <Typo.h3>Creating polygone shapes - Illustrator</Typo.h3>
-              <img src="/work_samples/lana/lines.jpg" />
+              <SuspenseImage src="/work_samples/lana/lines.jpg" height="500px" />
               <Typo.p>I first hand drew 2680 shapes along the edges of the original image.</Typo.p>
             </div>
             <div className="flex flex-col gap-6">
               <Typo.h3>Filling the shapes - Photohop</Typo.h3>
-              <img src="/work_samples/lana/poly_lana.jpg" />
+              <SuspenseImage src="/work_samples/lana/poly_lana.jpg" height="500px" />
               <Typo.p>
                 Then I placed both the orginal image and the shapes on two Photoshop layers, and wrote a small
                 automation that calculates the midtone of the image in an area based on the shape, then fills the shape

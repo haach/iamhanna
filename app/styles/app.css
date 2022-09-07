@@ -1127,9 +1127,41 @@ Ensure the default browser behavior of the `hidden` attribute.
        column-gap: 2rem;
 }
 
-/* .resonsive-columns > p + p:after {
-    content: "HELLO"
-} */
+.placeHoldergradient {
+  -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-name: placeHolderShimmer;
+          animation-name: placeHolderShimmer;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #fafafa 8%, #f4f4f4 38%, #fafafa 54%);
+  background-size: 1000px 640px;
+}
+
+@-webkit-keyframes placeHolderShimmer{
+  0%{
+    background-position: -468px 0
+  }
+
+  100%{
+    background-position: 468px 0
+  }
+}
+
+@keyframes placeHolderShimmer{
+  0%{
+    background-position: -468px 0
+  }
+
+  100%{
+    background-position: 468px 0
+  }
+}
 
 .focus-within\:border-o:focus-within {
   --tw-border-opacity: 1;
@@ -1515,4 +1547,4 @@ Ensure the default browser behavior of the `hidden` attribute.
   .xl\:pr-20 {
     padding-right: 5rem;
   }
-} 
+}

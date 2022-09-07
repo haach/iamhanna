@@ -5,16 +5,13 @@ import {FC} from 'react';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {ContainerInner, SpacedCols} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
+import {SuspenseImage} from '~/components/molecules/SuspenseImage';
 import {pill} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 
 export const meta: MetaFunction = () => ({
   title: 'Take a look at my coding projects and artwork',
 });
-
-const ImageContainer: FC<{src: string}> = ({src}) => (
-  <img src={`/work_samples/${src}`} className="max-w-full border border-solid border-gl dark:border-gd" />
-);
 
 const Work: FC = () => {
   return (
@@ -44,7 +41,11 @@ const Work: FC = () => {
           {workItems.map((item) => (
             <div className="flex flex-col gap-4" key={item.id}>
               <Typo.h3>{item.title}</Typo.h3>
-              <ImageContainer src={item.img} />
+              <SuspenseImage
+                src={`/work_samples/${item.img}`}
+                className="max-w-full border border-solid border-gl dark:border-gd"
+                height="420px"
+              />
               <Typo.p>{item.text}</Typo.p>
 
               <div className="flex flex-row gap-2">

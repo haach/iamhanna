@@ -5,6 +5,7 @@ import {ContainerInner, SpacedCols} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
 import {Typo} from '~/components/primitives/typography';
 import {Helmet} from 'react-helmet';
+import {SuspenseImage} from '~/components/molecules/SuspenseImage';
 
 const title = 'Corporate design of the QTB institute HH University Düsseldorf';
 export const meta: MetaFunction = () => ({
@@ -57,7 +58,7 @@ const QTB: FC = () => (
         <SpacedCols>
           <div className="flex flex-col gap-4">
             <Typo.h3>The new logo</Typo.h3>
-            <img src="/work_samples/qtb/qtb_logo.jpg" />
+            <SuspenseImage src="/work_samples/qtb/qtb_logo.jpg" height="565px" />
             <Typo.p>
               The main research focus of the QTB institute is to find mathematical models for biological processes.
               Within this focus, much of their research happens around DNA. For the primary graphic of the new logo I
@@ -76,14 +77,14 @@ const QTB: FC = () => (
           </div>
           <div className="flex flex-col gap-6">
             <Typo.h3>Business card</Typo.h3>
-            <img src="/work_samples/qtb/visi_mockup.jpg" />
+            <SuspenseImage src="/work_samples/qtb/visi_mockup.jpg" height="480px" />
             <Typo.p>
               For the business card I placed the new logo on a light, geometric background in grayscale colors.
             </Typo.p>
           </div>
           <div className="flex flex-col gap-6">
             <Typo.h3>Business paper</Typo.h3>
-            <img src="/work_samples/qtb/geschaeftspapier_mockup.jpg" />
+            <SuspenseImage src="/work_samples/qtb/geschaeftspapier_mockup.jpg" height="600px" />
           </div>
           <Typo.p style={{whiteSpace: 'nowrap'}}>
             <span className="text-xs">← </span> <Typo.linkInternal to="/work">Back to the overview</Typo.linkInternal>
