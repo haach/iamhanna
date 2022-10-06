@@ -353,13 +353,6 @@ input::-moz-placeholder, textarea::-moz-placeholder {
   /* 2 */
 }
 
-input:-ms-input-placeholder, textarea:-ms-input-placeholder {
-  opacity: 1;
-  /* 1 */
-  color: #9ca3af;
-  /* 2 */
-}
-
 input::placeholder,
 textarea::placeholder {
   opacity: 1;
@@ -693,7 +686,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .max-w-fit {
-  max-width: -webkit-fit-content;
   max-width: -moz-fit-content;
   max-width: fit-content;
 }
@@ -722,12 +714,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-@-webkit-keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -735,8 +721,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .animate-spin {
-  -webkit-animation: spin 1s linear infinite;
-          animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
 }
 
 .cursor-pointer {
@@ -1092,8 +1077,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .underline {
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
+  text-decoration-line: underline;
 }
 
 .outline-none {
@@ -1113,9 +1097,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .transition-colors {
-  transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -1128,29 +1110,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .placeHoldergradient {
-  -webkit-animation-duration: 1.2s;
-          animation-duration: 1.2s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  -webkit-animation-name: placeHolderShimmer;
-          animation-name: placeHolderShimmer;
-  -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
   background: #f6f7f8;
   background: linear-gradient(to right, #fafafa 8%, #f4f4f4 38%, #fafafa 54%);
   background-size: 1000px 640px;
-}
-
-@-webkit-keyframes placeHolderShimmer{
-  0%{
-    background-position: -468px 0
-  }
-
-  100%{
-    background-position: 468px 0
-  }
 }
 
 @keyframes placeHolderShimmer{
@@ -1204,8 +1171,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .hover\:underline:hover {
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
+  text-decoration-line: underline;
 }
 
 .focus\:border-o:focus {
