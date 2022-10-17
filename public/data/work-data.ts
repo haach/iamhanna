@@ -22,7 +22,7 @@ export const workItems: Array<WorkItem> = [
     id: 'brute-force',
     img: 'brute-force-password.gif',
     title: 'Brute force password',
-    text: "This is a small project that I created to learn more about brute force attacks. I was wondering how easy it really is to write such an algorithm and how long it would need to 'guess' certain passwords. The actual computation is ran inside a seperate JS thread using a web worker, so that the UI stays actionable and the function can be cancelled at anz time. The code is available on Github and the preview is deployed on Vercel, feel free to take a look!",
+    text: "This is a small project that I created to learn more about brute force attacks. I was wondering how easy it really is to write such an algorithm and how long it would need to 'guess' certain passwords. The actual computation is ran inside a separate JS thread using a web worker, so that the UI stays actionable and the function can be cancelled at any time. The code is available on Github and the preview is deployed on Vercel.",
     links: [
       {type: LinkType.GITHUB, href: 'https://github.com/haach/brute-force-password'},
       {type: LinkType.DEMO, href: 'https://brute-force-password.vercel.app/'},
