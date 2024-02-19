@@ -4,20 +4,20 @@
 
 ## Tech stack
 
-React on Remix and deployed to vercel. For my CSS I used Tailwind and some React Icons. 
+React on Remix and deployed to vercel. For my CSS I used Tailwind and some React Icons.
 
 ## Development
 
 To run Remix locally, make sure your project's local dependencies are installed:
 
 ```sh
-yarn 
+npm install
 ```
 
 Afterwards, start the Remix development server like so:
 
 ```sh
-yarn dev
+npm run dev
 ```
 
 Open up [http://localhost:3000](http://localhost:3000) and you should be ready to go!

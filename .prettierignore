@@ -14,6 +14,3 @@
 
 # secrets
 .env*
-
-# os
-.DS_Store

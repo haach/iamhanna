@@ -1,3 +1,15 @@
 {
-  "extends": ["@remix-run/eslint-config", "@remix-run/eslint-config/node"]
+	"extends": [
+		"@remix-run/eslint-config",
+		"@remix-run/eslint-config/node",
+		/* "plugin:prettier/recommended", */
+		"prettier",
+	],
+	/* "rules": {		
+    "comma-dangle": ["error", "always"],
+  }, */
+	/* "indent": [2, 2, {"SwitchCase": 1}], */
+	"rules": {
+		"indent": "off",
+	},
 }
