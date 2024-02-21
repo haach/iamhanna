@@ -10,7 +10,7 @@ interface CookieBanner {
 	onReject(): void;
 }
 
-export const CookieBanner: FC = () => {
+const CookieBanner: FC = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const {consent, setConsent} = useCookieConsent();
@@ -21,7 +21,7 @@ export const CookieBanner: FC = () => {
 			className={classNames(
 				'min-h-full min-w-full fixed top-0 bottom-0 left-0 right-0 z-50',
 				{
-					' bg-neutral-900/50 dark:bg-netral-300/25':
+					' bg-neutral-900/50 dark:bg-neutral-300/25':
 						location.pathname !== '/cookie-consent',
 				},
 			)}
@@ -36,9 +36,9 @@ export const CookieBanner: FC = () => {
 								<>
 									{' '}
 									-{' '}
-									<Typo.LinkExternal to="/cookie-consent">
+									<Typo.LinkInternal to="/cookie-consent">
 										Read more
-									</Typo.LinkExternal>
+									</Typo.LinkInternal>
 								</>
 							)}
 						</Typo.P>
@@ -68,3 +68,5 @@ export const CookieBanner: FC = () => {
 		</div>
 	);
 };
+
+export default CookieBanner;

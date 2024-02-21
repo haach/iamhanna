@@ -20,16 +20,13 @@ export default function DesignSystem() {
 				<Typo.H5>Typo.Headline 5 - Cormorant Infant, serif</Typo.H5>
 				<Typo.P>
 					Typo.P - Roboto Condensed, sans-serif
-					<br />I am a filler text Bacon ipsum dolor amet bresaola salami salami
-					drumstick pancetta jowl andouille alcatra cTypo.Huck turkey
-					sTypo.Houlder. Tongue tri-tip filet mignon ground round, Typo.Ham
-					Typo.Hock tenderloin pork cTypo.Hop rump drumstick biltong cupim
-					porcTypo.Hetta cTypo.Huck boudin. Ground round venison beef ribs
-					t-bone swine, doner cow fatback cupim strip steak sTypo.Hankle
-					pastrami burgdoggen cTypo.Hislic meatball. Pastrami pork turkey,
-					picanTypo.Ha sTypo.Hank tail cTypo.Hislic meatball sTypo.Houlder.
-					Landjaeger biltong picanTypo.Ha capicola sTypo.Hank bresaola alcatra
-					brisket fatback turducken filet mignon.
+					<br />I am a filler text Porchetta pastrami swine pork t-bone pancetta
+					cupim spare ribs hamburger. Burgdoggen spare ribs chislic filet mignon
+					jerky. Boudin tail tongue, pork loin filet mignon pig brisket swine
+					venison beef ribs meatloaf t-bone. Salami pork buffalo alcatra
+					andouille venison rump short loin tri-tip sirloin filet mignon short
+					ribs capicola tongue. Tongue shankle tail, sirloin salami flank pork
+					loin turkey ham drumstick.
 				</Typo.P>
 				<Typo.Caption>Typo.Caption - Roboto Condensed, sans-serif</Typo.Caption>
 			</ContainerInner>

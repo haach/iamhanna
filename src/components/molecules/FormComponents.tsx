@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import type {FC} from 'react';
 import {input} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 
@@ -68,7 +68,7 @@ export const RadioGroup: FC<
 > = ({label, options, ...props}) => {
 	return (
 		<>
-			<Typo.span>{label[0]}</Typo.span>
+			<Typo.Span>{label[0]}</Typo.Span>
 			{options.map(({value, label}) => (
 				<div key={value} className="flex flex-row items-center gap-1">
 					<input
@@ -83,7 +83,7 @@ export const RadioGroup: FC<
 					</label>
 				</div>
 			))}
-			<Typo.span>{label[1]}</Typo.span>
+			<Typo.Span>{label[1]}</Typo.Span>
 		</>
 	);
 };

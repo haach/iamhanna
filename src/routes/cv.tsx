@@ -1,8 +1,7 @@
-import {useGTMDispatch} from '@elgorditosalsero/react-gtm-hook';
 import type {MetaFunction} from '@remix-run/node';
 import classNames from 'classnames';
 import {educations, experiences} from 'public/data/cv-data';
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useMemo, useState} from 'react';
 import {HeadlineWithDivider} from '~/components/molecules/HeadlineWithDivider';
 import {ContainerInner, SpacedCols} from '~/components/molecules/Layout';
 import {PageLayout} from '~/components/molecules/PageLayout';
@@ -46,26 +45,27 @@ const sideBar = (
 
 const CV = () => {
 	const windowContext = useWindow();
-	const sendDataToGTM = useGTMDispatch();
 
-	const defaultState = new Map([
-		[
-			'aiven',
-			windowContext && windowContext.width && windowContext?.width < 768
-				? false
-				: true,
-		],
-		['back', false],
-		['neugelb', false],
-		['autentek_2', false],
-		['autentek_1', false],
-	]);
+	const defaultState = useMemo(
+		() =>
+			new Map([
+				[
+					'aiven',
+					windowContext?.width && windowContext.width < 768 ? true : false,
+				],
+				['back', false],
+				['neugelb', false],
+				['autentek_2', false],
+				['autentek_1', false],
+			]),
+		[windowContext],
+	);
 
 	const [openSections, setOpenSections] = useState<
 		Map<ExperienceId, boolean> | undefined
 	>();
 
-	useEffect(() => {
+	const updateSections = useCallback(() => {
 		const stored = window.localStorage.getItem(STORAGE_ITEMS.CV_SECTIONS);
 		if (stored) {
 			setOpenSections(new Map(JSON.parse(stored)));
@@ -76,13 +76,14 @@ const CV = () => {
 				JSON.stringify(Array.from(defaultState.entries())),
 			);
 		}
-	}, []);
+	}, [setOpenSections, defaultState]);
 
-	const persistSection = (
-		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-		section: ExperienceId,
-	) => {
-		const isClose = !openSections?.get(section) == false;
+	useEffect(() => {
+		updateSections();
+	}, [updateSections]);
+
+	const persistSection = (section: ExperienceId) => {
+		const isClose = !openSections?.get(section) === false;
 
 		const updatedMap = new Map(
 			openSections?.set(section, !openSections.get(section)),
@@ -105,16 +106,15 @@ const CV = () => {
 		}
 	};
 
+	const isMobile = Boolean(
+		windowContext && windowContext.width && windowContext?.width < 768,
+	);
+
 	return (
 		<PageLayout
 			title="Hanna Achenbach"
 			subTitle="Frontend engineer"
-			sideBar={
-				windowContext &&
-				windowContext.width &&
-				windowContext?.width >= 768 &&
-				sideBar
-			}
+			sideBar={!isMobile && sideBar}
 		>
 			<ContainerInner>
 				<HeadlineWithDivider title="Experience" />
@@ -225,22 +225,19 @@ const CV = () => {
 										</section>
 									)}
 								</div>
-								<div
+								<button
 									className="flex flex-row justify-center md:justify-start items-center cursor-pointer mt-4"
-									onClick={e => persistSection(e, key)}
+									onClick={_ => persistSection(key)}
 								>
 									<Typo.P className="text-g hover:underline">
 										Show {openSections.get(key) ? 'less' : 'more'}
 									</Typo.P>
-								</div>
+								</button>
 							</div>
 						))}
 				</SpacedCols>
 			</ContainerInner>
-			{windowContext &&
-				windowContext.width &&
-				windowContext?.width < 768 &&
-				sideBar}
+			{isMobile && sideBar}
 		</PageLayout>
 	);
 };

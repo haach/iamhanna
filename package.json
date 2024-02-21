@@ -3,9 +3,7 @@
 	"version": "2.0.0",
 	"description": "Hanna Achenbach portfolio",
 	"type": "module",
-	
 	"license": "MIT",
-	
 	"scripts": {
 		"start": "remix dev",
 		"build": "remix build",

@@ -1,5 +1,5 @@
 import {createContext, useContext, useEffect, useState} from 'react';
-import {ComponentWithChildren} from '~/components';
+import type {ComponentWithChildren} from '~/components';
 import {useWindow} from '~/contexts/WindowContext';
 import {STORAGE_ITEMS} from '~/utils/constants';
 
@@ -37,7 +37,7 @@ export const ThemeContextProvider: ComponentWithChildren = ({children}) => {
 			setSystemDarkMode(system);
 			let isDarkMode = false;
 			const stored = window.localStorage.getItem(STORAGE_ITEMS.DARK_MODE);
-			if (!!stored) {
+			if (stored) {
 				// setting previously saved in localStorage
 				isDarkMode = JSON.parse(stored ?? 'false');
 			} else {

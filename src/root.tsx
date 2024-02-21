@@ -14,11 +14,9 @@ import {
 import classNames from 'classnames';
 import dotenv from 'dotenv';
 import type {FC} from 'react';
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {Helmet} from 'react-helmet';
 import type {ComponentWithChildren} from '~/components';
-import {CookieBanner} from '~/components/molecules/CookieBanner';
-import {SrollPosition} from '~/components/molecules/SrollPosition';
 import {Typo} from '~/components/primitives/typography';
 import tailwindStyles from '~/styles/tailwind.css';
 import {
@@ -27,13 +25,14 @@ import {
 } from '~/contexts/CookieContext';
 import {ThemeContextProvider, useTheme} from '~/contexts/ThemeContext';
 import {WindowContextProvider} from '~/contexts/WindowContext';
+import CookieBanner from './components/molecules/CookieBanner';
 
 const description =
 	'I am a Berlin based frontend engineer and artist coming from a design driven background. On this portfolio you can find my cv and career path, a collection of things I currently love, some of my work and a way to contact me for job offers.';
 
 const meta: MetaFunction = () => [
-	{charset: 'utf-8'},
-	{viewport: 'width=device-width,initial-scale=1'},
+	{charset: 'utf-8'} /* 
+	{viewport: 'width=device-width,initial-scale=1'}, */,
 	{title: 'i am hanna - portfolio of Hanna Achenbach'},
 	{description: description},
 	{
@@ -65,14 +64,20 @@ const PageViewTracker: FC = () => {
 	const [oldPathname, setOldPathname] = useState<string>('/');
 	const {pathname} = useLocation();
 	const sendDataToGTM = useGTMDispatch();
-	useEffect(() => {
+
+	const trackNavigation = useCallback(() => {
 		sendDataToGTM({
 			'event': 'navigate',
 			'gtm.oldUrl': oldPathname,
 			'gtm.newUrl': pathname,
 		});
 		setOldPathname(pathname);
-	}, [pathname]);
+	}, [oldPathname, pathname, sendDataToGTM]);
+
+	useEffect(() => {
+		trackNavigation();
+	}, [trackNavigation]);
+
 	return null;
 };
 
@@ -131,8 +136,6 @@ const Document: ComponentWithChildren = ({children}) => {
 				{process.env.NODE_ENV === 'development' && <LiveReload />}
 				{children}
 				<Scripts />
-				<SrollPosition />
-				{/* <ScrollRestoration /> */}
 			</body>
 		</html>
 	);
@@ -160,12 +163,14 @@ const GTMErrorTracker: FC<{err: string}> = ({err}) => {
 	const sendDataToGTM = useGTMDispatch();
 	const {pathname} = useLocation();
 	useEffect(() => {
-		sendDataToGTM({
-			'event': 'gtm.pageError',
-			'gtm.errorMessage': err,
-			'gtm.errorUrl': pathname,
-		});
-	}, []);
+		if (err && pathname) {
+			sendDataToGTM({
+				'event': 'gtm.pageError',
+				'gtm.errorMessage': err,
+				'gtm.errorUrl': pathname,
+			});
+		}
+	}, [sendDataToGTM, err, pathname]);
 	return null;
 };
 

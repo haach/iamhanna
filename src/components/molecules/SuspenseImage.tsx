@@ -1,7 +1,8 @@
 import classNames from 'classnames';
-import {FC, Suspense} from 'react';
+import type {FC} from 'react';
+import {Suspense} from 'react';
 import {Img, resource} from 'react-suspense-img';
-import {ReactProps} from '~/components';
+import type {ReactProps} from '~/components';
 
 export const SuspenseImage: FC<
 	ReactProps & {

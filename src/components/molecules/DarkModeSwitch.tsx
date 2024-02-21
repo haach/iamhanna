@@ -1,7 +1,7 @@
 import {useGTMDispatch} from '@elgorditosalsero/react-gtm-hook';
 import classNames from 'classnames';
-import {FC} from 'react';
-import {ReactProps} from '~/components';
+import type {FC} from 'react';
+import type {ReactProps} from '~/components';
 import {Typo} from '~/components/primitives/typography';
 import {useTheme} from '~/contexts/ThemeContext';
 

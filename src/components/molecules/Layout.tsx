@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import {ComponentWithChildren} from '~/components';
+import type {ComponentWithChildren} from '~/components';
 
 export const ContainerOuter: ComponentWithChildren = ({
 	children,

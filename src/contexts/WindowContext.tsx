@@ -1,13 +1,6 @@
 import debounce from 'just-debounce';
-import {
-	createContext,
-	FC,
-	useContext,
-	useEffect,
-	useMemo,
-	useState,
-} from 'react';
-import {ComponentWithChildren} from '~/components';
+import {createContext, useContext, useEffect, useMemo, useState} from 'react';
+import type {ComponentWithChildren} from '~/components';
 
 type WindowContext = {
 	width: number;
@@ -37,7 +30,7 @@ export const WindowContextProvider: ComponentWithChildren = ({children}) => {
 			setWindowObject({
 				width: window.innerWidth,
 				height: window.innerHeight,
-				pageYOffset: window.pageYOffset,
+				pageYOffset: window.scrollY,
 			});
 	};
 
@@ -58,7 +51,7 @@ export const WindowContextProvider: ComponentWithChildren = ({children}) => {
 			window.removeEventListener('resize', debouncedHandleResize);
 			window.removeEventListener('scroll', debouncedHandleResize);
 		};
-	}, []); // Empty array ensures that effect is only run on mount
+	}, [debouncedHandleResize]); // Empty array ensures that effect is only run on mount
 
 	return (
 		<WindowContext.Provider value={windowObject}>

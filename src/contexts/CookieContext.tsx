@@ -1,5 +1,5 @@
 import {createContext, useContext, useEffect, useState} from 'react';
-import {ComponentWithChildren} from '~/components';
+import type {ComponentWithChildren} from '~/components';
 
 interface CookieContext {
 	consent: boolean | null;

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import {FC, ReactNode} from 'react';
-import {ReactProps} from '~/components';
+import type {FC, ReactNode} from 'react';
+import type {ReactProps} from '~/components';
 import {HR} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 /**

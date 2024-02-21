@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import {FC} from 'react';
-import {ReactProps} from '~/components';
+import type {FC} from 'react';
+import type {ReactProps} from '~/components';
 
 export const blackBorder = 'border-solid border-bl dark:border-white';
 export const link =

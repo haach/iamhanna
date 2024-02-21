@@ -123,7 +123,7 @@ const P: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
 		</p>
 	);
 };
-const SPAN: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
+const Span: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
 	const className = classNames(
 		'font-thin',
 		commonClassNames(typoProps),
@@ -181,7 +181,7 @@ const LINK_EXTERNAL: FC<
 		</a>
 	);
 };
-const CAPTION: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
+const Caption: FC<TypoProps & TypoColorProps> = ({children, ...typoProps}) => {
 	const className = classNames(
 		'text-sm font-thin',
 		commonClassNames(typoProps),
@@ -202,8 +202,8 @@ export const Typo = {
 	H4,
 	H5,
 	P,
-	SPAN,
+	Span,
 	LinkInternal: LINK_INTERNAL,
 	LinkExternal: LINK_EXTERNAL,
-	Caption: CAPTION,
+	Caption,
 } as const;
