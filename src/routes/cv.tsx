@@ -119,18 +119,18 @@ const CV = () => {
 			<ContainerInner>
 				<HeadlineWithDivider title="Experience" />
 				<SpacedCols>
-					{/* <Typo.P>
-            You can also{' '}
-            <Typo.LinkExternal
-              href="/hanna_achenbach_short_cv.pdf"
-              download
-              onClick={() => {
-                sendDataToGTM({event: 'cvDownloaded'});
-              }}
-            >
-              download the short version as PDF
-            </Typo.LinkExternal>
-          </Typo.P> */}
+					<Typo.P>
+						You can also{' '}
+						<Typo.LinkExternal
+							href="/hanna_achenbach_short_cv.pdf"
+							download
+							/* onClick={() => {
+								sendDataToGTM({event: 'cvDownloaded'});
+							}} */
+						>
+							download the short version as PDF
+						</Typo.LinkExternal>
+					</Typo.P>
 					{openSections &&
 						Object.entries(experiences).map(([key, experience]) => (
 							<div key={key} id={key}>
