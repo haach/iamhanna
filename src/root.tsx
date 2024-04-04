@@ -31,9 +31,10 @@ const description =
 	'I am a Berlin based frontend engineer and artist coming from a design driven background. On this portfolio you can find my cv and career path, a collection of things I currently love, some of my work and a way to contact me for job offers.';
 
 const meta: MetaFunction = () => [
-	{charset: 'utf-8'} /* 
-	{viewport: 'width=device-width,initial-scale=1'}, */,
-	{title: 'i am hanna - portfolio of Hanna Achenbach'},
+	{charset: 'utf-8'},
+	/* {viewport: 'width=device-width,initial-scale=1'}, */ {
+		title: 'i am hanna - portfolio of Hanna Achenbach',
+	},
 	{description: description},
 	{
 		keywords:

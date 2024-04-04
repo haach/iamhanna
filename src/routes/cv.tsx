@@ -134,19 +134,14 @@ const CV = () => {
 					{openSections &&
 						Object.entries(experiences).map(([key, experience]) => (
 							<div key={key} id={key}>
-								<div className="flex flex-col sm:flex-row w-full">
-									<div
-										className="flex flex-col sm:block sm:float-left "
-										style={{whiteSpace: 'nowrap'}}
-									>
-										<Typo.H4>{experience.to}</Typo.H4>
-										<Typo.H5>{experience.from}</Typo.H5>
-									</div>
-									<div className="flex-auto pt-2 sm:pl-6 mb-3 sm:mb-0 lg:-mt-1">
-										<Typo.H2 className="leading-tight">
-											{experience.title}
-										</Typo.H2>
-									</div>
+								<div className="flex flex-col w-full">
+									<Typo.H2 className="leading-tight">
+										{experience.from} - {experience.to}
+									</Typo.H2>
+									<Typo.H2 className="leading-tight">
+										{experience.title}
+									</Typo.H2>
+									<div className="flex-auto pt-2 sm:pl-6 mb-3 sm:mb-0 lg:-mt-1"></div>
 								</div>
 								<div
 									className={classNames(
