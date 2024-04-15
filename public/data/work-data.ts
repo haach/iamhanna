@@ -47,7 +47,7 @@ export const workItems: Array<WorkItem> = [
 		text: 'The pizza creator was originally a small coding challenge that I decided to have some fun with by incorporating elements from one of my favorite childhood computer games: Pizza Connection 2. My goal was to create something that made the reviewers smile, and apparently it worked! Over time, I added more features but never got to perfect the code (meanwhile I was also fighting the outdated dependency monster). This code is also available on Github, plus there is a demo deployed on Vercel. Enjoy, and try to not get hungry ;)',
 		links: [
 			{type: LinkType.GITHUB, href: 'https://github.com/haach/pizza'},
-			{type: LinkType.DEMO, href: 'https://pizza-haach.vercel.app/'},
+			{type: LinkType.DEMO, href: 'https://pizza-murex.vercel.app/'},
 		],
 		tags: ['React', 'CRA', 'Styled Components', 'CSS animations'],
 	},
