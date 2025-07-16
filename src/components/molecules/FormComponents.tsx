@@ -2,15 +2,44 @@ import type {FC} from 'react';
 import {input} from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
 
-type Label = {label?: string};
+interface LabelProps {
+	label?: string;
+}
 
-export const Input: FC<
-	React.DetailedHTMLProps<
-		React.InputHTMLAttributes<HTMLInputElement>,
-		HTMLInputElement
-	> &
-		Label
-> = ({label, ...props}) => {
+interface RequiredIndicatorProps {
+	required?: boolean;
+}
+
+export interface InputProps
+	extends React.DetailedHTMLProps<
+			React.InputHTMLAttributes<HTMLInputElement>,
+			HTMLInputElement
+		>,
+		LabelProps,
+		RequiredIndicatorProps {}
+
+export interface TextAreaProps
+	extends React.DetailedHTMLProps<
+			React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+			HTMLTextAreaElement
+		>,
+		LabelProps,
+		RequiredIndicatorProps {}
+
+export interface RadioGroupOption {
+	value: string;
+	label: string;
+}
+
+export interface RadioGroupProps {
+	name: string;
+	label: string | [string, string];
+	options: RadioGroupOption[];
+	required?: boolean;
+	onChange?: (value: string) => void;
+}
+
+export const Input: FC<InputProps> = ({label, ...props}) => {
 	return (
 		<>
 			{label && (
@@ -30,13 +59,7 @@ export const Input: FC<
 	);
 };
 
-export const TextArea: FC<
-	React.DetailedHTMLProps<
-		React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-		HTMLTextAreaElement
-	> &
-		Label
-> = ({label, ...props}) => {
+export const TextArea: FC<TextAreaProps> = ({label, ...props}) => {
 	return (
 		<>
 			{label && (
@@ -57,33 +80,44 @@ export const TextArea: FC<
 	);
 };
 
-export const RadioGroup: FC<
-	React.DetailedHTMLProps<
-		React.InputHTMLAttributes<HTMLInputElement>,
-		HTMLInputElement
-	> & {
-		label: Array<string>;
-		options: Array<{value: string; label: string}>;
-	}
-> = ({label, options, ...props}) => {
+export const RadioGroup: FC<RadioGroupProps> = ({
+	name,
+	label,
+	options,
+	required,
+	onChange,
+}) => {
+	const labelText = Array.isArray(label) ? label.join(' ') : label;
+	const [labelStart, labelEnd] = Array.isArray(label) ? label : [label, ''];
+
 	return (
-		<>
-			<Typo.Span>{label[0]}</Typo.Span>
-			{options.map(({value, label}) => (
-				<div key={value} className="flex flex-row items-center gap-1">
-					<input
-						{...props}
-						type={'radio'}
-						value={value}
-						id={props.name + value}
-					/>
-					<label htmlFor={props.name + value}>
-						{label}
-						{props.required && ' *'}
-					</label>
-				</div>
-			))}
-			<Typo.Span>{label[1]}</Typo.Span>
-		</>
+		<fieldset>
+			<legend className="sr-only">{labelText}</legend>
+			<div className="flex flex-row items-center gap-2">
+				<Typo.Span>{labelStart}</Typo.Span>
+				{options.map(({value, label: optionLabel}, index) => (
+					<div key={value} className="flex flex-row items-center gap-1">
+						<input
+							type="radio"
+							name={name}
+							value={value}
+							id={`${name}-${value}`}
+							required={required}
+							onChange={e => onChange?.(e.target.value)}
+						/>
+						<label htmlFor={`${name}-${value}`} className="font-normal">
+							{optionLabel}
+						</label>
+						{index < options.length - 1 && (
+							<Typo.Span className="mx-1">or</Typo.Span>
+						)}
+					</div>
+				))}
+				<Typo.Span>
+					{labelEnd}
+					{required && ' *'}
+				</Typo.Span>
+			</div>
+		</fieldset>
 	);
 };

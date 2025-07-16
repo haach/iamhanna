@@ -7,24 +7,13 @@ import {
 	TextArea,
 } from '~/components/molecules/FormComponents';
 import {input} from '~/components/primitives';
+import {WorkingModel, WORKING_MODEL_LABELS} from '~/types/contact';
 
 const meta: MetaFunction = () => [
 	{
 		title: 'i am hanna - send me a job opportunity',
 	},
 ];
-
-enum WorkingModel {
-	REMOTE = 'REMOTE',
-	HYBRID = 'HYBRID',
-	OTHER = 'OTHER',
-}
-
-const workingModelLang = {
-	[WorkingModel.REMOTE]: 'Remote',
-	[WorkingModel.HYBRID]: 'Hybrid',
-	[WorkingModel.OTHER]: 'Other',
-};
 
 const JobOpportunity: FC = () => {
 	const [workingModel, setWorkingModel] = useState<WorkingModel>();
@@ -57,13 +46,13 @@ const JobOpportunity: FC = () => {
 				>
 					<option value="">- Please select -</option>
 					<option value={WorkingModel.REMOTE}>
-						{workingModelLang[WorkingModel.REMOTE]}
+						{WORKING_MODEL_LABELS[WorkingModel.REMOTE]}
 					</option>
 					<option value={WorkingModel.HYBRID}>
-						{workingModelLang[WorkingModel.HYBRID]}
+						{WORKING_MODEL_LABELS[WorkingModel.HYBRID]}
 					</option>
 					<option value={WorkingModel.OTHER}>
-						{workingModelLang[WorkingModel.OTHER]}
+						{WORKING_MODEL_LABELS[WorkingModel.OTHER]}
 					</option>
 				</select>
 			</li>

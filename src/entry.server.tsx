@@ -1,4 +1,5 @@
 import {PassThrough} from 'node:stream';
+import 'dotenv/config'; // Load environment variables
 
 import type {EntryContext} from '@remix-run/node';
 import {createReadableStreamFromReadable} from '@remix-run/node';

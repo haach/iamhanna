@@ -26,6 +26,7 @@ import {
 import {ThemeContextProvider, useTheme} from '~/contexts/ThemeContext';
 import {WindowContextProvider} from '~/contexts/WindowContext';
 import CookieBanner from './components/molecules/CookieBanner';
+import {formatErrorForUser, logError} from '~/utils/errorHandling';
 
 const description =
 	'I am a Berlin based frontend engineer and artist coming from a design driven background. On this portfolio you can find my cv and career path, a collection of things I currently love, some of my work and a way to contact me for job offers.';
@@ -176,8 +177,11 @@ const GTMErrorTracker: FC<{err: string}> = ({err}) => {
 };
 
 export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
-	console.log('error', error);
+	logError(error, 'ErrorBoundary');
+	const errorInfo = formatErrorForUser(error);
+
 	if (!error) return null;
+
 	return (
 		<Wrapper>
 			<GTMErrorTracker err={error.message} />
@@ -185,9 +189,11 @@ export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
 				<div className="py-10 px-10 w-max-sm">
 					<Typo.H1>...oh dang 😖</Typo.H1>
 					<Typo.P>something went south.</Typo.P>
-					<Typo.P className="text-red-600">Error: {error.message}</Typo.P>
-					{process.env.NODE_ENV === 'development' && (
-						<pre className="text-red-600">Stack: {error.stack}</pre>
+					<Typo.P className="text-red-600">Error: {errorInfo.message}</Typo.P>
+					{errorInfo.showDetails && error.stack && (
+						<pre className="text-red-600 text-sm mt-4 overflow-auto max-h-64">
+							Stack: {error.stack}
+						</pre>
 					)}
 				</div>
 			</div>
@@ -197,7 +203,8 @@ export const ErrorBoundary: FC<{error: Error}> = ({error}) => {
 
 export const CatchBoundary: FC = () => {
 	const error = useRouteError();
-	console.log('error', error);
+	logError(error, 'CatchBoundary');
+
 	if (!error) return null;
 
 	if (isRouteErrorResponse(error)) {
@@ -216,6 +223,7 @@ export const CatchBoundary: FC = () => {
 			</Wrapper>
 		);
 	} else if (error instanceof Error) {
+		const errorInfo = formatErrorForUser(error);
 		return (
 			<Wrapper>
 				<GTMErrorTracker
@@ -223,8 +231,13 @@ export const CatchBoundary: FC = () => {
 				/>
 				<div className="flex flex-col items-center content-center justify-center">
 					<div className="py-10 px-10 w-max-sm">
-						<Typo.H1>{error.message} 😖</Typo.H1>
-						<Typo.P>{error.stack}</Typo.P>
+						<Typo.H1>{errorInfo.title} 😖</Typo.H1>
+						<Typo.P className="text-red-600">{errorInfo.message}</Typo.P>
+						{errorInfo.showDetails && error.stack && (
+							<pre className="text-red-600 text-sm mt-4 overflow-auto max-h-64">
+								{error.stack}
+							</pre>
+						)}
 					</div>
 				</div>
 			</Wrapper>

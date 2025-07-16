@@ -1,9 +1,6 @@
 import type {ActionFunction, MetaFunction} from '@remix-run/node';
-import {redirect} from '@remix-run/node';
 import {Outlet, useLocation} from '@remix-run/react';
-import * as SendgridMail from '@sendgrid/mail';
 import classNames from 'classnames';
-import dotenv from 'dotenv';
 import type {FC} from 'react';
 import {useRef, useState} from 'react';
 import {AiOutlineLoading3Quarters} from 'react-icons/ai';
@@ -21,6 +18,9 @@ import {
 	link,
 } from '~/components/primitives';
 import {Typo} from '~/components/primitives/typography';
+import {ContactReason, CONTACT_REASON_LABELS} from '~/types/contact';
+import {handleContactFormSubmission} from '~/services/contactService';
+import {useContactReasonFromURL} from '~/hooks/useContact';
 
 const meta: MetaFunction = () => [
 	{
@@ -28,108 +28,8 @@ const meta: MetaFunction = () => [
 	},
 ];
 
-enum ContactReason {
-	UNSET = 'UNSET',
-	HELLO = 'HELLO',
-	JOB = 'JOB',
-	FREELANCE = 'FREELANCE',
-}
-
-const contactReasonLang = {
-	[ContactReason.UNSET]: 'UNSET',
-	[ContactReason.HELLO]: 'Just saying hi',
-	[ContactReason.JOB]: 'Job opportunity',
-	[ContactReason.FREELANCE]: 'Freelance project',
-};
-
-const sanitize = (string: string) => {
-	// escape dangerous character
-	const map = {
-		'&': '&amp;',
-		'<': '&lt;',
-		'>': '&gt;',
-		'"': '&quot;',
-		"'": '&#x27;',
-		'/': '&#x2F;',
-	};
-	const reg = /[&<>"'/]/gi;
-	return string.replace(reg, match => map[match as keyof typeof map]);
-};
-
 export const action: ActionFunction = async ({request}) => {
-	const form = await request.formData();
-
-	const possibleFields = [
-		'contactReason',
-		'name',
-		'email',
-		'message',
-		'employer',
-		'compensation',
-		'workingModel',
-		'workingModelDescription',
-		'dogsAllowed',
-		'benefits',
-	];
-
-	const fields = possibleFields.reduce(
-		(acc: {[field: string]: string}, val) => {
-			const field = form.get(val);
-			if (field) {
-				const cleanField = sanitize(field as string);
-				if (val === 'contactReason')
-					acc[val] = contactReasonLang[cleanField as ContactReason];
-				else acc[val] = cleanField;
-			}
-			return acc;
-		},
-		{},
-	);
-
-	dotenv.config({path: `.env`});
-	const fromEmail = process.env.EMAIL_FROM;
-	const toEmail = process.env.EMAIL_TO;
-	const apiKey = process.env.APIKEY;
-
-	if (apiKey && fromEmail && toEmail) {
-		SendgridMail.setApiKey(apiKey);
-		// SANATIZE !!!
-		const text = `Message over the contact form - ${fields.name} regrding ${fields.contactReason}`;
-		const html = Object.entries(fields).map(([key, value]) =>
-			key === 'email'
-				? '<p><b>' +
-					key +
-					'</b>: <a href="mailto:' +
-					value +
-					'" >' +
-					value +
-					'</a></p>'
-				: '<p><b>' + key + '</b>: ' + value + '</p>',
-		);
-		const messsage = {
-			to: toEmail,
-			from: fromEmail,
-			subject: `Message over the contact form - ${fields.name} regrding ${fields.contactReason}`,
-			text,
-			html: html.join(''),
-		};
-		return SendgridMail.send(messsage)
-			.then(([res]) =>
-				redirect(`/contact/${res.statusCode === 202 ? 'success' : 'error'}`),
-			)
-			.catch(err => {
-				console.log(err);
-				return redirect(`/contact/error`);
-			});
-	}
-};
-
-const useContactReasonFromURL = () => {
-	const {pathname} = useLocation();
-	if (pathname === '/contact/job-opportunity') return ContactReason.JOB;
-	else if (pathname === '/contact/freelance') return ContactReason.FREELANCE;
-	else if (pathname === '/contact/hello') return ContactReason.HELLO;
-	return ContactReason.UNSET;
+	return handleContactFormSubmission(request);
 };
 
 const Contact: FC = () => {
@@ -139,17 +39,22 @@ const Contact: FC = () => {
 	);
 	const formRef = useRef<HTMLFormElement>(null);
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
 	const handleSubmit = () => {
 		const form = formRef?.current;
 		if (!form) return;
-		// check if form is valid
+
+		// Check if form is valid
 		if (form.checkValidity() === false) return;
-		// setIsSubmitting
+
+		// Set submitting state
 		setIsSubmitting(true);
-		// perform submit
+
+		// Perform submit
 		form.submit();
-		// No need to reset because of redirect from action
+		// Note: No need to reset submitting state because of redirect from action
 	};
+
 	return (
 		<PageLayout
 			title="Hanna Achenbach"
@@ -211,7 +116,7 @@ const Contact: FC = () => {
 									block
 									isActive={location.pathname === '/contact/job-opportunity'}
 								>
-									{contactReasonLang[ContactReason.JOB]}
+									{CONTACT_REASON_LABELS[ContactReason.JOB]}
 								</Typo.LinkInternal>
 								<span className="hidden sm:inline-block">|</span>
 								<Typo.LinkInternal
@@ -223,7 +128,7 @@ const Contact: FC = () => {
 									block
 									isActive={location.pathname === '/contact/freelance'}
 								>
-									{contactReasonLang[ContactReason.FREELANCE]}
+									{CONTACT_REASON_LABELS[ContactReason.FREELANCE]}
 								</Typo.LinkInternal>
 								<span className="hidden sm:inline-block">|</span>
 								<Typo.LinkInternal
@@ -235,7 +140,7 @@ const Contact: FC = () => {
 									block
 									isActive={location.pathname === '/contact/hello'}
 								>
-									{contactReasonLang[ContactReason.HELLO]}
+									{CONTACT_REASON_LABELS[ContactReason.HELLO]}
 								</Typo.LinkInternal>
 							</Typo.H3>
 
@@ -269,5 +174,4 @@ const Contact: FC = () => {
 };
 
 export default Contact;
-
 export {meta};
