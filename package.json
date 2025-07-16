@@ -14,6 +14,8 @@
 		"typecheck": "tsc",
 		"test": "vitest --coverage",
 		"test:watch": "vitest --coverage --watch",
+		"knip": "knip",
+		"knip:fix": "knip --fix",
 		"contributors": "all-contributors generate",
 		"new": "plop"
 	},
@@ -54,6 +56,7 @@
 		"eslint-plugin-prettier": "^5.1.3",
 		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"jsdom": "^24.0.0",
+		"knip": "^5.61.3",
 		"postcss": "^8.4.16",
 		"prettier-plugin-tailwindcss": "^0.5.7",
 		"tailwindcss": "^3.1.8",

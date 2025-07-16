@@ -1,0 +1,37 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "src/entry.client.tsx",
+    "src/entry.server.tsx",
+    "src/root.tsx",
+    "src/routes/**/*.tsx",
+    "src/routes/**/*.ts",
+    "vitest.config.ts",
+    "remix.config.js",
+    "tailwind.config.js"
+  ],
+  "project": [
+    "src/**/*.{ts,tsx}",
+    "!src/**/*.test.{ts,tsx}",
+    "!src/**/*.spec.{ts,tsx}"
+  ],
+  "ignore": [
+    "src/tests/setup.ts",
+    "public/**/*"
+  ],
+  "ignoreDependencies": [
+    "@types/react",
+    "@types/react-dom",
+    "@remix-run/dev",
+    "@remix-run/eslint-config",
+    "@remix-run/serve",
+    "prettier"
+  ],
+  "remix": {
+    "entry": [
+      "src/entry.client.tsx",
+      "src/entry.server.tsx",
+      "src/root.tsx"
+    ]
+  }
+}
