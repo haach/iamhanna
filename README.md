@@ -6,11 +6,7 @@
 
 React on Remix and deployed to vercel. For my CSS I used Tailwind and some React Icons.
 
-## Recent Improvements (2025)
-
-This project underwent a comprehensive refactoring to improve code quality, maintainability, and error handling:
-
-### 🔧 Code Quality Improvements
+### 🔧 What I tried to reach here
 
 - **Proper TypeScript types** for all contact form data and email handling
 - **Separation of concerns** with dedicated services and utilities
@@ -18,11 +14,11 @@ This project underwent a comprehensive refactoring to improve code quality, main
 - **Input validation and sanitization** with proper security measures
 - **Configuration management** through centralized constants
 
-### 📧 Email Service Refactoring
+### 📧 Email Service
 
 - Extracted email logic into dedicated service (`src/services/emailService.ts`)
 - Improved email template generation with better HTML structure
-- Better error handling for SendGrid API failures
+- Better error handling
 - Proper environment variable validation
 
 ### 🛡️ Security & Validation
@@ -54,13 +50,3 @@ npm run dev
 ```
 
 Open up [http://localhost:3000](http://localhost:3000) and you should be ready to go!
-
-### Environment Variables
-
-Create a `.env` file with the following variables for the contact form to work:
-
-```env
-APIKEY=your_sendgrid_api_key
-EMAIL_FROM=from@yourdomain.com
-EMAIL_TO=to@yourdomain.com
-```
