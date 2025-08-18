@@ -1,10 +1,13 @@
-import * as SendgridMail from '@sendgrid/mail';
+import * as nodemailer from 'nodemailer';
 import type {ContactForm, EmailTemplate} from '~/types/contact';
 import {EmailSendingError, CONTACT_REASON_LABELS} from '~/types/contact';
 import {logError} from '~/utils/errorHandling';
 
 interface EmailConfig {
-	apiKey: string;
+	host: string;
+	port: number;
+	user: string;
+	pass: string;
 	fromEmail: string;
 	toEmail: string;
 }
@@ -17,12 +20,27 @@ interface EmailConfig {
  * Throws an EmailSendingError if any required variable is missing.
  */
 function validateEmailConfig(): EmailConfig {
-	const apiKey = process.env.APIKEY;
+	const host = process.env.SMTP_HOST;
+	const port = process.env.SMTP_PORT;
+	const user = process.env.SMTP_USER;
+	const pass = process.env.SMTP_PASS;
 	const fromEmail = process.env.EMAIL_FROM;
 	const toEmail = process.env.EMAIL_TO;
 
-	if (!apiKey) {
-		throw new EmailSendingError('Email API key is not configured.', 500);
+	if (!host) {
+		throw new EmailSendingError('SMTP host is not configured.', 500);
+	}
+
+	if (!port) {
+		throw new EmailSendingError('SMTP port is not configured.', 500);
+	}
+
+	if (!user) {
+		throw new EmailSendingError('SMTP user is not configured.', 500);
+	}
+
+	if (!pass) {
+		throw new EmailSendingError('SMTP password is not configured.', 500);
 	}
 
 	if (!fromEmail) {
@@ -33,7 +51,14 @@ function validateEmailConfig(): EmailConfig {
 		throw new EmailSendingError('Email "to" address is not configured.', 500);
 	}
 
-	return {apiKey, fromEmail, toEmail};
+	return {
+		host,
+		port: parseInt(port, 10),
+		user,
+		pass,
+		fromEmail,
+		toEmail,
+	};
 }
 
 /**
@@ -125,7 +150,7 @@ export function createEmailTemplate(
 }
 
 /**
- * Sends email using SendGrid
+ * Sends email using nodemailer with SMTP
  */
 export async function sendContactEmail(
 	contactForm: ContactForm,
@@ -133,20 +158,28 @@ export async function sendContactEmail(
 	try {
 		const emailConfig = validateEmailConfig();
 
-		// Set API key
-		SendgridMail.setApiKey(emailConfig.apiKey);
+		// Create nodemailer transporter
+		const transporter = nodemailer.createTransport({
+			host: emailConfig.host,
+			port: emailConfig.port,
+			secure: emailConfig.port === 465, // true for 465, false for other ports
+			auth: {
+				user: emailConfig.user,
+				pass: emailConfig.pass,
+			},
+		});
 
 		// Create email template
 		const emailTemplate = createEmailTemplate(contactForm, emailConfig);
 
 		// Send email
-		const [response] = await SendgridMail.send(emailTemplate);
+		const info = await transporter.sendMail(emailTemplate);
 
-		// Check if email was accepted
-		if (response.statusCode !== 202) {
+		// Check if email was sent
+		if (!info.messageId) {
 			throw new EmailSendingError(
-				`Email service returned unexpected status: ${response.statusCode}`,
-				response.statusCode,
+				'Email was not sent - no message ID returned',
+				500,
 			);
 		}
 	} catch (error) {
